@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/home"
+        android:title="@string/first_home"/>
+
+    <item
+        android:id="@+id/navigation_all"
+        android:icon="@drawable/all"
+        android:title="@string/first_all"/>
+
+    <item
+        android:id="@+id/navigation_collected"
+        android:icon="@drawable/collected"
+        android:title="@string/first_collected"/>
+
+    <item
+        android:id="@+id/navigation_vocabulary"
+        android:icon="@drawable/vocabulary"
+        android:title="@string/first_vocabulary" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/profile"
+        android:title="@string/first_profile"/>
+</menu>

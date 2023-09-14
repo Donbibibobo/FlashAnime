@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.flashanime.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home"/>
+    <fragment
+        android:id="@+id/allFragment"
+        android:name="com.example.flashanime.all.AllFragment"
+        android:label="AllFragment"
+        tools:layout="@layout/fragment_all"/>
+    <fragment
+        android:id="@+id/collectedFragment"
+        android:name="com.example.flashanime.collected.CollectedFragment"
+        android:label="CollectedFragment"
+        tools:layout="@layout/fragment_collected"/>
+    <fragment
+        android:id="@+id/vocabularyFragment"
+        android:name="com.example.flashanime.vocabulary.VocabularyFragment"
+        android:label="VocabularyFragment"
+        tools:layout="@layout/fragment_vocabulary"/>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.flashanime.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile"/>
+
+    <action android:id="@+id/navigate_to_home_fragment" app:destination="@id/homeFragment"
+        app:popUpTo="@id/navigation"
+        app:popUpToInclusive="true" />
+    <action android:id="@+id/navigate_to_all_fragment" app:destination="@id/allFragment"
+        app:popUpTo="@id/navigation"
+        app:popUpToInclusive="true" />
+    <action android:id="@+id/navigate_to_collected_fragment" app:destination="@id/collectedFragment"
+        app:popUpTo="@id/navigation"
+        app:popUpToInclusive="true" />
+    <action android:id="@+id/navigate_to_vocabulary_fragment" app:destination="@id/vocabularyFragment"
+        app:popUpTo="@id/navigation"
+        app:popUpToInclusive="true" />
+    <action android:id="@+id/navigate_to_profile_fragment" app:destination="@id/profileFragment"
+        app:popUpTo="@id/navigation"
+        app:popUpToInclusive="true"/>
+</navigation>

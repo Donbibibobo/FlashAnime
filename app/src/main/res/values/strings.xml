@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">FlashAnime</string>
+
+    <string name="first_home">首頁</string>
+    <string name="first_all">所有動畫</string>
+    <string name="first_collected">收藏</string>
+    <string name="first_vocabulary">單字</string>
+    <string name="first_profile">我的</string>
 </resources>
