@@ -8,7 +8,7 @@ import kotlin.properties.Delegates
 // An application that lazily provides a repository
 class FlashAnimeApplication : Application() {
 
-    // Depends on the flavor,
+    // Depends on the flavor
     val flashAnimeRepository: FlashAnimeRepository
         get() = ServiceLocator.provideTasksRepository(this)
 

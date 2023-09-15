@@ -11,7 +11,7 @@ import com.example.flashanime.ext.getVmFactory
 
 class HomeFragment: Fragment() {
 
-//    private val viewModel by viewModels<HomeViewModel> { getVmFactory() }
+    private val viewModel by viewModels<HomeViewModel> { getVmFactory() }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -20,7 +20,7 @@ class HomeFragment: Fragment() {
 
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
-//        binding.viewModel = viewModel
+        binding.viewModel = viewModel
 
 
 

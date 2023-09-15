@@ -2,6 +2,7 @@ package com.example.flashanime.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.flashanime.MainViewModel
 import com.example.flashanime.all.AllViewModel
 import com.example.flashanime.collected.CollectedViewModel
 import com.example.flashanime.data.source.FlashAnimeRepository
@@ -18,6 +19,9 @@ class ViewModelFactory constructor(
     override fun <T : ViewModel> create(modelClass: Class<T>) =
         with(modelClass) {
             when {
+                isAssignableFrom(MainViewModel::class.java) ->
+                    MainViewModel(flashAnimeRepository)
+
                 isAssignableFrom(HomeViewModel::class.java) ->
                     HomeViewModel(flashAnimeRepository)
 

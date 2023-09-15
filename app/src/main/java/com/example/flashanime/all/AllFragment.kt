@@ -10,7 +10,7 @@ import com.example.flashanime.databinding.FragmentHomeBinding
 
 class AllFragment: Fragment() {
 
-    //    private val viewModel by viewModels<HomeViewModel> { getVmFactory() }
+//        private val viewModel by viewModels<HomeViewModel> { getVmFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable name="viewModel" type="com.example.flashanime.MainViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,6 +32,7 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:text="@{viewModel.currentFragmentType.value}"
                 tools:text="@string/first_home"
                 tools:visibility="visible" />
 
