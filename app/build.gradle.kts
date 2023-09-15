@@ -118,6 +118,10 @@ dependencies {
 
     implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
+
+    // exo player
+    implementation("com.google.android.exoplayer:exoplayer:2.18.6")
+    implementation("com.google.android.exoplayer:exoplayer-ui:2.18.6")
 }
 kapt {
     correctErrorTypes = true
