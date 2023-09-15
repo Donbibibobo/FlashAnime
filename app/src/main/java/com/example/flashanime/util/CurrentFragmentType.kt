@@ -9,5 +9,6 @@ enum class CurrentFragmentType(val value: String) {
     ALL(getString(R.string.first_all)),
     COLLECTED(getString(R.string.first_collected)),
     VOCABULARY(getString(R.string.first_vocabulary)),
-    PROFILE(getString(R.string.first_profile))
+    PROFILE(getString(R.string.first_profile)),
+    DETAIL(""),
 }

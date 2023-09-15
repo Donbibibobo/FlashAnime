@@ -30,6 +30,12 @@
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile"/>
 
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.flashanime.detail.DetailFragment"
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail"/>
+
     <action android:id="@+id/navigate_to_home_fragment" app:destination="@id/homeFragment"
         app:popUpTo="@id/navigation"
         app:popUpToInclusive="true" />
@@ -45,4 +51,7 @@
     <action android:id="@+id/navigate_to_profile_fragment" app:destination="@id/profileFragment"
         app:popUpTo="@id/navigation"
         app:popUpToInclusive="true"/>
+
+    <action android:id="@+id/navigate_to_detail_fragment" app:destination="@id/detailFragment"/>
+
 </navigation>

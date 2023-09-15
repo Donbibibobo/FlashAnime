@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="viewModel" type="com.example.flashanime.home.HomeViewModel" />
+        <variable name="viewModel" type="com.example.flashanime.detail.DetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,10 +11,9 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/HomeText"
             android:layout_width="300dp"
             android:layout_height="100dp"
-            android:text="Home Page"
+            android:text="Detail Page"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -87,6 +87,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.collectedFragment -> CurrentFragmentType.COLLECTED
                 R.id.vocabularyFragment -> CurrentFragmentType.VOCABULARY
                 R.id.profileFragment -> CurrentFragmentType.PROFILE
+                R.id.detailFragment -> CurrentFragmentType.DETAIL
                 else -> viewModel.currentFragmentType.value
             }
         }

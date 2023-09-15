@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.example.flashanime.util.CurrentFragmentType"/>
+        <import type="android.view.View"/>
         <variable name="viewModel" type="com.example.flashanime.MainViewModel"/>
     </data>
 
@@ -17,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_toolbar"
             android:background="@color/blue"
-            android:visibility="visible"
+            android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.DETAIL ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -57,6 +59,7 @@
             android:background="@color/white"
             app:itemIconSize="@dimen/size_bottom_nav_icon"
             app:labelVisibilityMode="labeled"
+            android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.DETAIL ? View.GONE : View.VISIBLE}"
             app:itemTextColor="@drawable/bottom_nav_item_selector"
             app:itemIconTint="@drawable/bottom_nav_item_selector"
             app:layout_constraintBottom_toBottomOf="parent"

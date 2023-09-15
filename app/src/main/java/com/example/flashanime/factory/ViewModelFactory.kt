@@ -6,6 +6,7 @@ import com.example.flashanime.MainViewModel
 import com.example.flashanime.all.AllViewModel
 import com.example.flashanime.collected.CollectedViewModel
 import com.example.flashanime.data.source.FlashAnimeRepository
+import com.example.flashanime.detail.DetailViewModel
 import com.example.flashanime.home.HomeViewModel
 import com.example.flashanime.profile.ProfileViewModel
 import com.example.flashanime.vocabulary.VocabularyViewModel
@@ -36,6 +37,9 @@ class ViewModelFactory constructor(
 
                 isAssignableFrom(ProfileViewModel::class.java) ->
                     ProfileViewModel(flashAnimeRepository)
+
+                isAssignableFrom(DetailViewModel::class.java) ->
+                    DetailViewModel(flashAnimeRepository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
