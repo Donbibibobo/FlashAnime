@@ -13,8 +13,18 @@
 
     <!--anime info-->
     <string name="anime_info_title">無職轉生～到了異世界就拿出真本事～</string>
-    <string name="anime_info_releaseTime">09/11 (一) 01:05</string>
+    <string name="anime_info_releaseDateTime">09/11 (一) 01:05</string>
+    <string name="anime_info_releaseTime">01:05</string>
     <string name="anime_info_episode">第10集</string>
+
+    <!--week-->
+    <string name="week_1">週一</string>
+    <string name="week_2">週二</string>
+    <string name="week_3">週三</string>
+    <string name="week_4">週四</string>
+    <string name="week_5">週五</string>
+    <string name="week_6">週六</string>
+    <string name="week_7">週日</string>
 
 
 </resources>

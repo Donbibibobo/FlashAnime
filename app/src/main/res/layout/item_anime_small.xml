@@ -66,7 +66,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title"
-            tools:text="@string/anime_info_releaseTime"/>
+            tools:text="@string/anime_info_releaseDateTime"/>
 
         <TextView
             android:id="@+id/episode"

@@ -6,14 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.flashanime.NavigationDirections
 import com.example.flashanime.R
 import com.example.flashanime.databinding.FragmentHomeBinding
 import com.example.flashanime.ext.getVmFactory
 import com.example.flashanime.home.viewpage2.ViewPageAdapter
-import com.example.flashanime.util.Util.getString
 import com.google.android.material.tabs.TabLayoutMediator
 
 private const val FRAGMENT_SEASON = 0
