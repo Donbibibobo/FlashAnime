@@ -8,6 +8,8 @@ import com.example.flashanime.collected.CollectedViewModel
 import com.example.flashanime.data.source.FlashAnimeRepository
 import com.example.flashanime.detail.DetailViewModel
 import com.example.flashanime.home.HomeViewModel
+import com.example.flashanime.home.viewpage2.SeasonViewModel
+import com.example.flashanime.home.viewpage2.WeekViewModel
 import com.example.flashanime.profile.ProfileViewModel
 import com.example.flashanime.vocabulary.VocabularyViewModel
 
@@ -25,6 +27,12 @@ class ViewModelFactory constructor(
 
                 isAssignableFrom(HomeViewModel::class.java) ->
                     HomeViewModel(flashAnimeRepository)
+
+                isAssignableFrom(SeasonViewModel::class.java) ->
+                    SeasonViewModel(flashAnimeRepository)
+
+                isAssignableFrom(WeekViewModel::class.java) ->
+                    WeekViewModel(flashAnimeRepository)
 
                 isAssignableFrom(AllViewModel::class.java) ->
                     AllViewModel(flashAnimeRepository)

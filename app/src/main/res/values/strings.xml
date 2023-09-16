@@ -7,4 +7,8 @@
     <string name="first_vocabulary">單字</string>
     <string name="first_profile">我的</string>
 
+    <!--tab layout-->
+    <string name="first_tab_season">本季新番</string>
+    <string name="first_tab_week">週期表</string>
+
 </resources>
