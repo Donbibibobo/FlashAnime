@@ -11,4 +11,10 @@
     <string name="first_tab_season">本季新番</string>
     <string name="first_tab_week">週期表</string>
 
+    <!--anime info-->
+    <string name="anime_info_title">無職轉生～到了異世界就拿出真本事～</string>
+    <string name="anime_info_releaseTime">09/11 (一) 01:05</string>
+    <string name="anime_info_episode">第10集</string>
+
+
 </resources>

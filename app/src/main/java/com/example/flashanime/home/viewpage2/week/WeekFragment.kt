@@ -1,4 +1,4 @@
-package com.example.flashanime.home.viewpage2
+package com.example.flashanime.home.viewpage2.week
 
 import android.os.Bundle
 import android.view.LayoutInflater

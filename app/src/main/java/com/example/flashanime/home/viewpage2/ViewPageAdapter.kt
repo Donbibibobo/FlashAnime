@@ -3,6 +3,8 @@ package com.example.flashanime.home.viewpage2
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.flashanime.home.viewpage2.season.SeasonFragment
+import com.example.flashanime.home.viewpage2.week.WeekFragment
 
 private const val ITEM_COUNT = 2
 private const val FRAGMENT_SEASON = 0

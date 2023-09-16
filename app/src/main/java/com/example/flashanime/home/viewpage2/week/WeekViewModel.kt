@@ -1,4 +1,4 @@
-package com.example.flashanime.home.viewpage2
+package com.example.flashanime.home.viewpage2.week
 
 import androidx.lifecycle.ViewModel
 import com.example.flashanime.data.source.FlashAnimeRepository
