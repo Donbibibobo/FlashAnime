@@ -1,11 +1,16 @@
 package com.example.flashanime.home.viewpage2.week
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
+import com.example.flashanime.R
 import com.example.flashanime.data.WeeklyAnime
 import com.example.flashanime.databinding.FragmentWeekBinding
 import com.example.flashanime.ext.getVmFactory
@@ -63,6 +68,19 @@ class WeekFragment: Fragment() {
         adapter5.submitList(weekListB)
         adapter6.submitList(weekListA)
         adapter7.submitList(weekListA)
+
+        val dividerItemDecoration = DividerItemDecoration(requireContext(), RecyclerView.VERTICAL)
+        ResourcesCompat.getDrawable(resources, R.drawable.divider, null)?.let {
+            dividerItemDecoration.setDrawable(it)
+        }
+
+        binding.R1.addItemDecoration(dividerItemDecoration)
+        binding.R2.addItemDecoration(dividerItemDecoration)
+        binding.R3.addItemDecoration(dividerItemDecoration)
+        binding.R4.addItemDecoration(dividerItemDecoration)
+        binding.R5.addItemDecoration(dividerItemDecoration)
+        binding.R6.addItemDecoration(dividerItemDecoration)
+        binding.R7.addItemDecoration(dividerItemDecoration)
 
 
 
