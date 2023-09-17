@@ -35,6 +35,7 @@ class HomeFragment: Fragment() {
 
         // add adapter to viewpage
         binding.viewPager2.adapter = adapter
+        binding.viewPager2.isUserInputEnabled = false
 
         // connect TabLayout and ViewPager2
         TabLayoutMediator(binding.tabLayout, binding.viewPager2) {tab, position ->

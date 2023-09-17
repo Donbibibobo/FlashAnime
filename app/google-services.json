@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "21127564044",
+    "project_id": "flashanime-64c35",
+    "storage_bucket": "flashanime-64c35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:21127564044:android:b0b672bf10d43171485729",
+        "android_client_info": {
+          "package_name": "com.example.flashanime"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4rVTarxNaHoRCF4xK4tDQp1a2S6zqAVY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

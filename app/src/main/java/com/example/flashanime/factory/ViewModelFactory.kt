@@ -46,9 +46,6 @@ class ViewModelFactory constructor(
                 isAssignableFrom(ProfileViewModel::class.java) ->
                     ProfileViewModel(flashAnimeRepository)
 
-                isAssignableFrom(DetailViewModel::class.java) ->
-                    DetailViewModel(flashAnimeRepository)
-
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }

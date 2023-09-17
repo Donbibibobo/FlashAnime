@@ -34,7 +34,14 @@
         android:id="@+id/detailFragment"
         android:name="com.example.flashanime.detail.DetailFragment"
         android:label="DetailFragment"
-        tools:layout="@layout/fragment_detail"/>
+        tools:layout="@layout/fragment_detail">
+
+        <argument android:name="animeInfoKey"
+            app:argType="com.example.flashanime.data.AnimeInfo"
+            app:nullable="false"/>
+    </fragment>
+
+
 
     <action android:id="@+id/navigate_to_home_fragment" app:destination="@id/homeFragment"
         app:popUpTo="@id/navigation"

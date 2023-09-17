@@ -4,6 +4,7 @@ plugins {
     id("kotlin-parcelize")
     id("kotlin-kapt")
     id("androidx.navigation.safeargs")
+    id("com.google.gms.google-services")
 }
 
 
@@ -122,6 +123,13 @@ dependencies {
     // exo player
     implementation("com.google.android.exoplayer:exoplayer:2.18.6")
     implementation("com.google.android.exoplayer:exoplayer-ui:2.18.6")
+
+    // File picker
+//    implementation("com.github.TutorialsAndroid:FilePicker:v9.0.1")
+//    implementation("io.github.tutorialsandroid:filepicker:9.2.5")
+
+    // jsoup
+    implementation("org.jsoup:jsoup:1.14.3")
 }
 kapt {
     correctErrorTypes = true

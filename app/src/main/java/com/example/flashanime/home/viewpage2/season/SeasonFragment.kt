@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.example.flashanime.NavigationDirections
 import com.example.flashanime.data.AnimeInfo
@@ -26,35 +27,17 @@ class SeasonFragment: Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        // test video
-        binding.textSeason.setOnClickListener{
-            it.findNavController().navigate(NavigationDirections.navigateToDetailFragment())
+
+
+        val adapter = SeasonListAdapter{
+            view?.findNavController()?.navigate(NavigationDirections.navigateToDetailFragment(it))
         }
 
-        // mock data
-        val wordsList = listOf<String>("同感","家")
-        val category = listOf<String>("奇幻","搞笑")
-        val animeInfo1 = AnimeInfo(false,
-            "黑暗集會",
-            "09/11 (一) 01:05",
-            "第一集",
-            "4.5",
-            wordsList,
-            category,
-            "https://vpx34.myself-bbs.com/hls/yw/kA/As/AgADywkAAsU4WVU/index.m3u8",
-            "https://myself-bbs.com/data/attachment/forum/202307/10/103635cficxop2wccjcf2v.jpg"
-            )
-
-        val adapter = SeasonListAdapter()
         binding.recyclerView.adapter = adapter
 
-        val animeInfoList = mutableListOf<AnimeInfo>()
-        animeInfoList.add(animeInfo1)
-        animeInfoList.add(animeInfo1)
-        animeInfoList.add(animeInfo1)
-        animeInfoList.add(animeInfo1)
-
-        adapter.submitList(animeInfoList)
+        viewModel.animeInfo.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
+        })
 
 
 

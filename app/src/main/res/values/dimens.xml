@@ -11,6 +11,7 @@
     <!-- tab layout -->
     <dimen name="height_tab_layout">50dp</dimen>
 
-
+    <!-- episode item-->
+    <dimen name="episode_item">48dp</dimen>
 
 </resources>

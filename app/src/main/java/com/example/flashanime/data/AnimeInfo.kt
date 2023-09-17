@@ -12,7 +12,7 @@ data class AnimeInfo (
     val rate: String,
     val wordsList: List<String>,
     val category: List<String>,
-    val videoSourceM3U8: String,
+    val videoSourceM3U8: List<String>,
     val pictureURL: String,
 ): Parcelable
 
