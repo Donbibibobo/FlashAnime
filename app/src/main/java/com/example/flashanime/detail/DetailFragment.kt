@@ -2,6 +2,7 @@ package com.example.flashanime.detail
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.flashanime.all.AllViewModel
-import com.example.flashanime.databinding.FragmentAllBinding
 import com.example.flashanime.databinding.FragmentDetailBinding
 import com.example.flashanime.ext.getVmFactory
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.ui.StyledPlayerView
 
 class DetailFragment: Fragment() {
 
@@ -44,28 +42,43 @@ class DetailFragment: Fragment() {
 
 
         // episode recyclerView
-        val adapter = DetailEpisodeAdapter()
+        val adapter = DetailEpisodeAdapter{
+            viewModel.selectedEpisodeList(it)
+        }
+
         binding.episode.adapter = adapter
         val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.episode.layoutManager = layoutManager
 
 
-        viewModel.animeInfoArg.observe(viewLifecycleOwner, Observer { animeInfo ->
-            // set source
+        // video default last episode
+        viewModel.episodeMutableListDefault.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
             exoPlayer.setMediaItem(MediaItem.fromUri(Uri.parse(
-//                "https://vpx16.myself-bbs.com/vpx/46596/001/720p.m3u8"
-                animeInfo.videoSourceM3U8[1]
+                viewModel.animeInfoArg.value!!.videoSourceM3U8[it.size-1]
+            )))
+            exoPlayer.prepare()
+            exoPlayer.playWhenReady = true
+        })
+
+        // change to selected episode
+        viewModel.episodeMutableListSelected.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
+            // set source
+            exoPlayer.stop()
+            exoPlayer.clearMediaItems()
+
+            Log.i("test11","fragment: ${viewModel.episodeExo}")
+            exoPlayer.setMediaItem(MediaItem.fromUri(Uri.parse(
+                viewModel.animeInfoArg.value!!.videoSourceM3U8[viewModel.episodeExo]
             )))
 
-            // set episode recyclerView
-            val listCount = List(animeInfo.videoSourceM3U8.size) { (it + 1).toString() }
-            adapter.submitList(listCount)
-
+            exoPlayer.prepare()
+            exoPlayer.playWhenReady = true
         })
 
 
 
-        exoPlayer.prepare()
 
         // other feature about the video player
         exoPlayer.addListener(object: Player.Listener{
@@ -80,11 +93,6 @@ class DetailFragment: Fragment() {
         // file picker
 //        val dialogProperties: DialogProperties
 //        val filePickerDialog: FilePickerDialog
-
-
-
-
-
 
         return binding.root
     }

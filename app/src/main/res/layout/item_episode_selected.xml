@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="episode"
+            type="String"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/episode_string"
+            android:layout_width="@dimen/episode_item"
+            android:layout_height="@dimen/episode_item"
+            android:background="@drawable/tab_indicator"
+            android:backgroundTint="@color/blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@{episode}"
+            android:textSize="20sp"
+            android:gravity="center"
+            tools:text="1"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
