@@ -121,9 +121,7 @@ class DetailFragment: Fragment() {
             )
         })
 
-
-
-
+        
 
         // -------
         fun findMatchingWordPosition(currentTime: Long): Int {
@@ -147,6 +145,8 @@ class DetailFragment: Fragment() {
 
         val updateRunnable = object : Runnable {
             override fun run() {
+                Log.i("asdfqwer", Thread.currentThread().name)
+
                 val currentTime = exoPlayer.currentPosition
                 val matchingWordPosition = findMatchingWordPosition(currentTime)
                 binding.wordList.adapter?.let {
