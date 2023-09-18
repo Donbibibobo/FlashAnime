@@ -7,10 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
+import com.example.flashanime.R
 import com.example.flashanime.databinding.FragmentDetailBinding
 import com.example.flashanime.ext.getVmFactory
 import com.google.android.exoplayer2.ExoPlayer
@@ -47,12 +50,13 @@ class DetailFragment: Fragment() {
         binding.styledPlayerView.player = exoPlayer
 
 
+
+
         // episode recyclerView
-        val adapter = DetailEpisodeAdapter{
+        val adapterEpisode = DetailEpisodeAdapter{
             viewModel.selectedEpisodeList(it)
         }
-        binding.episode.adapter = adapter
-
+        binding.episode.adapter = adapterEpisode
 
         val layoutManager = FlexboxLayoutManager(requireContext()).apply {
             flexDirection = FlexDirection.ROW
@@ -66,7 +70,7 @@ class DetailFragment: Fragment() {
 
         // video default last episode
         viewModel.episodeMutableListDefault.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
+            adapterEpisode.submitList(it)
             exoPlayer.setMediaItem(MediaItem.fromUri(Uri.parse(
                 viewModel.animeInfoArg.value!!.videoSourceM3U8[it.size-1]
             )))
@@ -74,9 +78,26 @@ class DetailFragment: Fragment() {
             exoPlayer.playWhenReady = true
         })
 
+
+
+        // wordList recyclerview
+        val adapterWordList = DetailWordListAdapter{
+            Log.i("testWordList", "${it.time}")
+            timeToMillis(it.time)
+            exoPlayer.seekTo(timeToMillis(it.time))
+        }
+        binding.wordList.adapter = adapterWordList
+        val dividerItemDecoration = DividerItemDecoration(requireContext(), RecyclerView.VERTICAL)
+        ResourcesCompat.getDrawable(resources, R.drawable.divider, null)?.let {
+            dividerItemDecoration.setDrawable(it)
+        }
+        binding.wordList.addItemDecoration(dividerItemDecoration)
+
+
+
         // change to selected episode
         viewModel.episodeMutableListSelected.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
+            adapterEpisode.submitList(it)
             // set source
             exoPlayer.stop()
             exoPlayer.clearMediaItems()
@@ -88,7 +109,15 @@ class DetailFragment: Fragment() {
 
             exoPlayer.prepare()
             exoPlayer.playWhenReady = true
+
+            // submit wordList according to the episode
+            adapterWordList.submitList(
+                viewModel.animeInfoArg.value!!.wordsList[viewModel.episodeExo].playWords
+            )
         })
+
+
+
 
 
 
@@ -142,4 +171,16 @@ class DetailFragment: Fragment() {
     }
 
 
+}
+
+// change time to mills
+private fun timeToMillis(timeString: String): Long {
+    val splitByColon = timeString.split(":")
+    val hours = splitByColon[0].toLong()
+    val minutes = splitByColon[1].toLong()
+    val splitByDot = splitByColon[2].split(".")
+    val seconds = splitByDot[0].toLong()
+    val millis = if (splitByDot.size > 1) splitByDot[1].toLong() else 0L
+
+    return (hours * 3600000) + (minutes * 60000) + (seconds * 1000) + (millis * 10)
 }

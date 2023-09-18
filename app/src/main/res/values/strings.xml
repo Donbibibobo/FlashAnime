@@ -16,6 +16,12 @@
     <string name="anime_info_releaseDateTime">09/11 (一) 01:05</string>
     <string name="anime_info_releaseTime">01:05</string>
     <string name="anime_info_episode">第10集</string>
+    <string name="anime_word_List_title">本集單字</string>
+
+    <!-- word list -->
+    <string name="wordsNumber">0001</string>
+    <string name="word">これ</string>
+
 
     <!--week-->
     <string name="week_1">週一</string>

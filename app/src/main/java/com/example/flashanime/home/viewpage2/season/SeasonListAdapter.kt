@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.databinding.ItemAnimeSmallBinding
 
-class SeasonListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<AnimeInfo, RecyclerView.ViewHolder>(ProductDiffCallback()) {
+class SeasonListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<AnimeInfo, RecyclerView.ViewHolder>(SeasonProductDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
             ItemAnimeSmallBinding.inflate(
@@ -41,7 +41,7 @@ class SeasonListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<Ani
 
 }
 
-private class ProductDiffCallback() : DiffUtil.ItemCallback<AnimeInfo>() {
+private class SeasonProductDiffCallback() : DiffUtil.ItemCallback<AnimeInfo>() {
     override fun areItemsTheSame(oldItem: AnimeInfo, newItem: AnimeInfo): Boolean {
         return oldItem.videoSourceM3U8 == newItem.videoSourceM3U8
     }

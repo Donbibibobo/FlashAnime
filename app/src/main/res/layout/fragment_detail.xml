@@ -64,7 +64,46 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/releaseTime"
             tools:itemCount="1"
-            tools:listitem="@layout/item_episode_unselected" />
+            tools:listitem="@layout/item_episode_unselected"/>
+
+        <View
+            android:id="@+id/wordListDivider"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/episode"
+            android:layout_marginTop="6dp"
+            android:background="@color/gray_f0f0f0"/>
+
+        <TextView
+            android:id="@+id/episode_words"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:fontFamily="@font/noto_sans"
+            android:letterSpacing="0.1"
+            android:text="@string/anime_word_List_title"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/wordListDivider"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/wordList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="6dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/episode_words"
+            app:layout_constraintVertical_bias="0.0"
+            tools:itemCount="10"
+            tools:listitem="@layout/item_word_list" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
