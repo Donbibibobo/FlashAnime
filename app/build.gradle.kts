@@ -130,6 +130,10 @@ dependencies {
 
     // jsoup
     implementation("org.jsoup:jsoup:1.14.3")
+
+    // FlexboxLayoutManager
+    implementation("com.google.android.flexbox:flexbox:3.0.0")
+
 }
 kapt {
     correctErrorTypes = true

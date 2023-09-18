@@ -16,6 +16,12 @@ import com.example.flashanime.ext.getVmFactory
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
+import com.google.android.flexbox.AlignItems
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
+
 
 class DetailFragment: Fragment() {
 
@@ -45,10 +51,19 @@ class DetailFragment: Fragment() {
         val adapter = DetailEpisodeAdapter{
             viewModel.selectedEpisodeList(it)
         }
-
         binding.episode.adapter = adapter
-        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+//        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+//        binding.episode.layoutManager = layoutManager
+
+        val layoutManager = FlexboxLayoutManager(requireContext()).apply {
+            flexDirection = FlexDirection.ROW
+            justifyContent = JustifyContent.FLEX_START
+            alignItems = AlignItems.STRETCH
+            flexWrap = FlexWrap.WRAP
+        }
         binding.episode.layoutManager = layoutManager
+
 
 
         // video default last episode
