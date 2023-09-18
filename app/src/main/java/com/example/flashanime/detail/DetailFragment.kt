@@ -2,6 +2,8 @@ package com.example.flashanime.detail
 
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +33,9 @@ class DetailFragment: Fragment() {
     private val viewModel by viewModels<DetailViewModel> { getVmFactory(DetailFragmentArgs.fromBundle(requireArguments()).animeInfoKey)  }
 
     private lateinit var exoPlayer: ExoPlayer
+
+    private val updateHandler = Handler(Looper.getMainLooper())
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -120,17 +125,67 @@ class DetailFragment: Fragment() {
 
 
 
+        // -------
+        fun findMatchingWordPosition(currentTime: Long): Int {
+            val currentEpisodeIndex = viewModel.episodeExo
+            val currentEpisode = viewModel.animeInfoArg.value?.wordsList?.getOrNull(currentEpisodeIndex)
+
+            return currentEpisode?.playWords?.indexOfFirst {
+                timeToMillis(it.time) >= currentTime
+            } ?: -1
+        }
+
+        fun scrollToWord(position: Int, recyclerView: RecyclerView) {
+            val center = recyclerView.height / 2
+            val targetView = recyclerView.layoutManager?.findViewByPosition(position)
+            targetView?.let {
+                val top = it.top
+                val toScroll = top - center + it.height / 2
+                recyclerView.smoothScrollBy(0, toScroll)
+            }
+        }
+
+        val updateRunnable = object : Runnable {
+            override fun run() {
+                val currentTime = exoPlayer.currentPosition
+                val matchingWordPosition = findMatchingWordPosition(currentTime)
+                binding.wordList.adapter?.let {
+                    if (it is DetailWordListAdapter) {
+                        it.highlightWordPosition(matchingWordPosition-1)
+                    }
+                }
+                scrollToWord(matchingWordPosition, binding.wordList)
+                updateHandler.postDelayed(this, 500)
+            }
+        }
 
 
         // other feature about the video player
         exoPlayer.addListener(object: Player.Listener{
-            override fun onRenderedFirstFrame() {
-                super.onRenderedFirstFrame()
+            override fun onIsPlayingChanged(isPlaying: Boolean) {
+                if (isPlaying) {
+                    Log.i("asdfqwer", "Playing")
+                    updateHandler.post(updateRunnable)  // 啟動更新
+                } else {
+                    Log.i("asdfqwer", "Paused")
+                    updateHandler.removeCallbacks(updateRunnable)  // 停止更新
+                }
+            }
 
-                // after the video was playing, you can do something here
-                // for example, show a toast, or change UI, or make UI into full screen
+            override fun onPlaybackStateChanged(playbackState: Int) {
+                when (playbackState) {
+                    Player.STATE_IDLE, Player.STATE_ENDED, Player.STATE_BUFFERING -> {
+                        updateHandler.removeCallbacks(updateRunnable)  // 停止更新
+                    }
+                }
             }
         })
+
+
+
+
+
+
 
         // file picker
 //        val dialogProperties: DialogProperties
@@ -144,6 +199,10 @@ class DetailFragment: Fragment() {
 
         exoPlayer.playWhenReady = true
         exoPlayer.play()
+
+//        updateHandler.post(updateRunnable)
+
+
     }
 
     override fun onPause() {
@@ -151,6 +210,10 @@ class DetailFragment: Fragment() {
 
         exoPlayer.pause()
         exoPlayer.playWhenReady = false
+
+//        updateHandler.removeCallbacks(updateRunnable)
+
+
     }
 
     override fun onStop() {
@@ -158,6 +221,8 @@ class DetailFragment: Fragment() {
 
         exoPlayer.pause()
         exoPlayer.playWhenReady = false
+
+
     }
 
     override fun onDestroy() {
@@ -174,7 +239,7 @@ class DetailFragment: Fragment() {
 }
 
 // change time to mills
-private fun timeToMillis(timeString: String): Long {
+fun timeToMillis(timeString: String): Long {
     val splitByColon = timeString.split(":")
     val hours = splitByColon[0].toLong()
     val minutes = splitByColon[1].toLong()
@@ -184,3 +249,4 @@ private fun timeToMillis(timeString: String): Long {
 
     return (hours * 3600000) + (minutes * 60000) + (seconds * 1000) + (millis * 10)
 }
+
