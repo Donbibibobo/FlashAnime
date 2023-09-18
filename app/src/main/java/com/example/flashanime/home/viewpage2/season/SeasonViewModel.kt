@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.flashanime.data.AnimeInfo
+import com.example.flashanime.data.PlayWordEpisode
+import com.example.flashanime.data.PlayWords
 import com.example.flashanime.data.source.FlashAnimeRepository
 import com.example.flashanime.network.FlashAnimeApi
 import com.google.firebase.firestore.ktx.firestore
@@ -100,14 +102,30 @@ class SeasonViewModel(private val flashAnimeRepository: FlashAnimeRepository): V
 
 
                 // data (ps have to chose video type with m3u8)
-                val wordsList = listOf<String>("同感","家")
+                val playWords1 = PlayWords("0:00:29.42","これ","N5")
+                val playWords2 = PlayWords("0:00:30.56","大変","N4")
+                val playWords3 = PlayWords("0:00:33.58","早く","N5")
+                val playWords4 = PlayWords("0:00:40.49","食べる","N5")
+                val playWords5 = PlayWords("0:00:42.55","死ねる","N1")
+                val playWords6 = PlayWords("0:00:42.55","苦しい","N3")
+                val playWords7 = PlayWords("0:00:49.44","眼鏡","N3")
+                val playWords8 = PlayWords("0:00:54.49","僕達","N3")
+                val playWords9 = PlayWords("0:00:56.92","荒てる","N1")
+                val playWords10 = PlayWords("0:01:00.79","ビル","N3")
+
+                val playWordsList = mutableListOf<PlayWords>(
+                    playWords1,playWords2,playWords3,playWords4,playWords5,playWords6,playWords7,playWords8,playWords9,playWords10
+                )
+                val playWordEpisode = mutableListOf<PlayWordEpisode>(PlayWordEpisode("1",playWordsList))
+
+
                 val animeInfo1 = AnimeInfo(
                     false,
                     "$title",
                     "$date",
                     "$episode",
-                    "4.5",         // har
-                    wordsList,          // har
+                    "4.5",               // har
+                    playWordEpisode,          // har
                     typeList,
                     m3u8UrlsType1,
                     "$image"

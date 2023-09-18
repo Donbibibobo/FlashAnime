@@ -53,8 +53,6 @@ class DetailFragment: Fragment() {
         }
         binding.episode.adapter = adapter
 
-//        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-//        binding.episode.layoutManager = layoutManager
 
         val layoutManager = FlexboxLayoutManager(requireContext()).apply {
             flexDirection = FlexDirection.ROW

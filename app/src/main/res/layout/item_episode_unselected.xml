@@ -20,6 +20,7 @@
             android:layout_width="@dimen/episode_item"
             android:layout_height="@dimen/episode_item"
             android:background="@drawable/tab_indicator"
+            android:backgroundTint="@color/gray_f0f0f0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
