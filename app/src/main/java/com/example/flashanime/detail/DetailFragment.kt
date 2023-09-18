@@ -87,9 +87,7 @@ class DetailFragment: Fragment() {
 
         // wordList recyclerview
         val adapterWordList = DetailWordListAdapter{
-            Log.i("testWordList", "${it.time}")
-            timeToMillis(it.time)
-            exoPlayer.seekTo(timeToMillis(it.time))
+            exoPlayer.seekTo(viewModel.timeToMillis(it.time))
         }
         binding.wordList.adapter = adapterWordList
         val dividerItemDecoration = DividerItemDecoration(requireContext(), RecyclerView.VERTICAL)
@@ -108,8 +106,9 @@ class DetailFragment: Fragment() {
             exoPlayer.clearMediaItems()
 
             Log.i("test11","fragment: ${viewModel.episodeExo}")
+            Log.i("test11","fragment: ${viewModel.episodeExo}")
             exoPlayer.setMediaItem(MediaItem.fromUri(Uri.parse(
-                viewModel.animeInfoArg.value!!.videoSourceM3U8[viewModel.episodeExo]
+                        viewModel.animeInfoArg.value!!.videoSourceM3U8[viewModel.episodeExo]
             )))
 
             exoPlayer.prepare()
@@ -121,40 +120,19 @@ class DetailFragment: Fragment() {
             )
         })
 
-        
-
-        // -------
-        fun findMatchingWordPosition(currentTime: Long): Int {
-            val currentEpisodeIndex = viewModel.episodeExo
-            val currentEpisode = viewModel.animeInfoArg.value?.wordsList?.getOrNull(currentEpisodeIndex)
-
-            return currentEpisode?.playWords?.indexOfFirst {
-                timeToMillis(it.time) >= currentTime
-            } ?: -1
-        }
-
-        fun scrollToWord(position: Int, recyclerView: RecyclerView) {
-            val center = recyclerView.height / 2
-            val targetView = recyclerView.layoutManager?.findViewByPosition(position)
-            targetView?.let {
-                val top = it.top
-                val toScroll = top - center + it.height / 2
-                recyclerView.smoothScrollBy(0, toScroll)
-            }
-        }
 
         val updateRunnable = object : Runnable {
             override fun run() {
-                Log.i("asdfqwer", Thread.currentThread().name)
+                Log.i("updateRunnable", Thread.currentThread().name)
 
                 val currentTime = exoPlayer.currentPosition
-                val matchingWordPosition = findMatchingWordPosition(currentTime)
+                val matchingWordPosition = viewModel.findMatchingWordPosition(currentTime)
                 binding.wordList.adapter?.let {
                     if (it is DetailWordListAdapter) {
                         it.highlightWordPosition(matchingWordPosition-1)
                     }
                 }
-                scrollToWord(matchingWordPosition, binding.wordList)
+                viewModel.scrollToWord(matchingWordPosition, binding.wordList)
                 updateHandler.postDelayed(this, 500)
             }
         }
@@ -164,18 +142,18 @@ class DetailFragment: Fragment() {
         exoPlayer.addListener(object: Player.Listener{
             override fun onIsPlayingChanged(isPlaying: Boolean) {
                 if (isPlaying) {
-                    Log.i("asdfqwer", "Playing")
-                    updateHandler.post(updateRunnable)  // 啟動更新
+                    Log.i("updateRunnable", "Playing")
+                    updateHandler.post(updateRunnable)
                 } else {
-                    Log.i("asdfqwer", "Paused")
-                    updateHandler.removeCallbacks(updateRunnable)  // 停止更新
+                    Log.i("updateRunnable", "Paused")
+                    updateHandler.removeCallbacks(updateRunnable)
                 }
             }
 
             override fun onPlaybackStateChanged(playbackState: Int) {
                 when (playbackState) {
                     Player.STATE_IDLE, Player.STATE_ENDED, Player.STATE_BUFFERING -> {
-                        updateHandler.removeCallbacks(updateRunnable)  // 停止更新
+                        updateHandler.removeCallbacks(updateRunnable)
                     }
                 }
             }
@@ -238,15 +216,4 @@ class DetailFragment: Fragment() {
 
 }
 
-// change time to mills
-fun timeToMillis(timeString: String): Long {
-    val splitByColon = timeString.split(":")
-    val hours = splitByColon[0].toLong()
-    val minutes = splitByColon[1].toLong()
-    val splitByDot = splitByColon[2].split(".")
-    val seconds = splitByDot[0].toLong()
-    val millis = if (splitByDot.size > 1) splitByDot[1].toLong() else 0L
-
-    return (hours * 3600000) + (minutes * 60000) + (seconds * 1000) + (millis * 10)
-}
 

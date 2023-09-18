@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.RecyclerView
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.Episode
 import com.example.flashanime.data.source.FlashAnimeRepository
@@ -68,4 +69,36 @@ class DetailViewModel(
         _episodeMutableListSelected.value = mutableEpisodeList
         Log.i("test11","viewModel: $_episodeExo")
     }
+
+    fun scrollToWord(position: Int, recyclerView: RecyclerView) {
+        val center = recyclerView.height / 2
+        val targetView = recyclerView.layoutManager?.findViewByPosition(position)
+        targetView?.let {
+            val top = it.top
+            val toScroll = top - center + it.height / 2
+            recyclerView.smoothScrollBy(0, toScroll)
+        }
+    }
+
+    fun findMatchingWordPosition(currentTime: Long): Int {
+        val currentEpisodeIndex = _episodeExo
+        val currentEpisode = animeInfoArg.value?.wordsList?.getOrNull(currentEpisodeIndex)
+
+        return currentEpisode?.playWords?.indexOfFirst {
+            timeToMillis(it.time) >= currentTime
+        } ?: -1
+    }
+
+    // change time to mills
+    fun timeToMillis(timeString: String): Long {
+        val splitByColon = timeString.split(":")
+        val hours = splitByColon[0].toLong()
+        val minutes = splitByColon[1].toLong()
+        val splitByDot = splitByColon[2].split(".")
+        val seconds = splitByDot[0].toLong()
+        val millis = if (splitByDot.size > 1) splitByDot[1].toLong() else 0L
+
+        return (hours * 3600000) + (minutes * 60000) + (seconds * 1000) + (millis * 10)
+    }
+
 }

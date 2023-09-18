@@ -102,21 +102,41 @@ class SeasonViewModel(private val flashAnimeRepository: FlashAnimeRepository): V
 
 
                 // data (ps have to chose video type with m3u8)
-                val playWords1 = PlayWords("0:00:29.00","これ","N5")
+                val playWords1 = PlayWords("0:00:29.00","これ","N5")  // 少資訊
                 val playWords2 = PlayWords("0:00:30.00","大変","N4")
-                val playWords3 = PlayWords("0:00:33.00","早く","N5")
+                val playWords3 = PlayWords("0:00:33.00","早い","N5")
                 val playWords4 = PlayWords("0:00:40.00","食べる","N5")
-                val playWords5 = PlayWords("0:00:41.00","死ねる","N1")
+                val playWords5 = PlayWords("0:00:41.00","死ぬ","N1")
                 val playWords6 = PlayWords("0:00:42.00","苦しい","N3")
-                val playWords7 = PlayWords("0:00:49.00","眼鏡","N3")
-                val playWords8 = PlayWords("0:00:54.00","僕達","N3")
+                val playWords7 = PlayWords("0:00:49.00","眼鏡","N3")  // 兩個意思
+                val playWords8 = PlayWords("0:00:54.00","僕達","N3") // 兩個意思
                 val playWords9 = PlayWords("0:00:56.00","荒てる","N1")
                 val playWords10 = PlayWords("0:01:00.00","ビル","N3")
+                val playWords11 = PlayWords("0:01:01.00","全然","N5")
+                val playWords12 = PlayWords("0:01:02.00","匂い","N3")
+                val playWords13 = PlayWords("0:01:04.00","あそこ","N3")
+                val playWords14 = PlayWords("0:01:05.00","俺","N3")
+                val playWords15 = PlayWords("0:01:06.00","気に入る","N3")
+                val playWords16 = PlayWords("0:01:08.00","私","N3")
+                val playWords17 = PlayWords("0:01:09.00","有難い","N3")
 
                 val playWordsList = mutableListOf<PlayWords>(
-                    playWords1,playWords2,playWords3,playWords4,playWords5,playWords6,playWords7,playWords8,playWords9,playWords10
+                    playWords1,playWords2,playWords3,playWords4,playWords5,playWords6,playWords7,playWords8,playWords9,playWords10,
+                    playWords11,playWords12,playWords13,playWords14,playWords15,playWords16,playWords17
                 )
-                val playWordEpisode = mutableListOf<PlayWordEpisode>(PlayWordEpisode("1",playWordsList))
+                val playWordEpisode = mutableListOf<PlayWordEpisode>()
+                playWordEpisode.add(PlayWordEpisode("1",playWordsList)) //every playWordsList is episode one's words
+                playWordEpisode.add(PlayWordEpisode("2",playWordsList))
+                playWordEpisode.add(PlayWordEpisode("3",playWordsList))
+                playWordEpisode.add(PlayWordEpisode("4",playWordsList))
+                playWordEpisode.add(PlayWordEpisode("5",playWordsList))
+                playWordEpisode.add(PlayWordEpisode("6",playWordsList))
+                playWordEpisode.add(PlayWordEpisode("7",playWordsList))
+                playWordEpisode.add(PlayWordEpisode("8",playWordsList))
+                playWordEpisode.add(PlayWordEpisode("9",playWordsList))
+                playWordEpisode.add(PlayWordEpisode("10",playWordsList))
+                playWordEpisode.add(PlayWordEpisode("11",playWordsList))
+                playWordEpisode.add(PlayWordEpisode("12",playWordsList))
 
 
                 val animeInfo1 = AnimeInfo(
