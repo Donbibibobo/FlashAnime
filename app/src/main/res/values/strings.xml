@@ -25,6 +25,9 @@
     <!-- word dialog -->
     <string name="word_dialog_meaning">語意：</string>
 
+    <!-- allAnime page -->
+    <string name="fab_word">分類篩選</string>
+
     <!--week-->
     <string name="week_1">週一</string>
     <string name="week_2">週二</string>
