@@ -1,5 +1,6 @@
 package com.example.flashanime.network
 
+import com.example.flashanime.data.JLPTWord
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -10,11 +11,13 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-
-private const val HOST_NAME = "myself-bbs.com"
-private const val BASE_URL = "https://$HOST_NAME/"
-
 //https://myself-bbs.com/forum.php?mod=viewthread&tid=46596
+private const val MYSELF_HOST_NAME = "myself-bbs.com"
+private const val MYSELF_BASE_URL = "https://$MYSELF_HOST_NAME/"
+
+//https://jlpt-vocab-api.vercel.app/api/words?word=養う
+private const val VOCAB_HOST_NAME = "jlpt-vocab-api.vercel.app"
+private const val VOCAB_BASE_URL = "https://$VOCAB_HOST_NAME/api/"
 
 internal val moshi = Moshi.Builder()
     .addLast(KotlinJsonAdapterFactory())
@@ -25,20 +28,25 @@ internal val moshi = Moshi.Builder()
 private val retrofitMoshi = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .addCallAdapterFactory(CoroutineCallAdapterFactory())
-    .baseUrl(BASE_URL)
+    .baseUrl(VOCAB_BASE_URL)
     .build()
 
 private val retrofitScalars = Retrofit.Builder()
     .addConverterFactory(ScalarsConverterFactory.create())
     .addCallAdapterFactory(CoroutineCallAdapterFactory())
-    .baseUrl(BASE_URL)
+    .baseUrl(MYSELF_BASE_URL)
     .build()
 
 
 interface FlashAnimeApiService {
 
+    // get animeInfo from web
     @GET("forum.php?mod=viewthread")
     suspend fun getAnimeInfo(@Query("tid") tid: Long): Response<String>
+
+    // get animeInfo from web
+    @GET("words")
+    suspend fun getWordInfo(@Query("word") word: String): JLPTWord
 
 //    /**
 //     * Returns a Coroutine [Deferred] [ProductListResult] which can be fetched with await() if in a Coroutine scope.
@@ -96,6 +104,10 @@ interface FlashAnimeApiService {
 }
 
 
-object FlashAnimeApi {
+object FlashAnimeScalarsApi {
     val retrofitService: FlashAnimeApiService by lazy { retrofitScalars.create(FlashAnimeApiService::class.java) }
+}
+
+object FlashAnimeMoshiApi {
+    val retrofitService: FlashAnimeApiService by lazy { retrofitMoshi.create(FlashAnimeApiService::class.java) }
 }

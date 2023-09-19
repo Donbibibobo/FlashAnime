@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.flashanime.data.PlayWords
 import com.example.flashanime.databinding.ItemWordListBinding
 
-class DetailWordListAdapter(private val click: (PlayWords) -> Unit): ListAdapter<PlayWords, RecyclerView.ViewHolder>(DetailProductDiffCallback()) {
+class DetailWordListAdapter(private val clickSound: (PlayWords) -> Unit, private val clickWord: (PlayWords) -> Unit): ListAdapter<PlayWords, RecyclerView.ViewHolder>(DetailProductDiffCallback()) {
     //----
     private var currentPlayingWordPosition: Int? = null
     fun highlightWordPosition(position: Int) {
@@ -34,7 +34,7 @@ class DetailWordListAdapter(private val click: (PlayWords) -> Unit): ListAdapter
         when(holder){
             is ViewHolder -> {
                 val isHighlighted = position == currentPlayingWordPosition
-                holder.bind(animeInfo, click, isHighlighted)
+                holder.bind(animeInfo, clickSound, isHighlighted, clickWord)
             }
             else -> throw IllegalArgumentException("SeasonListAdapter onBindViewHolder holder unknown.")
         }
@@ -42,16 +42,19 @@ class DetailWordListAdapter(private val click: (PlayWords) -> Unit): ListAdapter
 
     class ViewHolder(private val binding: ItemWordListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(playWord: PlayWords, click: (PlayWords) -> Unit, isHighlighted: Boolean) {
-            //----
+        fun bind(playWord: PlayWords, clickSound: (PlayWords) -> Unit, isHighlighted: Boolean,  clickWord: (PlayWords) -> Unit) {
+            //---- word list
             if (isHighlighted) {
                 binding.constraint.setBackgroundColor(Color.GRAY)
             } else {
                 binding.root.setBackgroundColor(Color.WHITE)
             }
-            //----
+            //---- word list
             binding.voiceButton.setOnClickListener {
-                click(playWord)
+                clickSound(playWord)
+            }
+            binding.constraint.setOnClickListener {
+                clickWord(playWord)
             }
             binding.listNumber.text = (adapterPosition+1).toString()
             binding.playWord = playWord

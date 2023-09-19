@@ -13,8 +13,11 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flashanime.NavigationDirections
 import com.example.flashanime.R
 import com.example.flashanime.databinding.FragmentDetailBinding
 import com.example.flashanime.ext.getVmFactory
@@ -86,15 +89,25 @@ class DetailFragment: Fragment() {
 
 
         // wordList recyclerview
-        val adapterWordList = DetailWordListAdapter{
-            exoPlayer.seekTo(viewModel.timeToMillis(it.time))
-        }
+//        val adapterWordList = DetailWordListAdapter{
+//            exoPlayer.seekTo(viewModel.timeToMillis(it.time))
+//        }
+        val adapterWordList = DetailWordListAdapter(
+            {
+                exoPlayer.seekTo(viewModel.timeToMillis(it.time))
+            },{
+                Log.i("wordsList", "${it.word}")
+                viewModel.getWordInfo(it.word)
+            })
         binding.wordList.adapter = adapterWordList
+
         val dividerItemDecoration = DividerItemDecoration(requireContext(), RecyclerView.VERTICAL)
         ResourcesCompat.getDrawable(resources, R.drawable.divider, null)?.let {
             dividerItemDecoration.setDrawable(it)
         }
         binding.wordList.addItemDecoration(dividerItemDecoration)
+
+
 
 
 
@@ -105,7 +118,6 @@ class DetailFragment: Fragment() {
             exoPlayer.stop()
             exoPlayer.clearMediaItems()
 
-            Log.i("test11","fragment: ${viewModel.episodeExo}")
             Log.i("test11","fragment: ${viewModel.episodeExo}")
             exoPlayer.setMediaItem(MediaItem.fromUri(Uri.parse(
                         viewModel.animeInfoArg.value!!.videoSourceM3U8[viewModel.episodeExo]
@@ -160,6 +172,10 @@ class DetailFragment: Fragment() {
         })
 
 
+        // show word info from word API
+        viewModel.wordInfoSelected.observe(viewLifecycleOwner, Observer {
+            findNavController().navigate(NavigationDirections.navigateToWordDialog(it))
+        })
 
 
 

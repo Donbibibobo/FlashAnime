@@ -4,10 +4,13 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.Episode
+import com.example.flashanime.data.JLPTWordInfo
 import com.example.flashanime.data.source.FlashAnimeRepository
+import kotlinx.coroutines.launch
 
 class DetailViewModel(
     private val flashAnimeRepository: FlashAnimeRepository,
@@ -23,11 +26,11 @@ class DetailViewModel(
 
 
 
-
     // episode recyclerview list default
     private val _episodeMutableListDefault = MutableLiveData<List<Episode>>()
     val episodeMutableListDefault: LiveData<List<Episode>>
         get() = _episodeMutableListDefault
+
 
     // episode recyclerview list selected
     private val _episodeMutableListSelected = MutableLiveData<List<Episode>>()
@@ -39,6 +42,11 @@ class DetailViewModel(
     private var _episodeExo = 0
     val episodeExo: Int
         get() = _episodeExo
+
+    // episode recyclerview list constrain selected word API
+    private val _wordInfoSelected = MutableLiveData<JLPTWordInfo>()
+    val wordInfoSelected: LiveData<JLPTWordInfo>
+        get() = _wordInfoSelected
 
 
 
@@ -99,6 +107,18 @@ class DetailViewModel(
         val millis = if (splitByDot.size > 1) splitByDot[1].toLong() else 0L
 
         return (hours * 3600000) + (minutes * 60000) + (seconds * 1000) + (millis * 10)
+    }
+
+    fun getWordInfo(word: String) {
+        viewModelScope.launch {
+            try {
+                val wordInfo = flashAnimeRepository.getWordInfo(word)
+                Log.i("getWordInfo", wordInfo.words[0].romaji)
+                _wordInfoSelected.value = wordInfo.words[0]
+            } catch (e: Exception) {
+                throw IllegalArgumentException("DetailViewModel getWordInfo fail!")
+            }
+        }
     }
 
 }

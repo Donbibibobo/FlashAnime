@@ -14,4 +14,7 @@
     <!-- episode item-->
     <dimen name="episode_item">48dp</dimen>
 
+    <!-- Word Dialog -->
+    <dimen name="height_word">400dp</dimen>
+
 </resources>

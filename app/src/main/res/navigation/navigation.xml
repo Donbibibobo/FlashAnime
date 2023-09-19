@@ -41,6 +41,17 @@
             app:nullable="false"/>
     </fragment>
 
+    <dialog
+        android:id="@+id/wordDialog"
+        android:name="com.example.flashanime.word.WordDialog"
+        android:label="WordDialog"
+        tools:layout="@layout/dialog_word">
+
+        <argument android:name="wordInfoKey"
+            app:argType="com.example.flashanime.data.JLPTWordInfo"
+            app:nullable="false"/>
+    </dialog>
+
 
 
     <action android:id="@+id/navigate_to_home_fragment" app:destination="@id/homeFragment"
@@ -60,5 +71,7 @@
         app:popUpToInclusive="true"/>
 
     <action android:id="@+id/navigate_to_detail_fragment" app:destination="@id/detailFragment"/>
+    <action android:id="@+id/navigate_to_word_dialog" app:destination="@id/wordDialog"/>
+
 
 </navigation>

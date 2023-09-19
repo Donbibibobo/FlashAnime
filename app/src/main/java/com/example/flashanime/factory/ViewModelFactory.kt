@@ -12,6 +12,7 @@ import com.example.flashanime.home.viewpage2.season.SeasonViewModel
 import com.example.flashanime.home.viewpage2.week.WeekViewModel
 import com.example.flashanime.profile.ProfileViewModel
 import com.example.flashanime.vocabulary.VocabularyViewModel
+import com.example.flashanime.word.WordViewModel
 
 // Factory for all ViewModels
 @Suppress("UNCHECKED_CAST")

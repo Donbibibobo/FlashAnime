@@ -22,6 +22,8 @@
     <string name="wordsNumber">0001</string>
     <string name="word">これ</string>
 
+    <!-- word dialog -->
+    <string name="word_dialog_meaning">語意：</string>
 
     <!--week-->
     <string name="week_1">週一</string>
