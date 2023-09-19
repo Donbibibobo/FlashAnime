@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="viewModel" type="com.example.flashanime.all.category.CategoryViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="@{() -> viewModel.leave()}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_category"
+            android:layout_width="0dp"
+            android:layout_height="600dp"
+            android:background="@drawable/bg_dialog_corner"
+            android:backgroundTint="@color/gray_f0f0f0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <View
+                android:id="@+id/blueBar"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:backgroundTint="@color/blue"
+                android:background="@drawable/bg_dialog_corner" />
+
+            <TextView
+                android:id="@+id/category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:fontFamily="@font/noto_sans"
+                android:letterSpacing="0.1"
+                android:text="@string/fab_word"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/blueBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/blueBar"
+                tools:text="分類篩選"/>
+
+            <TextView
+                android:id="@+id/category_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/noto_sans"
+                android:letterSpacing="0.1"
+                android:text="@string/category"
+                android:textColor="@color/gray_888888"
+                android:textSize="22sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/blueBar"
+                tools:text="屬性"/>
+
+            <ImageButton
+                android:id="@+id/button_close"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="25dp"
+                android:background="@drawable/close"
+                android:onClick="@{() -> viewModel.leave()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/blueBar"
+                app:layout_constraintTop_toTopOf="@+id/blueBar"/>
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="搞笑"
+                android:checkable="true"
+                android:clickable="true"
+                android:layout_margin="20dp"
+                app:chipBackgroundColor="@color/gray_cccccc"
+                android:textColor="@drawable/chip_text_color_selector"
+                app:chipStrokeColor="@drawable/chip_stroke_color_selector"
+                app:chipStrokeWidth="1dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/category_content"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_adventure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="冒險"
+                android:checkable="true"
+                android:clickable="true"
+                android:layout_margin="20dp"
+                app:chipBackgroundColor="@color/gray_cccccc"
+                android:textColor="@drawable/chip_text_color_selector"
+                app:chipStrokeColor="@drawable/chip_stroke_color_selector"
+                app:chipStrokeWidth="1dp"
+                app:layout_constraintStart_toEndOf="@+id/chip_funny"
+                app:layout_constraintTop_toBottomOf="@+id/category_content"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_send"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="@string/send"
+                android:textSize="18sp"
+                app:cornerRadius="5dp"
+                app:backgroundTint="@color/blue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

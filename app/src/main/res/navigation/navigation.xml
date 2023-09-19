@@ -52,6 +52,12 @@
             app:nullable="false"/>
     </dialog>
 
+    <dialog
+        android:id="@+id/categoryDialog"
+        android:name="com.example.flashanime.all.category.CategoryDialog"
+        android:label="CategoryDialog"
+        tools:layout="@layout/dialog_category"/>
+
 
 
     <action android:id="@+id/navigate_to_home_fragment" app:destination="@id/homeFragment"
@@ -72,6 +78,8 @@
 
     <action android:id="@+id/navigate_to_detail_fragment" app:destination="@id/detailFragment"/>
     <action android:id="@+id/navigate_to_word_dialog" app:destination="@id/wordDialog"/>
+    <action android:id="@+id/navigate_to_category_dialog" app:destination="@id/categoryDialog"/>
+
 
 
 </navigation>

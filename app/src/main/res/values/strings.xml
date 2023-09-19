@@ -27,6 +27,9 @@
 
     <!-- allAnime page -->
     <string name="fab_word">分類篩選</string>
+    <string name="category">屬性</string>
+    <string name="send">送出</string>
+
 
     <!--week-->
     <string name="week_1">週一</string>

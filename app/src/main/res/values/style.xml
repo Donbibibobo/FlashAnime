@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="WordDialog">
+    <style name="Dialog">
         <item name="android:windowBackground">@color/translucent_40</item>
     </style>
 

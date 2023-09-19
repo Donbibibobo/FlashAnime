@@ -3,9 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-<!--        <import type="android.text.TextUtils"/>-->
-<!--        <import type="android.view.View"/>-->
-<!--        <import type="app.appworks.school.stylish.network.LoadApiStatus"/>-->
         <variable name="viewModel" type="com.example.flashanime.word.WordViewModel"/>
     </data>
 
@@ -22,7 +19,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
-<!--            android:onClick="@{() -> viewModel.nothing()}">-->
 
             <TextView
                 android:id="@+id/episode_words"

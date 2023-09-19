@@ -35,8 +35,12 @@ class AllFragment: Fragment() {
 
         binding.recyclerView.adapter = adapter
 
+        // get TempoInfo
         adapter.submitList(TemporaryFile.TempoAnimeInfo)
 
+        binding.fab.setOnClickListener{
+            view?.findNavController()?.navigate(NavigationDirections.navigateToCategoryDialog())
+        }
 
 
 

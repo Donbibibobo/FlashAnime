@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.flashanime.MainViewModel
 import com.example.flashanime.all.AllViewModel
+import com.example.flashanime.all.category.CategoryViewModel
 import com.example.flashanime.collected.CollectedViewModel
 import com.example.flashanime.data.source.FlashAnimeRepository
 import com.example.flashanime.detail.DetailViewModel
@@ -46,6 +47,9 @@ class ViewModelFactory constructor(
 
                 isAssignableFrom(ProfileViewModel::class.java) ->
                     ProfileViewModel(flashAnimeRepository)
+
+                isAssignableFrom(CategoryViewModel::class.java) ->
+                    CategoryViewModel(flashAnimeRepository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
