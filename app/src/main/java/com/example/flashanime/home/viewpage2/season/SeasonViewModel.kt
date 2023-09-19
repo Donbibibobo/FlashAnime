@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.flashanime.TemporaryFile
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.PlayWordEpisode
 import com.example.flashanime.data.PlayWords
@@ -152,6 +153,9 @@ class SeasonViewModel(private val flashAnimeRepository: FlashAnimeRepository): V
                     val animeInfoList = mutableListOf<AnimeInfo>()
                     animeInfoList.add(animeInfo1)
                     _animeInfo.value = animeInfoList
+
+                    // add to TemporaryFile to let allAnimePage access info
+                    TemporaryFile.TempoAnimeInfo = animeInfoList
                 }
             }catch (e: Exception){
                 throw IllegalArgumentException("SeasonViewModel getAnimeInfo fail!")
