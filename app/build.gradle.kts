@@ -134,6 +134,10 @@ dependencies {
     // FlexboxLayoutManager
     implementation("com.google.android.flexbox:flexbox:3.0.0")
 
+    // youtube player
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.28")
+
+
 }
 kapt {
     correctErrorTypes = true

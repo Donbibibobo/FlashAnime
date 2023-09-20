@@ -58,7 +58,7 @@ class DetailViewModel(
     private fun createEpisodeList() {
         val mutableEpisodeList = mutableListOf<Episode>()
         var episodeCount: Int = 0
-        List(arguments.videoSourceM3U8.size) {
+        List(arguments.videosId.size) {
             mutableEpisodeList.add(Episode.EpisodeUnSelected((it + 1).toString()))
             episodeCount++
         }
@@ -70,7 +70,7 @@ class DetailViewModel(
     fun selectedEpisodeList(selectedIndex: Int) {
         _episodeExo = selectedIndex
         val mutableEpisodeList = mutableListOf<Episode>()
-        List(arguments.videoSourceM3U8.size) {
+        List(arguments.videosId.size) {
             mutableEpisodeList.add(Episode.EpisodeUnSelected((it + 1).toString()))
         }
         mutableEpisodeList[selectedIndex] = Episode.EpisodeSelected((selectedIndex+1).toString())
@@ -93,7 +93,7 @@ class DetailViewModel(
         val currentEpisode = animeInfoArg.value?.wordsList?.getOrNull(currentEpisodeIndex)
 
         return currentEpisode?.playWords?.indexOfFirst {
-            timeToMillis(it.time) >= currentTime
+            timeToMillis(it!!.time) >= currentTime
         } ?: -1
     }
 

@@ -1,7 +1,6 @@
 package com.example.flashanime.home.viewpage2.season
 
 import android.view.LayoutInflater
-import android.view.View.OnClickListener
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -43,7 +42,7 @@ class SeasonListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<Ani
 
 private class SeasonProductDiffCallback() : DiffUtil.ItemCallback<AnimeInfo>() {
     override fun areItemsTheSame(oldItem: AnimeInfo, newItem: AnimeInfo): Boolean {
-        return oldItem.videoSourceM3U8 == newItem.videoSourceM3U8
+        return oldItem.videosId == newItem.videosId
     }
 
     override fun areContentsTheSame(oldItem: AnimeInfo, newItem: AnimeInfo): Boolean {
