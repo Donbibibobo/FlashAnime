@@ -54,11 +54,13 @@ class DetailFragment: Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
+
         // keep the screen always on
         val window = requireActivity().window
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
 
+        // change the wordList
         val updateRunnable = object : Runnable {
             override fun run() {
                 Log.i("updateRunnable", Thread.currentThread().name)
@@ -75,12 +77,12 @@ class DetailFragment: Fragment() {
             }
         }
 
-            // 監聽播放狀態的變更
+
+        // video player
         binding.youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
                 currentYouTubeSecond = second
             }
-
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 super.onReady(youTubePlayer)
                 youTubePlayerDetailFragment = youTubePlayer
@@ -96,15 +98,10 @@ class DetailFragment: Fragment() {
                         Log.i("updateRunnable", "Paused or Ended")
                         updateHandler.removeCallbacks(updateRunnable)
                     }
-                    // ... handle other states if needed ...
                     else -> {}
                 }
             }
-
-
         })
-
-
 
 
         // episode recyclerView
@@ -112,7 +109,6 @@ class DetailFragment: Fragment() {
             viewModel.selectedEpisodeList(it)
         }
         binding.episode.adapter = adapterEpisode
-
         val layoutManager = FlexboxLayoutManager(requireContext()).apply {
             flexDirection = FlexDirection.ROW
             justifyContent = JustifyContent.FLEX_START
@@ -122,23 +118,26 @@ class DetailFragment: Fragment() {
         binding.episode.layoutManager = layoutManager
 
 
-
-
-
-
-
-        // wordList recyclerview
-
+        // wordList recyclerview - all section
         val adapterWordList = DetailWordListAdapter(
             {
-                val desiredTimeInSeconds = viewModel.timeToMillis(it.time) / 1000f
-                youTubePlayerDetailFragment?.seekTo(desiredTimeInSeconds)
+            // click sound icon to jump to specific time
+                // if doesn't have words List
+                if (it.level != ""){
+                    val desiredTimeInSeconds = viewModel.timeToMillis(it.time) / 1000f
+                    youTubePlayerDetailFragment?.seekTo(desiredTimeInSeconds)
+                }
             },{
-                Log.i("wordsList", "${it.word}")
-                viewModel.getWordInfo(it.word)
+            // click to get word info through JLPt API
+                // if doesn't have words List
+                if (it.level != ""){
+                    viewModel.getWordInfo(it.word)
+                }
             })
         binding.wordList.adapter = adapterWordList
 
+
+        // add dividerItemDecoration for wordList recyclerview
         val dividerItemDecoration = DividerItemDecoration(requireContext(), RecyclerView.VERTICAL)
         ResourcesCompat.getDrawable(resources, R.drawable.divider, null)?.let {
             dividerItemDecoration.setDrawable(it)
@@ -146,29 +145,23 @@ class DetailFragment: Fragment() {
         binding.wordList.addItemDecoration(dividerItemDecoration)
 
 
-        // video default last episode
+        // video default first episode
         viewModel.episodeMutableListDefault.observe(viewLifecycleOwner, Observer {
             adapterEpisode.submitList(it)
-            viewModel.animeInfoArg.value!!.wordsList[viewModel.episodeExo].playWords
+            adapterWordList.submitList(viewModel.animeInfoArg.value!!.wordsList[viewModel.episodeExo].playWords)
         })
 
 
-        // change to selected episode
+        // change to selected episode list
         viewModel.episodeMutableListSelected.observe(viewLifecycleOwner, Observer {
             adapterEpisode.submitList(it)
 
-
+            // change to selected video
             youTubePlayerDetailFragment?.loadVideo(viewModel.animeInfoArg.value!!.videosId[viewModel.episodeExo], 0f)
 
-            // submit wordList according to the episode
-            adapterWordList.submitList(
-                viewModel.animeInfoArg.value!!.wordsList[viewModel.episodeExo].playWords
-            )
+            // change to selected wordList
+            adapterWordList.submitList(viewModel.animeInfoArg.value!!.wordsList[viewModel.episodeExo].playWords)
         })
-
-
-
-
 
 
         // show word info from word API
@@ -177,44 +170,25 @@ class DetailFragment: Fragment() {
         })
 
 
-
         // file picker
 //        val dialogProperties: DialogProperties
 //        val filePickerDialog: FilePickerDialog
 
         return binding.root
     }
-
     override fun onResume() {
         super.onResume()
-
         youTubePlayerDetailFragment?.play()
-
-
     }
-
     override fun onPause() {
         super.onPause()
-
         youTubePlayerDetailFragment?.pause()
-
-
     }
-
-    override fun onStop() {
-        super.onStop()
-
-    }
-
     override fun onDestroy() {
         super.onDestroy()
-
         val window = requireActivity().window
         window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
     }
-
-
 }
 
 

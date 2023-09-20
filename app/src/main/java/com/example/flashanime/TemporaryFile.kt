@@ -75,7 +75,7 @@ object TemporaryFile {
             val playWords59 = mapOf("time" to "0:03:17.00","word" to "狭い","level" to "N4")
             val playWords60 = mapOf("time" to "0:04:09.00","word" to "薄い","level" to "N4")
 
-            val playWordsEmpty = listOf<Map<String,Any>>(mapOf("time" to "0:00:00.00","word" to "","level" to ""))
+            val playWordsEmpty = listOf<Map<String,Any>>(mapOf("time" to "0:00:00.00","word" to "(尚未新增單字資源)","level" to ""))
 
             val episode1Data = mapOf(
                 "episodeNum" to "1",
@@ -88,6 +88,7 @@ object TemporaryFile {
                     playWords51, playWords52, playWords53, playWords54, playWords55, playWords56, playWords57, playWords58, playWords59, playWords60
                 )
             )
+            val episode01Data = mapOf("episodeNum" to "1", "playWords" to playWordsEmpty)
             val episode2Data = mapOf("episodeNum" to "2", "playWords" to playWordsEmpty)
             val episode3Data = mapOf("episodeNum" to "3", "playWords" to playWordsEmpty)
             val episode4Data = mapOf("episodeNum" to "4", "playWords" to playWordsEmpty)
@@ -104,6 +105,8 @@ object TemporaryFile {
             val category = listOf<String>("有趣")
             val videosId = listOf<String>("6TnHF1cW1gs","JGPsOi0Rb4Y","k8SoVKHY3t8","pZFp1AQ6Vds",
                 "Y1M09EMwOeI","G1NzVLbCMIQ","L6X-wA4rtko","wlkJRNw1Wl4","stjOwqbNHto","jLJ-utNorgk","Jso8YTWktqo","47xetpxC_u4")
+
+        // add new anime below
 
 
 

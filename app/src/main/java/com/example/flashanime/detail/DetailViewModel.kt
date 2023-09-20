@@ -57,13 +57,11 @@ class DetailViewModel(
 
     private fun createEpisodeList() {
         val mutableEpisodeList = mutableListOf<Episode>()
-        var episodeCount: Int = 0
+        mutableEpisodeList.add(Episode.EpisodeSelected("1"))
         List(arguments.videosId.size) {
-            mutableEpisodeList.add(Episode.EpisodeUnSelected((it + 1).toString()))
-            episodeCount++
+            mutableEpisodeList.add(Episode.EpisodeUnSelected((it + 2).toString()))
         }
         mutableEpisodeList.removeLast()
-        mutableEpisodeList.add(Episode.EpisodeSelected(episodeCount.toString()))
         _episodeMutableListDefault.value = mutableEpisodeList
     }
 
