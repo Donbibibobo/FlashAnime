@@ -30,7 +30,7 @@ class SeasonFragment: Fragment() {
 
 
         val adapter = SeasonListAdapter{
-            view?.findNavController()?.navigate(NavigationDirections.navigateToDetailFragment(it))
+            view?.findNavController()?.navigate(NavigationDirections.navigateToDetailFragment())
         }
 
         binding.recyclerView.adapter = adapter

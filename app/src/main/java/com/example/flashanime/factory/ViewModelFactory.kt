@@ -51,6 +51,10 @@ class ViewModelFactory constructor(
                 isAssignableFrom(CategoryViewModel::class.java) ->
                     CategoryViewModel(flashAnimeRepository)
 
+                //fix
+                isAssignableFrom(DetailViewModel::class.java) ->
+                    DetailViewModel(flashAnimeRepository)
+
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }

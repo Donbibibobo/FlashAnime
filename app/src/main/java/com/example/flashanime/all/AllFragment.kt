@@ -30,7 +30,7 @@ class AllFragment: Fragment() {
         binding.viewModel = viewModel
 
         val adapter = AllListAdapter{
-            view?.findNavController()?.navigate(NavigationDirections.navigateToDetailFragment(it))
+            view?.findNavController()?.navigate(NavigationDirections.navigateToDetailFragment())
         }
 
         binding.recyclerView.adapter = adapter

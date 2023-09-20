@@ -24,6 +24,10 @@ import com.example.flashanime.ext.getVmFactory
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.source.MediaSource
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+import com.google.android.exoplayer2.util.Util
 import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
@@ -32,13 +36,12 @@ import com.google.android.flexbox.JustifyContent
 
 
 class DetailFragment: Fragment() {
-
-    private val viewModel by viewModels<DetailViewModel> { getVmFactory(DetailFragmentArgs.fromBundle(requireArguments()).animeInfoKey)  }
+//DetailFragmentArgs.fromBundle(requireArguments()).animeInfoKey
+    private val viewModel by viewModels<DetailViewModel> { getVmFactory()  }
 
     private lateinit var exoPlayer: ExoPlayer
 
     private val updateHandler = Handler(Looper.getMainLooper())
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,7 +60,11 @@ class DetailFragment: Fragment() {
         exoPlayer = ExoPlayer.Builder(requireContext()).build()
         binding.styledPlayerView.player = exoPlayer
 
-
+        val assetUri = "asset:///1.mp4"
+        val mediaItem = MediaItem.fromUri(Uri.parse(assetUri))
+        exoPlayer.setMediaItem(mediaItem)
+        exoPlayer.prepare()
+        exoPlayer.playWhenReady = true
 
 
         // episode recyclerView
@@ -80,7 +87,7 @@ class DetailFragment: Fragment() {
         viewModel.episodeMutableListDefault.observe(viewLifecycleOwner, Observer {
             adapterEpisode.submitList(it)
             exoPlayer.setMediaItem(MediaItem.fromUri(Uri.parse(
-                viewModel.animeInfoArg.value!!.videoSourceM3U8[it.size-1]
+                "https://bahamut.akamaized.net/113306eb62e8e64bdc2ba1787c2a834df66e72d4/1080p/hdntl=exp=1695272243~acl=%2f*~data=hdntl,twterry10%3a34861%3a1%3a1%3a68686829~hmac=1efa69b472c0dd7d7ba4c39d3d34899354c147766940d283a2bbd2ab6ac2232a/key_b5000000.m3u8key"
             )))
             exoPlayer.prepare()
             exoPlayer.playWhenReady = true
@@ -89,9 +96,7 @@ class DetailFragment: Fragment() {
 
 
         // wordList recyclerview
-//        val adapterWordList = DetailWordListAdapter{
-//            exoPlayer.seekTo(viewModel.timeToMillis(it.time))
-//        }
+
         val adapterWordList = DetailWordListAdapter(
             {
                 exoPlayer.seekTo(viewModel.timeToMillis(it.time))
@@ -109,28 +114,39 @@ class DetailFragment: Fragment() {
 
 
 
+        //fix
+//        exoPlayer.setMediaItem(MediaItem.fromUri(Uri.parse(
+//            ""
+//        )))
+
+        exoPlayer.prepare()
+        exoPlayer.playWhenReady = true
+
+        adapterWordList.submitList(
+            viewModel.animeInfoArg.value!!.wordsList[viewModel.episodeExo].playWords
+        )
 
 
         // change to selected episode
-        viewModel.episodeMutableListSelected.observe(viewLifecycleOwner, Observer {
-            adapterEpisode.submitList(it)
+//        viewModel.episodeMutableListSelected.observe(viewLifecycleOwner, Observer {
+//            adapterEpisode.submitList(it)
             // set source
-            exoPlayer.stop()
-            exoPlayer.clearMediaItems()
+//            exoPlayer.stop()
+//            exoPlayer.clearMediaItems()
 
-            Log.i("test11","fragment: ${viewModel.episodeExo}")
-            exoPlayer.setMediaItem(MediaItem.fromUri(Uri.parse(
-                        viewModel.animeInfoArg.value!!.videoSourceM3U8[viewModel.episodeExo]
-            )))
+//            Log.i("test11","fragment: ${viewModel.episodeExo}")
+//            exoPlayer.setMediaItem(MediaItem.fromUri(Uri.parse(
+//                        viewModel.animeInfoArg.value!!.videoSourceM3U8[viewModel.episodeExo]
+//            )))
 
-            exoPlayer.prepare()
-            exoPlayer.playWhenReady = true
+//            exoPlayer.prepare()
+//            exoPlayer.playWhenReady = true
 
             // submit wordList according to the episode
-            adapterWordList.submitList(
-                viewModel.animeInfoArg.value!!.wordsList[viewModel.episodeExo].playWords
-            )
-        })
+//            adapterWordList.submitList(
+//                viewModel.animeInfoArg.value!!.wordsList[viewModel.episodeExo].playWords
+//            )
+//        })
 
 
         val updateRunnable = object : Runnable {

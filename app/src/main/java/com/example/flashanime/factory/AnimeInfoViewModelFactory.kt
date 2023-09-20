@@ -9,14 +9,14 @@ import com.example.flashanime.detail.DetailViewModel
 @Suppress("UNCHECKED_CAST")
 class AnimeInfoViewModelFactory(
     private val flashAnimeRepository: FlashAnimeRepository,
-    private val animeInfo: AnimeInfo
+//    private val animeInfo: AnimeInfo
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>) =
         with(modelClass) {
             when {
                 isAssignableFrom(DetailViewModel::class.java) ->
-                    DetailViewModel(flashAnimeRepository, animeInfo)
+                    DetailViewModel(flashAnimeRepository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

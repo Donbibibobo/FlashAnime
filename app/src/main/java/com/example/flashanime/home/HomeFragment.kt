@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.flashanime.R
 import com.example.flashanime.databinding.FragmentHomeBinding
@@ -46,6 +47,10 @@ class HomeFragment: Fragment() {
         }.attach()
 
 
+        // fix
+        binding.fab.setOnClickListener{
+            it.findNavController().navigate(R.id.navigate_to_detail_fragment)
+        }
 
 
 
