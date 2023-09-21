@@ -148,6 +148,7 @@ object TemporaryFile {
                 "pictureURL" to "https://p2.bahamut.com.tw/B/ACG/c/13/0000092513.JPG"
             )
 
+        // [add different document]
             articlesCollection.add(animeData)
                 .addOnSuccessListener { documentReference ->
                     Log.d("AddFirebase", "DocumentSnapshot written with ID: ${documentReference.id}")
@@ -209,9 +210,11 @@ object TemporaryFile {
             "sunday" to sundayList,
         )
 
-        articlesCollection.add(weeklyData)
+        // [update same document]
+        articlesCollection.document("lYM4NtqSo2UVEjLxQwXA")
+            .set(weeklyData)
             .addOnSuccessListener { documentReference ->
-                Log.d("AddFirebase", "DocumentSnapshot written with ID: ${documentReference.id}")
+                Log.d("AddFirebase", "DocumentSnapshot written with ID: $documentReference")
             }
             .addOnFailureListener { e ->
                 Log.w("AddFirebase", "Error adding document", e)
