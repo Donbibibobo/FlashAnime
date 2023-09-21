@@ -29,6 +29,7 @@ class SeasonViewModel(private val flashAnimeRepository: FlashAnimeRepository): V
     init {
         animeSnapshot()
 //        TemporaryFile.addFirebaseAnimeInfo()
+//        TemporaryFile.addWeekList()
     }
 
     private fun animeSnapshot() {

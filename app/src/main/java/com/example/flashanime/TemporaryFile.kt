@@ -1,9 +1,12 @@
 package com.example.flashanime
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.flashanime.data.AnimeInfo
+import com.example.flashanime.data.WeeklyAnime
+import com.example.flashanime.data.WeeklyAnimeList
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
@@ -11,6 +14,10 @@ import kotlinx.coroutines.launch
 object TemporaryFile {
 
     var TempoAnimeInfo: List<AnimeInfo>? = null
+
+    @SuppressLint("StaticFieldLeak")
+    val db = Firebase.firestore
+
 
     fun addFirebaseAnimeInfo() {
 
@@ -111,7 +118,6 @@ object TemporaryFile {
 
 
             // fire
-            val db = Firebase.firestore
             val articlesCollection = db.collection("animeInfo")
 
             val wordsDataList = mutableListOf<Map<String, Any>>()
@@ -142,12 +148,73 @@ object TemporaryFile {
                 "pictureURL" to "https://p2.bahamut.com.tw/B/ACG/c/13/0000092513.JPG"
             )
 
-            articlesCollection.add(animeData).addOnSuccessListener { documentReference ->
-                Log.d("AddFirebase", "DocumentSnapshot written with ID: ${documentReference.id}")
-            }
+            articlesCollection.add(animeData)
+                .addOnSuccessListener { documentReference ->
+                    Log.d("AddFirebase", "DocumentSnapshot written with ID: ${documentReference.id}")
+                }
                 .addOnFailureListener { e ->
                     Log.w("AddFirebase", "Error adding document", e)
                 }
 
+    }
+
+
+
+    fun addWeekList() {
+        // fire
+        val articlesCollection = db.collection("weekInfo")
+
+        val monday1a1 = WeeklyAnime("01:05","黑暗集會","第12集")
+        val monday1a2 = WeeklyAnime("21:30","LV1 魔王與獨居廢勇者","第12集")
+        val monday1a3 = WeeklyAnime("22:00","正宗君的復仇","第12集")
+        val mondayList = WeeklyAnimeList(listOf(monday1a1,monday1a2,monday1a3))
+
+        val tuesday2a1 = WeeklyAnime("00:30","物之古物奇譚","第12集")
+        val tuesday2a2 = WeeklyAnime("01:00","甜點轉生","第12集")
+        val tuesday2a3 = WeeklyAnime("01:30","妖幻三重奏","第12集")
+        val tuesday2a4 = WeeklyAnime("02:00","滿懷美夢的少年是現實主義者","第12集")
+        val tuesday2a5 = WeeklyAnime("23:30","我喜歡的女孩忘記戴眼鏡","第12集")
+        val tuesdayList = WeeklyAnimeList(listOf(tuesday2a1,tuesday2a2,tuesday2a3,tuesday2a4,tuesday2a5))
+
+        val wednesday3a1 = WeeklyAnime("01:29","勇者赫魯庫","第12集")
+        val wednesday3a2 = WeeklyAnime("22:00","文豪野犬 第五季","第12集")
+        val wednesdayList = WeeklyAnimeList(listOf(wednesday3a1,wednesday3a2))
+
+        val thursday4a1 = WeeklyAnime("00:00","獻祭公主與獸王","第22集")
+        val thursday4a2 = WeeklyAnime("01:00","白聖女與黑牧師","第10集")
+        val thursday4a3 = WeeklyAnime("01:25","不死少女的謀殺鬧劇","第11集")
+        val thursday4a4 = WeeklyAnime("21:35","BanG Dream! It's MyGO!!!!!","第13集")
+        val thursday4a5 = WeeklyAnime("22:30","間諜教室","第22集")
+        val thursday4a6 = WeeklyAnime("22:35","打工吧，魔王大人！第二季","第22集")
+        val thursday4a7 = WeeklyAnime("23:40","成為悲劇元兇的最強異端，最後頭目女王為了人民犧牲奉獻","第22集")
+        val thursday4a8 = WeeklyAnime("23:56","咒術迴戰 第二季","第22集")
+        val thursdayList = WeeklyAnimeList(listOf(thursday4a1,thursday4a2,thursday4a3,thursday4a4,thursday4a5,thursday4a6,thursday4a7,thursday4a8))
+
+        val friday5a1 = WeeklyAnime("01:25","神劍闖江湖 ―明治劍客浪漫譚―","第11集")
+        val friday5a2 = WeeklyAnime("01:30","聖者無雙～上班族的異世界生存之道～","第11集")
+        val friday5a3 = WeeklyAnime("20:35","銀砂糖師與黑妖精～sugar apple fairy tale～","第23集")
+        val fridayList = WeeklyAnimeList(listOf(friday5a1,friday5a2,friday5a3))
+
+        val saturdayList = WeeklyAnimeList(listOf(monday1a1,monday1a2,monday1a3))
+
+        val sundayList = WeeklyAnimeList(listOf(tuesday2a1,tuesday2a2,tuesday2a3,tuesday2a4,tuesday2a5))
+
+        val weeklyData = hashMapOf(
+            "monday" to mondayList,
+            "tuesday" to tuesdayList,
+            "wednesday" to wednesdayList,
+            "thursday" to thursdayList,
+            "friday" to fridayList,
+            "saturday" to saturdayList,
+            "sunday" to sundayList,
+        )
+
+        articlesCollection.add(weeklyData)
+            .addOnSuccessListener { documentReference ->
+                Log.d("AddFirebase", "DocumentSnapshot written with ID: ${documentReference.id}")
+            }
+            .addOnFailureListener { e ->
+                Log.w("AddFirebase", "Error adding document", e)
+            }
     }
 }

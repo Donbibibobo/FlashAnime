@@ -27,8 +27,6 @@ class SeasonFragment: Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-
-
         val adapter = SeasonListAdapter{
             view?.findNavController()?.navigate(NavigationDirections.navigateToDetailFragment(it))
         }
@@ -38,10 +36,6 @@ class SeasonFragment: Fragment() {
         viewModel.animeInfo.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
         })
-
-
-
-
 
 
         return binding.root
