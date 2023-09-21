@@ -10,7 +10,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-//        maven(url = "https://jitpack.io")
+        maven(url = "https://jitpack.io")
     }
     dependencies {
         // 添加 Safe Args 插件的 classpath

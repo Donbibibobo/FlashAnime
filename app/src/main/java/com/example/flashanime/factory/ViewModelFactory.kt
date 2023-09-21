@@ -15,6 +15,7 @@ import com.example.flashanime.profile.ProfileViewModel
 import com.example.flashanime.vocabulary.VocabularyViewModel
 import com.example.flashanime.vocabularydetail.VocabularyDetailViewModel
 import com.example.flashanime.word.WordViewModel
+import com.example.flashanime.wordstest.WordTestViewModel
 
 // Factory for all ViewModels
 @Suppress("UNCHECKED_CAST")
@@ -51,6 +52,9 @@ class ViewModelFactory constructor(
 
                 isAssignableFrom(CategoryViewModel::class.java) ->
                     CategoryViewModel(flashAnimeRepository)
+
+                isAssignableFrom(WordTestViewModel::class.java) ->
+                    WordTestViewModel(flashAnimeRepository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

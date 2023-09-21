@@ -51,6 +51,12 @@
             app:nullable="false"/>
     </fragment>
 
+    <fragment
+        android:id="@+id/wordTestFragment"
+        android:name="com.example.flashanime.wordstest.WordTestFragment"
+        android:label="WordTestFragment"
+        tools:layout="@layout/fragment_wordtest"/>
+
     <dialog
         android:id="@+id/wordDialog"
         android:name="com.example.flashanime.word.WordDialog"
@@ -90,6 +96,8 @@
     <action android:id="@+id/navigate_to_vocabularyDetailFragment" app:destination="@id/vocabularyDetailFragment"/>
     <action android:id="@+id/navigate_to_word_dialog" app:destination="@id/wordDialog"/>
     <action android:id="@+id/navigate_to_category_dialog" app:destination="@id/categoryDialog"/>
+    <action android:id="@+id/navigate_to_wordTestFragment" app:destination="@id/wordTestFragment"/>
+
 
 
 

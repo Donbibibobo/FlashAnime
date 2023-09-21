@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.flashanime.NavigationDirections
 import com.example.flashanime.R
@@ -65,6 +66,9 @@ class VocabularyDetailFragment: Fragment() {
             adapter.submitList(viewModel.animeInfoArg.value!!.wordsList[position].playWords)
         }
 
+        binding.testButton.setOnClickListener {
+            it.findNavController().navigate(NavigationDirections.navigateToWordTestFragment())
+        }
 
 
 
