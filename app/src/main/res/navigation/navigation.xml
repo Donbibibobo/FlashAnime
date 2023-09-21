@@ -25,6 +25,16 @@
         android:label="VocabularyFragment"
         tools:layout="@layout/fragment_vocabulary"/>
     <fragment
+        android:id="@+id/vocabularyDetailFragment"
+        android:name="com.example.flashanime.vocabularydetail.VocabularyDetailFragment"
+        android:label="VocabularyDetailFragment"
+        tools:layout="@layout/fragment_vocavulary_detail">
+
+        <argument android:name="animeInfoKey"
+            app:argType="com.example.flashanime.data.AnimeInfo"
+            app:nullable="false"/>
+    </fragment>
+    <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.flashanime.profile.ProfileFragment"
         android:label="ProfileFragment"
@@ -77,6 +87,7 @@
         app:popUpToInclusive="true"/>
 
     <action android:id="@+id/navigate_to_detail_fragment" app:destination="@id/detailFragment"/>
+    <action android:id="@+id/navigate_to_vocabularyDetailFragment" app:destination="@id/vocabularyDetailFragment"/>
     <action android:id="@+id/navigate_to_word_dialog" app:destination="@id/wordDialog"/>
     <action android:id="@+id/navigate_to_category_dialog" app:destination="@id/categoryDialog"/>
 

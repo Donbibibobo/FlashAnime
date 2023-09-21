@@ -15,12 +15,15 @@
     <string name="anime_info_title">無職轉生～到了異世界就拿出真本事～</string>
     <string name="anime_info_releaseDateTime">09/11 (一) 01:05</string>
     <string name="anime_info_releaseTime">01:05</string>
-    <string name="anime_info_episode">第10集</string>
+    <string name="anime_info_episode">全10集</string>
     <string name="anime_word_List_title">本集單字</string>
 
     <!-- word list -->
     <string name="wordsNumber">0001</string>
     <string name="word">これ</string>
+    <string name="saveWord">已儲存 24 個單字</string>
+    <string name="WordTest">開始測驗</string>
+    <string name="WordEpisode">第一集</string>
 
     <!-- word dialog -->
     <string name="word_dialog_meaning">語意：</string>

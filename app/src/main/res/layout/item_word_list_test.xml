@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="playWord" type="com.example.flashanime.data.PlayWords" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/word"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/noto_sans"
+            android:letterSpacing="0.1"
+            android:text="@{playWord.word}"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/listNumber"
+            app:layout_constraintStart_toEndOf="@+id/listNumber"
+            app:layout_constraintTop_toTopOf="@+id/listNumber"
+            tools:text="@string/word" />
+
+        <TextView
+            android:id="@+id/listNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/noto_sans"
+            android:letterSpacing="0.1"
+            android:text="@string/wordsNumber"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="0001"/>
+
+
+        <ImageButton
+            android:id="@+id/saveButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="12dp"
+            app:layout_constraintBottom_toBottomOf="@+id/listNumber"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/listNumber"
+            android:background="@drawable/collected_save"
+            android:visibility="gone"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
