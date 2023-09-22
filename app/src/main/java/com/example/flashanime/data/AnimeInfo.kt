@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class AnimeInfo(
+    val isCollected: Boolean = false,
     val animeId: String = "",
     val title: String = "",
     val releaseTime: String = "",

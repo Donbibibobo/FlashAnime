@@ -38,6 +38,14 @@ class SeasonListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<Ani
             binding.executePendingBindings()
 
             // collected anime
+            if (animeInfo.isCollected){
+                binding.heatFill.visibility = View.VISIBLE
+                binding.heatStroke.visibility = View.GONE
+            }else{
+                binding.heatStroke.visibility = View.VISIBLE
+                binding.heatFill.visibility = View.GONE
+            }
+
             binding.heatStroke.setOnClickListener {
                 binding.heatFill.visibility = View.VISIBLE
                 binding.heatStroke.visibility = View.GONE

@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.flashanime.data.AnimeInfo
+import com.example.flashanime.data.CollectedAnimeList
 import com.example.flashanime.data.WeeklyAnime
 import com.example.flashanime.data.WeeklyAnimeList
 import com.google.firebase.firestore.ktx.firestore
@@ -118,7 +119,7 @@ object TemporaryFile {
 
 
             // fire
-            val animeInfoDocument = db.collection("animeInfo").document() //document(IWoNOgF1WWR7rgX7IOuD)
+            val animeInfoDocument = db.collection("animeInfo").document("IWoNOgF1WWR7rgX7IOuD") //document(IWoNOgF1WWR7rgX7IOuD)
 
             val wordsDataList = mutableListOf<Map<String, Any>>()
 
@@ -137,6 +138,7 @@ object TemporaryFile {
 
 
             val animeData = hashMapOf(
+                "isCollected" to false,
                 "animeId" to animeInfoDocument.id,
                 "title" to "書店裡的骷髏店員本田",
                 "releaseTime" to "2020/12/2",
@@ -213,6 +215,45 @@ object TemporaryFile {
         // [update same document]
         articlesCollection.document("lYM4NtqSo2UVEjLxQwXA")
             .set(weeklyData)
+            .addOnSuccessListener { documentReference ->
+                Log.d("AddFirebase", "DocumentSnapshot written with ID: $documentReference")
+            }
+            .addOnFailureListener { e ->
+                Log.w("AddFirebase", "Error adding document", e)
+            }
+    }
+
+
+
+    fun addUser() {
+        // fire
+        val userInfoDocument = db.collection("userInfo").document()
+
+        val userData = hashMapOf(
+            "userId" to userInfoDocument.id,
+        )
+
+        // [update same user document]
+        userInfoDocument.set(userData)
+            .addOnSuccessListener { documentReference ->
+                Log.d("AddFirebase", "DocumentSnapshot written with ID: $documentReference")
+            }
+            .addOnFailureListener { e ->
+                Log.w("AddFirebase", "Error adding document", e)
+            }
+    }
+
+    fun setUserCollectedAnimeList() {
+        // fire
+        val userAnimeListDocument =
+            db.collection("userInfo").document("Bstm28YuZ3ih78afvdq9").collection("animeCollection").document("IWoNOgF1WWR7rgX7IOuD")
+
+        val userData = hashMapOf(
+            "animeId" to "IWoNOgF1WWR7rgX7IOuD",
+        )
+
+        // [update same user document]
+        userAnimeListDocument.set(userData)
             .addOnSuccessListener { documentReference ->
                 Log.d("AddFirebase", "DocumentSnapshot written with ID: $documentReference")
             }

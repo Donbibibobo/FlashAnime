@@ -2,6 +2,7 @@ package com.example.flashanime.home.viewpage2.season
 
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +34,12 @@ class SeasonFragment: Fragment() {
 
         binding.recyclerView.adapter = adapter
 
-        viewModel.animeInfo.observe(viewLifecycleOwner, Observer {
+//        viewModel.animeInfo.observe(viewLifecycleOwner, Observer {
+//            adapter.submitList(it)
+//        })
+
+        viewModel.combinedList.observe(viewLifecycleOwner, Observer {
+            Log.i("animeListToCombine"," F: $it")
             adapter.submitList(it)
         })
 
