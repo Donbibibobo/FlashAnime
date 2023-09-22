@@ -27,4 +27,7 @@
     <color name="bottom_navigation_item_normal">@color/gray_999999</color>
     <color name="bottom_navigation_item_selected">@color/black_3f3a3a</color>
 
+    <!-- pink -->
+    <color name="collected_heart_fill">#BF7B8A</color>
+
 </resources>

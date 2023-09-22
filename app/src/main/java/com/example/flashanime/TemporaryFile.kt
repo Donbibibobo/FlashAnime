@@ -118,7 +118,7 @@ object TemporaryFile {
 
 
             // fire
-            val articlesCollection = db.collection("animeInfo")
+            val animeInfoDocument = db.collection("animeInfo").document() //document(IWoNOgF1WWR7rgX7IOuD)
 
             val wordsDataList = mutableListOf<Map<String, Any>>()
 
@@ -137,7 +137,7 @@ object TemporaryFile {
 
 
             val animeData = hashMapOf(
-                "isCollected" to false,
+                "animeId" to animeInfoDocument.id,
                 "title" to "書店裡的骷髏店員本田",
                 "releaseTime" to "2020/12/2",
                 "episode" to "全12集",
@@ -149,9 +149,9 @@ object TemporaryFile {
             )
 
         // [add different document]
-            articlesCollection.add(animeData)
+            animeInfoDocument.set(animeData)
                 .addOnSuccessListener { documentReference ->
-                    Log.d("AddFirebase", "DocumentSnapshot written with ID: ${documentReference.id}")
+                    Log.d("AddFirebase", "DocumentSnapshot written with ID: $documentReference")
                 }
                 .addOnFailureListener { e ->
                     Log.w("AddFirebase", "Error adding document", e)

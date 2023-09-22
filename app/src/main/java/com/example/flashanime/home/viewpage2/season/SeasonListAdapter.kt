@@ -1,6 +1,7 @@
 package com.example.flashanime.home.viewpage2.season
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -35,6 +36,16 @@ class SeasonListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<Ani
             }
             binding.animeInfo = animeInfo
             binding.executePendingBindings()
+
+            // collected anime
+            binding.heatStroke.setOnClickListener {
+                binding.heatFill.visibility = View.VISIBLE
+                binding.heatStroke.visibility = View.GONE
+            }
+            binding.heatFill.setOnClickListener {
+                binding.heatStroke.visibility = View.VISIBLE
+                binding.heatFill.visibility = View.GONE
+            }
         }
     }
 
