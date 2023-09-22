@@ -7,22 +7,22 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
-import com.example.flashanime.databinding.FragmentHomeBinding
+import com.example.flashanime.data.PlayWords
 import com.example.flashanime.databinding.FragmentWordtestBinding
 import com.example.flashanime.ext.getVmFactory
-import com.example.flashanime.home.HomeViewModel
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
 
 class WordTestFragment: Fragment() {
 
-    private val viewModel by viewModels<WordTestViewModel> { getVmFactory() }
+    private val viewModel by viewModels<WordTestViewModel> { getVmFactory(WordTestFragmentArgs.fromBundle(requireArguments()).wordTestInfoKey) }
 
     private lateinit var manager: CardStackLayoutManager
-    val list = listOf<String>("AAA","BBB","AAA")
 
+    var score = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,21 +35,39 @@ class WordTestFragment: Fragment() {
         binding.viewModel = viewModel
 
 
-//        val list = listOf<String>("AAA","BBB","AAA","BBB","AAA","BBB","AAA","BBB")
+
+        viewModel.platWordEpisode.observe(viewLifecycleOwner, Observer {
+            val takeTen = it.playWords.shuffled().take(10)
+            init(takeTen)
+            binding.cardStackView.layoutManager = manager
+            binding.cardStackView.itemAnimator = DefaultItemAnimator()
+
+            binding.cardStackView.adapter = WordTestAdapter(requireContext(), takeTen)
+        })
 
 
-        init()
+        // final score
+        viewModel.finalScore.observe(viewLifecycleOwner, Observer {
+            if (it > 5){
+                binding.good.visibility = View.VISIBLE
+                binding.scoreGood.visibility = View.VISIBLE
+                binding.scoreGood.text = it.toString()
+            } else {
+                binding.bad.visibility = View.VISIBLE
+                binding.scoreBad.visibility = View.VISIBLE
+                binding.scoreBad.text = it.toString()
+            }
+        })
 
-        binding.cardStackView.layoutManager = manager
-        binding.cardStackView.itemAnimator = DefaultItemAnimator()
-        binding.cardStackView.adapter = WordTestAdapter(requireContext(), list)
+
+
 
 
 
         return binding.root
     }
 
-    private fun init() {
+    private fun init(playWords: List<PlayWords>) {
         manager = CardStackLayoutManager(requireContext(), object : CardStackListener{
             override fun onCardDragging(direction: Direction?, ratio: Float) {
             }
@@ -58,14 +76,18 @@ class WordTestFragment: Fragment() {
 
                 when(direction) {
                     Direction.Left -> Toast.makeText(requireContext(), "Swiped to Left", Toast.LENGTH_SHORT).show()
-                    Direction.Right -> Toast.makeText(requireContext(), "Swiped to Right", Toast.LENGTH_SHORT).show()
+                    Direction.Right -> {
+                        Toast.makeText(requireContext(), "Swiped to Right", Toast.LENGTH_SHORT).show()
+                        score++
+                    }
                     Direction.Top -> Toast.makeText(requireContext(), "Swiped to Top", Toast.LENGTH_SHORT).show()
                     Direction.Bottom -> Toast.makeText(requireContext(), "Swiped to Bottom", Toast.LENGTH_SHORT).show()
                     else -> {}
                 }
 
-                if (manager.topPosition == list.size){
+                if (manager.topPosition == playWords.size){
                     Toast.makeText(requireContext(), "this is last card", Toast.LENGTH_SHORT).show()
+                    viewModel.finalScore.value = score
                 }
             }
 

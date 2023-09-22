@@ -22,6 +22,58 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:listitem="@layout/item_wordcard"/>
+        <ImageView
+            android:id="@+id/good"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/good"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/score_good"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/good"
+            app:layout_constraintEnd_toEndOf="@+id/good"
+            app:layout_constraintHorizontal_bias="0.13"
+            app:layout_constraintStart_toStartOf="@+id/good"
+            app:layout_constraintTop_toTopOf="@+id/good"
+            app:layout_constraintVertical_bias="0.26" />
+
+        <ImageView
+            android:id="@+id/bad"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/bad"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/score_bad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/bad"
+            app:layout_constraintEnd_toEndOf="@+id/bad"
+            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintStart_toStartOf="@+id/bad"
+            app:layout_constraintTop_toTopOf="@+id/bad"
+            app:layout_constraintVertical_bias="0.88" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

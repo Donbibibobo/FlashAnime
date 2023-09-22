@@ -13,6 +13,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.flashanime.NavigationDirections
 import com.example.flashanime.R
+import com.example.flashanime.data.PlayWordEpisode
+import com.example.flashanime.data.PlayWords
 import com.example.flashanime.databinding.FragmentVocavularyDetailBinding
 import com.example.flashanime.detail.DetailFragmentArgs
 import com.example.flashanime.ext.getVmFactory
@@ -61,13 +63,23 @@ class VocabularyDetailFragment: Fragment() {
 
         })
 
+        // test list
+        var testList: PlayWordEpisode? = viewModel.animeInfoArg.value!!.wordsList[0]
 
         binding.autocomplete.setOnItemClickListener { _, _, position, _ ->
             adapter.submitList(viewModel.animeInfoArg.value!!.wordsList[position].playWords)
+
+            // close [start test] if it doesn't have content
+            binding.testButton.isEnabled =
+                viewModel.animeInfoArg.value!!.wordsList[position].playWords[0].level != ""
+
+            // set test list
+            testList = viewModel.animeInfoArg.value!!.wordsList[position]
+            Log.i("testList","$testList")
         }
 
         binding.testButton.setOnClickListener {
-            it.findNavController().navigate(NavigationDirections.navigateToWordTestFragment())
+            it.findNavController().navigate(NavigationDirections.navigateToWordTestFragment(testList!!))
         }
 
 

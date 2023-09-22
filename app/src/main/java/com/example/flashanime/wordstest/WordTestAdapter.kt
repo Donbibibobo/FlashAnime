@@ -4,9 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flashanime.data.PlayWords
 import com.example.flashanime.databinding.ItemWordcardBinding
 
-class WordTestAdapter(val context: Context, val list: List<String>): RecyclerView.Adapter<WordTestAdapter.WordTestViewHolder>() {
+class WordTestAdapter(val context: Context, val list: List<PlayWords>): RecyclerView.Adapter<WordTestAdapter.WordTestViewHolder>() {
     inner class WordTestViewHolder(val binding: ItemWordcardBinding)
         : RecyclerView.ViewHolder(binding.root)
 
@@ -16,7 +17,7 @@ class WordTestAdapter(val context: Context, val list: List<String>): RecyclerVie
     }
 
     override fun onBindViewHolder(holder: WordTestViewHolder, position: Int) {
-        holder.binding.episodeWords.text = "GO"
+        holder.binding.episodeWords.text = list[position].word
     }
 
     override fun getItemCount(): Int {

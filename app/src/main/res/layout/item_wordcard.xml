@@ -14,7 +14,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintWidth_percent="0.8"
+            app:layout_constraintWidth_percent="0.7"
             android:background="?attr/selectableItemBackground"
             android:foreground="?attr/selectableItemBackground"
             app:cardBackgroundColor="@color/gray_cccccc"
@@ -34,74 +34,20 @@
                     android:id="@+id/episode_words"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="30dp"
+                    android:layout_marginTop="100dp"
                     android:fontFamily="@font/noto_sans"
+                    android:layout_marginBottom="120dp"
                     android:letterSpacing="0.1"
-                    android:text="asdf"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="50sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="養う" />
-
-                <TextView
-                    android:id="@+id/episode_romaji"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="95dp"
-                    android:fontFamily="@font/noto_sans_bold"
-                    android:letterSpacing="0.1"
-                    android:text="asdf"
-                    android:textColor="@color/gray_888888"
-                    android:textSize="22sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="yashinau" />
-
-                <View
-                    android:id="@+id/wordListDivider"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="16dp"
-                    android:background="@color/gray_999999"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/episode_romaji" />
-
-                <TextView
-                    android:id="@+id/episode_meaning"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/noto_sans"
-                    android:letterSpacing="0.1"
-                    android:text="@string/word_dialog_meaning"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/wordListDivider"
-                    tools:text="語意：" />
-
-                <TextView
-                    android:id="@+id/episode_meaning_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:fontFamily="@font/noto_sans"
-                    android:letterSpacing="0.1"
-                    android:text="asdf"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/episode_meaning"
-                    tools:text="to rear; to maintain; to cultivate" />
+                    tools:text="養う"/>
+
+
 
                 <ImageView
                     android:id="@+id/collectdSave"
@@ -113,14 +59,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/collectdUnSave"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_margin="40dp"
-                    android:src="@drawable/collected_usave"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 

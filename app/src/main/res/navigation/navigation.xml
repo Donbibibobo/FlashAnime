@@ -55,7 +55,12 @@
         android:id="@+id/wordTestFragment"
         android:name="com.example.flashanime.wordstest.WordTestFragment"
         android:label="WordTestFragment"
-        tools:layout="@layout/fragment_wordtest"/>
+        tools:layout="@layout/fragment_wordtest">
+
+        <argument android:name="wordTestInfoKey"
+            app:argType="com.example.flashanime.data.PlayWordEpisode"
+            app:nullable="false"/>
+    </fragment>
 
     <dialog
         android:id="@+id/wordDialog"
