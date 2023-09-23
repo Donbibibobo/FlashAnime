@@ -6,6 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
+import com.example.flashanime.NavigationDirections
+import com.example.flashanime.TemporaryFile
+import com.example.flashanime.all.AllListAdapter
 import com.example.flashanime.databinding.FragmentAllBinding
 import com.example.flashanime.databinding.FragmentCollectedBinding
 import com.example.flashanime.ext.getVmFactory
@@ -23,6 +27,16 @@ class CollectedFragment: Fragment() {
         val binding = FragmentCollectedBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+
+        val adapter = CollectedListAdapter{
+            view?.findNavController()?.navigate(NavigationDirections.navigateToDetailFragment(it))
+        }
+
+        binding.recyclerView.adapter = adapter
+
+        // get TempoInfo
+        adapter.submitList(TemporaryFile.TempoAnimeInfo)
+
 
 
 

@@ -1,4 +1,4 @@
-package com.example.flashanime.all
+package com.example.flashanime.collected
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.databinding.ItemAnimeLargeBinding
 
-class AllListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<AnimeInfo, RecyclerView.ViewHolder>(SeasonProductDiffCallback()) {
+class CollectedListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<AnimeInfo, RecyclerView.ViewHolder>(SeasonProductDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
             ItemAnimeLargeBinding.inflate(
