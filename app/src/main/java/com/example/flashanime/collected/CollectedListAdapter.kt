@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.databinding.ItemAnimeLargeBinding
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class CollectedListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<AnimeInfo, RecyclerView.ViewHolder>(SeasonProductDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -31,6 +33,13 @@ class CollectedListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<
     class ViewHolder(private val binding: ItemAnimeLargeBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(animeInfo: AnimeInfo, click: (AnimeInfo) -> Unit) {
+
+            val db = Firebase.firestore
+            val userInfoCollection =
+                db.collection("userInfo").document("Bstm28YuZ3ih78afvdq9")
+                    .collection("animeCollection")
+
+
             binding.animeConstrain.setOnClickListener {
                 click(animeInfo)
             }
@@ -47,12 +56,13 @@ class CollectedListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<
             }
 
             binding.heatStroke.setOnClickListener {
-                binding.heatFill.visibility = View.VISIBLE
-                binding.heatStroke.visibility = View.GONE
+                val userData = hashMapOf(
+                    "animeId" to animeInfo.animeId,
+                )
+                userInfoCollection.document(animeInfo.animeId).set(userData)
             }
             binding.heatFill.setOnClickListener {
-                binding.heatStroke.visibility = View.VISIBLE
-                binding.heatFill.visibility = View.GONE
+                userInfoCollection.document(animeInfo.animeId).delete()
             }
         }
     }

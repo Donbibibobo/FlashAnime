@@ -34,12 +34,10 @@ class SeasonFragment: Fragment() {
 
         binding.recyclerView.adapter = adapter
 
-//        viewModel.animeInfo.observe(viewLifecycleOwner, Observer {
-//            adapter.submitList(it)
-//        })
+
 
         viewModel.combinedList.observe(viewLifecycleOwner, Observer {
-            Log.i("animeListToCombine"," F: $it")
+            Log.i("animeListToCombine","combinedList: $it")
             adapter.submitList(it)
         })
 

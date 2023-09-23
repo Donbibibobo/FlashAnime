@@ -1,5 +1,6 @@
 package com.example.flashanime.home.viewpage2.season
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +9,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.databinding.ItemAnimeSmallBinding
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class SeasonListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<AnimeInfo, RecyclerView.ViewHolder>(SeasonProductDiffCallback()) {
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
             ItemAnimeSmallBinding.inflate(
@@ -30,7 +35,14 @@ class SeasonListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<Ani
 
     class ViewHolder(private val binding: ItemAnimeSmallBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(animeInfo: AnimeInfo, click: (AnimeInfo) -> Unit) {
+
+            val db = Firebase.firestore
+            val userInfoCollection =
+                db.collection("userInfo").document("Bstm28YuZ3ih78afvdq9")
+                    .collection("animeCollection")
+
             binding.animeConstrain.setOnClickListener {
                 click(animeInfo)
             }
@@ -47,12 +59,13 @@ class SeasonListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<Ani
             }
 
             binding.heatStroke.setOnClickListener {
-                binding.heatFill.visibility = View.VISIBLE
-                binding.heatStroke.visibility = View.GONE
+                val userData = hashMapOf(
+                    "animeId" to animeInfo.animeId,
+                )
+                userInfoCollection.document(animeInfo.animeId).set(userData)
             }
             binding.heatFill.setOnClickListener {
-                binding.heatStroke.visibility = View.VISIBLE
-                binding.heatFill.visibility = View.GONE
+                userInfoCollection.document(animeInfo.animeId).delete()
             }
         }
     }

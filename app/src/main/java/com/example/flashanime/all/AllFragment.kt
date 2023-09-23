@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.example.flashanime.NavigationDirections
 import com.example.flashanime.TemporaryFile
@@ -35,14 +36,15 @@ class AllFragment: Fragment() {
 
         binding.recyclerView.adapter = adapter
 
-        // get TempoInfo
-        adapter.submitList(TemporaryFile.TempoAnimeInfo)
 
         binding.fab.setOnClickListener{
             view?.findNavController()?.navigate(NavigationDirections.navigateToCategoryDialog())
         }
 
 
+        viewModel.combinedList.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
+        })
 
 
 

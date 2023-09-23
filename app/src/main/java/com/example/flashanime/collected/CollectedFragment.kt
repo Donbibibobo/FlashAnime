@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.example.flashanime.NavigationDirections
 import com.example.flashanime.TemporaryFile
@@ -35,10 +36,14 @@ class CollectedFragment: Fragment() {
         binding.recyclerView.adapter = adapter
 
         // get TempoInfo
-        adapter.submitList(TemporaryFile.TempoAnimeInfo)
 
 
-
+        viewModel.combinedList.observe(viewLifecycleOwner, Observer {
+            val collectedList = it.filter { animeInfo ->
+                animeInfo.isCollected
+            }
+            adapter.submitList(collectedList)
+        })
 
 
 

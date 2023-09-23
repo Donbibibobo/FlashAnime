@@ -1,28 +1,32 @@
-package com.example.flashanime.data.source.remote
+package com.example.flashanime.data.source.local
 
 import androidx.lifecycle.LiveData
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.JLPTWord
 import com.example.flashanime.data.source.FlashAnimeDataSource
-import com.example.flashanime.network.FlashAnimeMoshiApi
-import retrofit2.Response
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-object FlashAnimeRemoteDataSource: FlashAnimeDataSource{
+class FlashAnimeLocalDataSource(private val dao: FlashAnimeDatabaseDao): FlashAnimeDataSource {
 
     override suspend fun getWordInfo(word: String): JLPTWord {
-        return FlashAnimeMoshiApi.retrofitService.getWordInfo(word)
+        TODO("Not yet implemented")
     }
 
 
     override suspend fun insertAnimeInfoInDatabase(animeInfo: AnimeInfo) {
-        TODO("Not yet implemented")
+        withContext(Dispatchers.IO) {
+            dao.insert(animeInfo)
+        }
     }
 
     override suspend fun clearAnimeInfoInDatabase() {
-        TODO("Not yet implemented")
+        withContext(Dispatchers.IO) {
+            dao.clear()
+        }
     }
 
     override fun getAllAnimeInfo(): LiveData<List<AnimeInfo>> {
-        TODO("Not yet implemented")
+        return dao.getAllAnimeInfo()
     }
 }
