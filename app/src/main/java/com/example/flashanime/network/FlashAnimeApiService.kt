@@ -11,10 +11,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-//https://myself-bbs.com/forum.php?mod=viewthread&tid=46596
-private const val MYSELF_HOST_NAME = "myself-bbs.com"
-private const val MYSELF_BASE_URL = "https://$MYSELF_HOST_NAME/"
-
 //https://jlpt-vocab-api.vercel.app/api/words?word=養う
 private const val VOCAB_HOST_NAME = "jlpt-vocab-api.vercel.app"
 private const val VOCAB_BASE_URL = "https://$VOCAB_HOST_NAME/api/"
@@ -31,20 +27,11 @@ private val retrofitMoshi = Retrofit.Builder()
     .baseUrl(VOCAB_BASE_URL)
     .build()
 
-private val retrofitScalars = Retrofit.Builder()
-    .addConverterFactory(ScalarsConverterFactory.create())
-    .addCallAdapterFactory(CoroutineCallAdapterFactory())
-    .baseUrl(MYSELF_BASE_URL)
-    .build()
-
 
 interface FlashAnimeApiService {
 
-    // get animeInfo from web
-    @GET("forum.php?mod=viewthread")
-    suspend fun getAnimeInfo(@Query("tid") tid: Long): Response<String>
 
-    // get animeInfo from web
+    // get words from JLPt Api
     @GET("words")
     suspend fun getWordInfo(@Query("word") word: String): JLPTWord
 
@@ -104,9 +91,6 @@ interface FlashAnimeApiService {
 }
 
 
-object FlashAnimeScalarsApi {
-    val retrofitService: FlashAnimeApiService by lazy { retrofitScalars.create(FlashAnimeApiService::class.java) }
-}
 
 object FlashAnimeMoshiApi {
     val retrofitService: FlashAnimeApiService by lazy { retrofitMoshi.create(FlashAnimeApiService::class.java) }

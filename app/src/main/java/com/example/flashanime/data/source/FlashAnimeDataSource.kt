@@ -7,8 +7,6 @@ import retrofit2.http.Query
 
 interface FlashAnimeDataSource {
 
-    suspend fun getAnimeInfo(tid: Long): Response<String>
-
     suspend fun getWordInfo(word: String): JLPTWord
 
 

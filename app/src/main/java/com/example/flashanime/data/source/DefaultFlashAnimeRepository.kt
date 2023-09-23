@@ -9,10 +9,6 @@ class DefaultFlashAnimeRepository(
 //    private val flashAnimeLocalDataSource: FlashAnimeDataSource,
 ) : FlashAnimeRepository {
 
-    override suspend fun getAnimeInfo(tid: Long): Response<String> {
-        return flashAnimeRemoteDataSource.getAnimeInfo(tid)
-    }
-
     override suspend fun getWordInfo(word: String): JLPTWord {
         return flashAnimeRemoteDataSource.getWordInfo(word)
     }
