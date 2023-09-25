@@ -74,7 +74,7 @@ class SeasonListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<Ani
 
 private class SeasonProductDiffCallback() : DiffUtil.ItemCallback<AnimeInfo>() {
     override fun areItemsTheSame(oldItem: AnimeInfo, newItem: AnimeInfo): Boolean {
-        return oldItem.videosId == newItem.videosId
+        return oldItem.animeId == newItem.animeId
     }
 
     override fun areContentsTheSame(oldItem: AnimeInfo, newItem: AnimeInfo): Boolean {

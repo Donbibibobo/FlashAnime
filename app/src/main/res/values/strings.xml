@@ -32,7 +32,18 @@
     <string name="fab_word">分類篩選</string>
     <string name="category">屬性</string>
     <string name="send">送出</string>
+    <string name="category_all">全部</string>
+    <string name="category_comedy">搞笑</string>
+    <string name="category_fantasy">奇幻</string>
+    <string name="category_adventure">冒險</string>
+    <string name="category_school">校園</string>
+    <string name="category_romance">戀愛</string>
+    <string name="category_fiction">科幻</string>
+    <string name="category_mystery">懸疑</string>
 
+
+
+    搞笑、奇幻、冒險、校園、戀愛、科幻、懸疑
 
     <!--week-->
     <string name="week_1">週一</string>
