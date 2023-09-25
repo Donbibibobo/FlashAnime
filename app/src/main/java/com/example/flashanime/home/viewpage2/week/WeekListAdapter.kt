@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.flashanime.data.WeeklyAnime
 import com.example.flashanime.databinding.ItemAnimeWeekBinding
 
-class WeekListAdapter: ListAdapter<WeeklyAnime, RecyclerView.ViewHolder>(ProductDiffCallback()) {
+class WeekListAdapter(private val click: (String) -> Unit): ListAdapter<WeeklyAnime, RecyclerView.ViewHolder>(ProductDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
             ItemAnimeWeekBinding.inflate(
@@ -22,16 +22,19 @@ class WeekListAdapter: ListAdapter<WeeklyAnime, RecyclerView.ViewHolder>(Product
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val animeInfo = getItem(position)
         when(holder){
-            is ViewHolder -> holder.bind(animeInfo)
+            is ViewHolder -> holder.bind(animeInfo, click)
             else -> throw IllegalArgumentException("SeasonListAdapter onBindViewHolder holder unknown.")
         }
     }
 
     class ViewHolder(private val binding: ItemAnimeWeekBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(weeklyAnime: WeeklyAnime) {
+        fun bind(weeklyAnime: WeeklyAnime, click: (String) -> Unit) {
             binding.weeklyAnime = weeklyAnime
             binding.executePendingBindings()
+            binding.constraint.setOnClickListener {
+                click(weeklyAnime.animeId)
+            }
         }
     }
 }

@@ -26,4 +26,8 @@ class DefaultFlashAnimeRepository(
     override fun getAllAnimeInfo(): LiveData<List<AnimeInfo>> {
         return flashAnimeLocalDataSource.getAllAnimeInfo()
     }
+
+    override suspend fun getAnimeInfoById(id: String): AnimeInfo {
+        return flashAnimeLocalDataSource.getAnimeInfoById(id)
+    }
 }

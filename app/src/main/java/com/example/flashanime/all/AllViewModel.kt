@@ -3,10 +3,8 @@ package com.example.flashanime.all
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.source.FlashAnimeRepository
-import kotlinx.coroutines.launch
 
 class AllViewModel(private val flashAnimeRepository: FlashAnimeRepository): ViewModel() {
 
@@ -24,14 +22,13 @@ class AllViewModel(private val flashAnimeRepository: FlashAnimeRepository): View
 
 
     fun setSelectedList(categories: List<String>) {
-
         if (categories[0] != "全部"){
             val selectedCategoryList =
                 _combinedList.value?.filter { animeInfo ->
-                categories.all { selectedCategory ->
-                    selectedCategory in animeInfo.category
+                    categories.all { selectedCategory ->
+                        selectedCategory in animeInfo.category
+                    }
                 }
-            }
             _selectedCategoryList.value = selectedCategoryList!!
         } else {
             _selectedCategoryList.value = _combinedList.value

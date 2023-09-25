@@ -4,13 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.flashanime.TemporaryFile
+import androidx.lifecycle.viewModelScope
 import com.example.flashanime.data.AnimeInfo
-import com.example.flashanime.data.WeeklyAnimeList
 import com.example.flashanime.data.WeeklyInfo
 import com.example.flashanime.data.source.FlashAnimeRepository
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 private const val TAG: String = "WeekViewModel"
 
@@ -22,6 +24,10 @@ class WeekViewModel(private val flashAnimeRepository: FlashAnimeRepository): Vie
     private val _weekInfo = MutableLiveData<List<WeeklyInfo>>()
     val weekInfo: LiveData<List<WeeklyInfo>>
         get() = _weekInfo
+
+    private val _selectedAnimeInfo = MutableLiveData<AnimeInfo?>()
+    val selectedAnimeInfo: LiveData<AnimeInfo?>
+        get() = _selectedAnimeInfo
 
     init {
         weekSnapshot()
@@ -55,5 +61,18 @@ class WeekViewModel(private val flashAnimeRepository: FlashAnimeRepository): Vie
                 Log.i(TAG, "SeasonViewModel animeSnapshot fail: $exception")
             }
 
+    }
+
+    fun navigateByAnimeId(animeId: String) {
+        viewModelScope.launch {
+            val selectedAnimeInfoById = withContext(Dispatchers.IO) {
+                flashAnimeRepository.getAnimeInfoById(animeId)
+            }
+            _selectedAnimeInfo.value = selectedAnimeInfoById
+        }
+    }
+
+    fun navigateComplete() {
+        _selectedAnimeInfo.value = null
     }
 }

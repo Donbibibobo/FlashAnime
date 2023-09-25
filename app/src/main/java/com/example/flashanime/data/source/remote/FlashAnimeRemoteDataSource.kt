@@ -25,4 +25,8 @@ object FlashAnimeRemoteDataSource: FlashAnimeDataSource{
     override fun getAllAnimeInfo(): LiveData<List<AnimeInfo>> {
         TODO("Not yet implemented")
     }
+
+    override suspend fun getAnimeInfoById(id: String): AnimeInfo {
+        TODO("Not yet implemented")
+    }
 }

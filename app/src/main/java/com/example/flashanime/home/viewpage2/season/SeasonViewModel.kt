@@ -43,8 +43,7 @@ class SeasonViewModel(private val flashAnimeRepository: FlashAnimeRepository): V
 //        TemporaryFile.addOtherAnimeInfo()
 
 
-
-
+//        TemporaryFile.addWeekList()
 //        TemporaryFile.addFirebaseAnimeInfo()
 //        TemporaryFile.addWeekList()
 //        TemporaryFile.addUser()
@@ -59,14 +58,14 @@ class SeasonViewModel(private val flashAnimeRepository: FlashAnimeRepository): V
 
 
 
-    fun removeId(context: Context) {
-        viewModelScope.launch{
-            withContext(Dispatchers.IO){
-                FlashAnimeDatabase.getInstance(context).flashAnimeDatabaseDao.deleteSpecificRowById("dDZcI1G1RPcwZIZSpTEe")
-
-            }
-        }
-    }
+//    fun removeId(context: Context) {
+//        viewModelScope.launch{
+//            withContext(Dispatchers.IO){
+//                FlashAnimeDatabase.getInstance(context).flashAnimeDatabaseDao.deleteSpecificRowById("dDZcI1G1RPcwZIZSpTEe")
+//
+//            }
+//        }
+//    }
 
 
 

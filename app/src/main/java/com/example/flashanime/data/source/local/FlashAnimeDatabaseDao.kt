@@ -21,8 +21,11 @@ interface FlashAnimeDatabaseDao {
     fun getAllAnimeInfo():
             LiveData<List<AnimeInfo>>
 
-    @Query("DELETE FROM anime_info_table WHERE animeId = :id")
-    fun deleteSpecificRowById(id: String)
+    @Query("SELECT * FROM anime_info_table WHERE animeId = :id")
+    fun getAnimeInfoById(id: String): AnimeInfo
+
+//    @Query("DELETE FROM anime_info_table WHERE animeId = :id")
+//    fun deleteSpecificRowById(id: String)
 
 
 }

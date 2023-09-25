@@ -22,5 +22,7 @@ interface FlashAnimeRepository {
 
     fun getAllAnimeInfo(): LiveData<List<AnimeInfo>>
 
+    suspend fun getAnimeInfoById(id: String): AnimeInfo
+
 
 }

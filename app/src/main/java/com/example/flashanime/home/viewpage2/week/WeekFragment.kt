@@ -1,8 +1,6 @@
 package com.example.flashanime.home.viewpage2.week
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +8,14 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flashanime.NavigationDirections
 import com.example.flashanime.R
-import com.example.flashanime.data.WeeklyAnime
 import com.example.flashanime.databinding.FragmentWeekBinding
 import com.example.flashanime.ext.getVmFactory
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 
 class WeekFragment: Fragment() {
 
@@ -32,13 +30,27 @@ class WeekFragment: Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        val adapter1 = WeekListAdapter()
-        val adapter2 = WeekListAdapter()
-        val adapter3 = WeekListAdapter()
-        val adapter4 = WeekListAdapter()
-        val adapter5 = WeekListAdapter()
-        val adapter6 = WeekListAdapter()
-        val adapter7 = WeekListAdapter()
+        val adapter1 = WeekListAdapter{
+            viewModel.navigateByAnimeId(it)
+        }
+        val adapter2 = WeekListAdapter{
+            viewModel.navigateByAnimeId(it)
+        }
+        val adapter3 = WeekListAdapter{
+            viewModel.navigateByAnimeId(it)
+        }
+        val adapter4 = WeekListAdapter{
+            viewModel.navigateByAnimeId(it)
+        }
+        val adapter5 = WeekListAdapter{
+            viewModel.navigateByAnimeId(it)
+        }
+        val adapter6 = WeekListAdapter{
+            viewModel.navigateByAnimeId(it)
+        }
+        val adapter7 = WeekListAdapter{
+            viewModel.navigateByAnimeId(it)
+        }
 
         binding.R1.adapter = adapter1
         binding.R2.adapter = adapter2
@@ -76,6 +88,14 @@ class WeekFragment: Fragment() {
                     adapter7.submitList(weeklyInfo.sunday.weeklyAnimeList)
                 }
             }
+        })
+
+        viewModel.selectedAnimeInfo.observe(viewLifecycleOwner, Observer {
+            if (it != null){
+                NavHostFragment.findNavController(this).navigate(NavigationDirections.navigateToDetailFragment(it))
+                viewModel.navigateComplete()
+            }
+
         })
 
         return binding.root

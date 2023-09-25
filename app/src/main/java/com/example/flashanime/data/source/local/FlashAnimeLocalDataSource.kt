@@ -29,4 +29,8 @@ class FlashAnimeLocalDataSource(private val dao: FlashAnimeDatabaseDao): FlashAn
     override fun getAllAnimeInfo(): LiveData<List<AnimeInfo>> {
         return dao.getAllAnimeInfo()
     }
+
+    override suspend fun getAnimeInfoById(id: String): AnimeInfo {
+        return dao.getAnimeInfoById(id)
+    }
 }

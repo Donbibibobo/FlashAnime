@@ -24,5 +24,6 @@ data class WeeklyAnimeList (
 data class WeeklyAnime (
     val releaseTime: String = "",
     val title: String = "",
-    val episode: String = ""
+    val episode: String = "",
+    val animeId: String = ""
 ): Parcelable
