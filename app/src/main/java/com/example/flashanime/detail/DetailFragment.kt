@@ -86,7 +86,7 @@ class DetailFragment: Fragment() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 super.onReady(youTubePlayer)
                 youTubePlayerDetailFragment = youTubePlayer
-                youTubePlayer.loadVideo(viewModel.animeInfoArg.value!!.videosId.last(), 0f)
+                youTubePlayer.loadVideo(viewModel.animeInfoArg.value!!.videosId.first(), 0f)
             }
             override fun onStateChange(youTubePlayer: YouTubePlayer, state: PlayerConstants.PlayerState) {
                 when (state) {
@@ -149,6 +149,7 @@ class DetailFragment: Fragment() {
         viewModel.episodeMutableListDefault.observe(viewLifecycleOwner, Observer {
             adapterEpisode.submitList(it)
             adapterWordList.submitList(viewModel.animeInfoArg.value!!.wordsList[viewModel.episodeExo].playWords)
+
         })
 
 

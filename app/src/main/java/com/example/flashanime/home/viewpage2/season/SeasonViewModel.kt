@@ -1,6 +1,8 @@
 package com.example.flashanime.home.viewpage2.season
 
+import android.content.Context
 import android.util.Log
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,11 +13,17 @@ import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.PlayWordEpisode
 import com.example.flashanime.data.PlayWords
 import com.example.flashanime.data.source.FlashAnimeRepository
+import com.example.flashanime.data.source.local.FlashAnimeDatabase
+import com.example.flashanime.data.source.local.FlashAnimeDatabaseDao
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.regex.Pattern
 
 
@@ -31,6 +39,9 @@ class SeasonViewModel(private val flashAnimeRepository: FlashAnimeRepository): V
 
 
     init {
+
+//        TemporaryFile.addOtherAnimeInfo()
+
 
 
 
@@ -48,7 +59,14 @@ class SeasonViewModel(private val flashAnimeRepository: FlashAnimeRepository): V
 
 
 
+    fun removeId(context: Context) {
+        viewModelScope.launch{
+            withContext(Dispatchers.IO){
+                FlashAnimeDatabase.getInstance(context).flashAnimeDatabaseDao.deleteSpecificRowById("dDZcI1G1RPcwZIZSpTEe")
 
+            }
+        }
+    }
 
 
 

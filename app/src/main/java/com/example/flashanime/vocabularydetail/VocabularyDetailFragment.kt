@@ -82,6 +82,10 @@ class VocabularyDetailFragment: Fragment() {
             it.findNavController().navigate(NavigationDirections.navigateToWordTestFragment(testList!!))
         }
 
+        // default first page check if have words
+        binding.testButton.isEnabled =
+            viewModel.animeInfoArg.value!!.wordsList[0].playWords[0].level != ""
+
 
 
         return binding.root

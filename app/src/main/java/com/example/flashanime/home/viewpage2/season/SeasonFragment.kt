@@ -12,8 +12,10 @@ import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.example.flashanime.NavigationDirections
 import com.example.flashanime.data.AnimeInfo
+import com.example.flashanime.data.source.local.FlashAnimeDatabase
 import com.example.flashanime.databinding.FragmentSeasonBinding
 import com.example.flashanime.ext.getVmFactory
+import kotlinx.coroutines.currentCoroutineContext
 
 class SeasonFragment: Fragment() {
 
@@ -43,6 +45,7 @@ class SeasonFragment: Fragment() {
 
 
 
+//        viewModel.removeId(requireContext())
 
 
 

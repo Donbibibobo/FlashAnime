@@ -6,9 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.source.FlashAnimeRepository
+import com.example.flashanime.data.source.local.FlashAnimeDatabase
 import com.example.flashanime.util.CurrentFragmentType
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.launch
 
 private const val TAG: String = "MainViewModel"
@@ -23,6 +25,8 @@ class MainViewModel(private val flashAnimeRepository: FlashAnimeRepository): Vie
     init {
         getAnimeList()
         snapShotFavoriteList()
+
+
     }
 
 

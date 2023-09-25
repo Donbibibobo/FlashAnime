@@ -97,6 +97,7 @@ object TemporaryFile {
                 )
             )
             val episode01Data = mapOf("episodeNum" to "1", "playWords" to playWordsEmpty)
+
             val episode2Data = mapOf("episodeNum" to "2", "playWords" to playWordsEmpty)
             val episode3Data = mapOf("episodeNum" to "3", "playWords" to playWordsEmpty)
             val episode4Data = mapOf("episodeNum" to "4", "playWords" to playWordsEmpty)
@@ -260,5 +261,72 @@ object TemporaryFile {
             .addOnFailureListener { e ->
                 Log.w("AddFirebase", "Error adding document", e)
             }
+    }
+
+
+    // add 11 anime
+    fun addOtherAnimeInfo() {
+
+        val playWordsEmpty = listOf<Map<String,Any>>(mapOf("time" to "0:00:00.00","word" to "(尚未新增單字資源)","level" to ""))
+
+        val episode1Data = mapOf("episodeNum" to "1", "playWords" to playWordsEmpty)
+        val episode2Data = mapOf("episodeNum" to "2", "playWords" to playWordsEmpty)
+        val episode3Data = mapOf("episodeNum" to "3", "playWords" to playWordsEmpty)
+        val episode4Data = mapOf("episodeNum" to "4", "playWords" to playWordsEmpty)
+        val episode5Data = mapOf("episodeNum" to "5", "playWords" to playWordsEmpty)
+        val episode6Data = mapOf("episodeNum" to "6", "playWords" to playWordsEmpty)
+        val episode7Data = mapOf("episodeNum" to "7", "playWords" to playWordsEmpty)
+        val episode8Data = mapOf("episodeNum" to "8", "playWords" to playWordsEmpty)
+        val episode9Data = mapOf("episodeNum" to "9", "playWords" to playWordsEmpty)
+        val episode10Data = mapOf("episodeNum" to "10", "playWords" to playWordsEmpty)
+        val episode11Data = mapOf("episodeNum" to "11", "playWords" to playWordsEmpty)
+        val episode12Data = mapOf("episodeNum" to "12", "playWords" to playWordsEmpty)
+
+        val wordsDataList = mutableListOf<Map<String, Any>>()
+
+        wordsDataList.add(episode1Data)
+        wordsDataList.add(episode2Data)
+        wordsDataList.add(episode3Data)
+        wordsDataList.add(episode4Data)
+        wordsDataList.add(episode5Data)
+        wordsDataList.add(episode6Data)
+        wordsDataList.add(episode7Data)
+        wordsDataList.add(episode8Data)
+        wordsDataList.add(episode9Data)
+        wordsDataList.add(episode10Data)
+        wordsDataList.add(episode11Data)
+        wordsDataList.add(episode12Data)
+
+
+        // change here
+        val category = listOf<String>("搞笑")
+        val videosId = listOf<String>("BBmz-B5kSO8","TFAjniv77gQ","9HAtA03GNOg","E--_bTfdCZc",
+            "JH4Y0eiZNbg","5wHJ0S3hQrc","wuDrWYT8LZ8","uCKSZzCjPvI","ArmtLGi99jU","4_x_mAR6u10","xbYjl3YC7xs","MqG9Nu-dpd8")
+
+        val animeInfoDocument = db.collection("animeInfo").document()
+
+
+        val animeData = hashMapOf(
+            "isCollected" to false,
+            "animeId" to animeInfoDocument.id,
+            "title" to "能幹貓今天也憂鬱",
+            "releaseTime" to "2023/09/23",
+            "episode" to "全12集",
+            "rate" to "5.0",
+            "wordsList" to wordsDataList,
+            "category" to category,
+            "videosId" to videosId,
+            "pictureURL" to "https://p2.bahamut.com.tw/B/ACG/c/45/0000124645.JPG"
+        )
+
+        // [add different document]
+        animeInfoDocument.set(animeData)
+            .addOnSuccessListener { documentReference ->
+                Log.d("AddFirebase", "DocumentSnapshot written with ID: $documentReference")
+            }
+            .addOnFailureListener { e ->
+                Log.w("AddFirebase", "Error adding document", e)
+            }
+
     }
 }
