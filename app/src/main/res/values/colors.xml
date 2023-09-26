@@ -2,6 +2,7 @@
 <resources>
     <!-- Main blue  -->
     <color name="blue">#49A8CB</color>
+    <color name="dark_blue">#73A4C8</color>
 
     <color name="transparent">#00000000</color>
     <color name="translucent">#80000000</color>

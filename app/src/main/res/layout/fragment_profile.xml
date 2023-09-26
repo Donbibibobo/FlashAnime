@@ -16,16 +16,17 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/blue_constrain"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="wrap_content"
                 android:background="@color/blue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_view_round"
@@ -35,7 +36,8 @@
                     android:layout_marginTop="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/login_area">
 
                     <ImageView
                         android:id="@+id/artist_detail_main_pic"
@@ -49,7 +51,64 @@
 
                 </androidx.cardview.widget.CardView>
 
+                <View
+                    android:id="@+id/login_area"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/blue"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/card_view_round"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/login"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/dark_blue"
+                    android:padding="18dp"
+                    android:text="@string/login"
+                    android:textSize="25sp"
+                    android:letterSpacing="0.1"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:cornerRadius="0dp"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toStartOf="@+id/register"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/card_view_round"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:visibility="gone"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/register"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/dark_blue"
+                    android:padding="18dp"
+                    android:text="@string/register"
+                    android:textSize="25sp"
+                    android:letterSpacing="0.1"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:cornerRadius="0dp"
+                    android:layout_marginStart="1dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/login"
+                    app:layout_constraintTop_toTopOf="@+id/login"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:visibility="gone"/>
+
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
             <TextView
                 android:id="@+id/member_info"

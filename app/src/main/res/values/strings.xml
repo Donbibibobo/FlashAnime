@@ -64,6 +64,8 @@
     <string name="test_history">單字測驗紀錄</string>
     <string name="about">關於本軟體</string>
     <string name="logout">登出</string>
+    <string name="login">登入</string>
+    <string name="register">註冊</string>
 
 
 
