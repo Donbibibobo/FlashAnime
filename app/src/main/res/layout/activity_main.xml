@@ -38,6 +38,15 @@
                 tools:text="@string/first_home"
                 tools:visibility="visible" />
 
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/arrow_back"
+                android:background="@color/transparent"
+                android:layout_marginStart="25dp"
+                android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.VOCABULARY_DETAIL || viewModel.currentFragmentType == CurrentFragmentType.WORD_TEST ? View.VISIBLE : View.GONE}"/>
+
         </androidx.appcompat.widget.Toolbar>
 
         <fragment

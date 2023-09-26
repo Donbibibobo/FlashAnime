@@ -11,4 +11,9 @@ enum class CurrentFragmentType(val value: String) {
     VOCABULARY(getString(R.string.first_vocabulary)),
     PROFILE(getString(R.string.first_profile)),
     DETAIL(""),
+
+    PROFILE_COLLECTED(getString(R.string.first_collected)),
+
+    VOCABULARY_DETAIL(getString(R.string.vocabulary_detail)),
+    WORD_TEST(getString(R.string.word_test)),
 }

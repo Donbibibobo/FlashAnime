@@ -5,8 +5,12 @@
     <string name="first_all">所有動畫</string>
     <string name="first_collected">收藏</string>
     <string name="first_vocabulary">單字</string>
-    <string name="first_profile">東東</string>
+    <string name="first_profile">我的</string>
     <string name="first_profile_unKnow">未知的勇者</string>
+
+    <string name="vocabulary_detail">單字測驗</string>
+    <string name="word_test">單字考試</string>
+
 
     <!--tab layout-->
     <string name="first_tab_season">本季新番</string>

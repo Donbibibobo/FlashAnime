@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import com.example.flashanime.MainActivity
 import com.example.flashanime.NavigationDirections
 import com.example.flashanime.R
 import com.example.flashanime.data.PlayWordEpisode
@@ -33,6 +35,7 @@ class VocabularyDetailFragment: Fragment() {
         val binding = FragmentVocavularyDetailBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+
 
         val adapter = VocabularyDetailListAdapter{
             viewModel.getWordInfo(it.word)

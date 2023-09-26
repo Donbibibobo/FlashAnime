@@ -23,7 +23,8 @@
         android:id="@+id/vocabularyFragment"
         android:name="com.example.flashanime.vocabulary.VocabularyFragment"
         android:label="VocabularyFragment"
-        tools:layout="@layout/fragment_vocabulary"/>
+        tools:layout="@layout/fragment_vocabulary">
+    </fragment>
     <fragment
         android:id="@+id/vocabularyDetailFragment"
         android:name="com.example.flashanime.vocabularydetail.VocabularyDetailFragment"

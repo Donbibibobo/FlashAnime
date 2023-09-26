@@ -59,6 +59,10 @@ class DetailFragment: Fragment() {
         val window = requireActivity().window
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
+        binding.back.setOnClickListener {
+            it.findNavController().navigateUp()
+        }
+
 
         // change the wordList
         val updateRunnable = object : Runnable {

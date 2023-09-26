@@ -10,6 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.flashanime.databinding.ActivityMainBinding
 import com.example.flashanime.ext.getVmFactory
 import com.example.flashanime.util.CurrentFragmentType
@@ -21,6 +23,8 @@ class MainActivity : AppCompatActivity() {
     val viewModel by viewModels<MainViewModel> { getVmFactory() }
 
     private lateinit var binding: ActivityMainBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,6 +42,13 @@ class MainActivity : AppCompatActivity() {
             }
         )
 
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        binding.back.setOnClickListener {
+            navController.navigateUp()
+        }
+
         setupNavController()
         setupBottomNav()
     }
@@ -45,6 +56,8 @@ class MainActivity : AppCompatActivity() {
     private fun setupBottomNav() {
         binding.bottomNavView.setOnItemSelectedListener { item ->
             when (item.itemId) {
+
+
                 R.id.navigation_home -> {
 
                     findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToHomeFragment())
@@ -88,6 +101,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.vocabularyFragment -> CurrentFragmentType.VOCABULARY
                 R.id.profileFragment -> CurrentFragmentType.PROFILE
                 R.id.detailFragment -> CurrentFragmentType.DETAIL
+
+                R.id.vocabularyDetailFragment -> CurrentFragmentType.VOCABULARY_DETAIL
+                R.id.wordTestFragment -> CurrentFragmentType.WORD_TEST
                 else -> viewModel.currentFragmentType.value
             }
         }

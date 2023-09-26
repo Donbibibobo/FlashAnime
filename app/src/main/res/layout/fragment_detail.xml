@@ -24,6 +24,17 @@
 <!--            app:layout_constraintTop_toTopOf="parent" -->
 <!--            android:visibility="gone"/>-->
 
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_image"
+            android:layout_margin="10dp"
+            android:elevation="1dp"
+            android:background="@color/transparent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
         <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
             android:id="@+id/youtube_player_view"
             android:layout_width="match_parent"
