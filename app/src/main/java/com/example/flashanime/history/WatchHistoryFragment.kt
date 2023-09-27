@@ -1,7 +1,6 @@
-package com.example.flashanime.vocabulary
+package com.example.flashanime.history
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,15 +8,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.example.flashanime.NavigationDirections
-import com.example.flashanime.databinding.FragmentAllBinding
-import com.example.flashanime.databinding.FragmentVocabularyBinding
+import com.example.flashanime.collected.CollectedListAdapter
+import com.example.flashanime.collected.CollectedViewModel
+import com.example.flashanime.databinding.FragmentCollectedBinding
+import com.example.flashanime.databinding.FragmentHistoryBinding
 import com.example.flashanime.ext.getVmFactory
 
-class VocabularyFragment: Fragment() {
+class WatchHistoryFragment: Fragment() {
 
-    private val viewModel by viewModels<VocabularyViewModel> { getVmFactory() }
+    private val viewModel by viewModels<WatchHistoryViewModel> { getVmFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,21 +25,20 @@ class VocabularyFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentVocabularyBinding.inflate(inflater, container, false)
+        val binding = FragmentHistoryBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        val adapter = VocabularyListAdapter{
-            findNavController().navigate(NavigationDirections.navigateToVocabularyDetailFragment(it))
-            Log.i("VocabularyFragment", "$it")
+        val adapter = WatchHistoryListAdapter{
+            view?.findNavController()?.navigate(NavigationDirections.navigateToDetailFragment(it))
         }
 
         binding.recyclerView.adapter = adapter
 
-        viewModel.combinedList.observe(viewLifecycleOwner, Observer {
+
+        viewModel.animeInfoList.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
         })
-
 
 
 

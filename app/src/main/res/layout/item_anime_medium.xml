@@ -44,6 +44,38 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="@string/anime_info_title"/>
 
+
+
+        <TextView
+            android:id="@+id/episode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/noto_sans"
+            android:letterSpacing="0.1"
+            android:text="@{animeInfo.episode}"
+            android:textColor="@color/gray_999999"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/releaseTimeText"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            tools:text="@string/anime_info_episode"/>
+
+        <TextView
+            android:id="@+id/releaseTimeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/noto_sans"
+            android:letterSpacing="0.1"
+            android:text="@string/release_time_text"
+            android:textColor="@color/gray_999999"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintTop_toBottomOf="@+id/episode"/>
+
         <TextView
             android:id="@+id/releaseTime"
             android:layout_width="wrap_content"
@@ -55,24 +87,9 @@
             android:text="@{animeInfo.releaseTime}"
             android:textColor="@color/blue"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/image"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/releaseTimeText"
+            app:layout_constraintTop_toTopOf="@+id/releaseTimeText"
             tools:text="@string/releaseTime"/>
-
-        <TextView
-            android:id="@+id/episode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:fontFamily="@font/noto_sans"
-            android:letterSpacing="0.1"
-            android:text="@{animeInfo.episode}"
-            android:textColor="@color/gray_999999"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/releaseTime"
-            app:layout_constraintTop_toBottomOf="@+id/title"
-            app:layout_constraintStart_toEndOf="@+id/image"
-            tools:text="@string/anime_info_episode"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -175,6 +175,12 @@ class DetailFragment: Fragment() {
         })
 
 
+        // watch history
+        viewModel.animeInfoArg.observe(viewLifecycleOwner, Observer {
+            viewModel.setUserWatchHistoryList(it.animeId)
+        })
+
+
         // file picker
 //        val dialogProperties: DialogProperties
 //        val filePickerDialog: FilePickerDialog

@@ -99,7 +99,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.allFragment -> CurrentFragmentType.ALL
                 R.id.collectedFragment -> {
                     val fromProfile = navController.currentBackStackEntry?.arguments?.getBoolean("fromProfile") ?: false
-                    Log.i("aaasss","fromProfile: $fromProfile")
                     if (fromProfile) {
                         CurrentFragmentType.PROFILE_COLLECTED
                     } else {
@@ -112,6 +111,9 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.vocabularyDetailFragment -> CurrentFragmentType.VOCABULARY_DETAIL
                 R.id.wordTestFragment -> CurrentFragmentType.WORD_TEST
+
+                R.id.watchHistoryFragment -> CurrentFragmentType.WATCH_HISTORY
+
                 else -> viewModel.currentFragmentType.value
             }
         }

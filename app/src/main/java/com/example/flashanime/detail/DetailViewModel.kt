@@ -6,10 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flashanime.TemporaryFile
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.Episode
 import com.example.flashanime.data.JLPTWordInfo
 import com.example.flashanime.data.source.FlashAnimeRepository
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
 
 class DetailViewModel(
@@ -117,6 +121,29 @@ class DetailViewModel(
                 throw IllegalArgumentException("DetailViewModel getWordInfo fail!")
             }
         }
+    }
+
+
+    // record UserWatchHistory
+    fun setUserWatchHistoryList(animeId: String) {
+        val db = Firebase.firestore
+
+        val userAnimeListDocument =
+            db.collection("userInfo").document("Bstm28YuZ3ih78afvdq9").collection("watchHistory").document(animeId)
+
+        val userData = hashMapOf(
+            "animeId" to "animeId",
+            "timestamp" to FieldValue.serverTimestamp()
+        )
+
+        // [update same user document]
+        userAnimeListDocument.set(userData)
+            .addOnSuccessListener { documentReference ->
+                Log.d("AddFirebase", "DocumentSnapshot written with ID: $documentReference")
+            }
+            .addOnFailureListener { e ->
+                Log.w("AddFirebase", "Error adding document", e)
+            }
     }
 
 }

@@ -67,6 +67,12 @@
             app:nullable="false"/>
     </fragment>
 
+    <fragment
+        android:id="@+id/watchHistoryFragment"
+        android:name="com.example.flashanime.history.WatchHistoryFragment"
+        android:label="WatchHistoryFragment"
+        tools:layout="@layout/fragment_history"/>
+
     <dialog
         android:id="@+id/wordDialog"
         android:name="com.example.flashanime.word.WordDialog"
@@ -115,6 +121,7 @@
     <action android:id="@+id/navigate_to_wordTestFragment" app:destination="@id/wordTestFragment"/>
     <action android:id="@+id/navigate_to_login_dialog" app:destination="@id/loginDialog"/>
     <action android:id="@+id/navigate_to_collected_fragment_from_profile" app:destination="@id/collectedFragment"/>
+    <action android:id="@+id/navigate_to_watch_history_fragment" app:destination="@id/watchHistoryFragment"/>
 
 
 

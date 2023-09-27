@@ -26,7 +26,6 @@ class MainViewModel(private val flashAnimeRepository: FlashAnimeRepository): Vie
         getAnimeList()
         snapShotFavoriteList()
 
-
     }
 
 

@@ -37,10 +37,12 @@ class ProfileFragment: Fragment() {
 
 
         // watch history
+        binding.watchHistory.setOnClickListener {
+            it.findNavController().navigate(ProfileFragmentDirections.navigateToWatchHistoryFragment())
+        }
 
         // collected anime
         binding.collectedAnime.setOnClickListener {
-
             it.findNavController().navigate(ProfileFragmentDirections.navigateToCollectedFragmentFromProfile(true))
         }
 

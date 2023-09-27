@@ -14,38 +14,9 @@ private const val TAG: String = "VocabularyViewModel"
 
 class VocabularyViewModel(private val flashAnimeRepository: FlashAnimeRepository): ViewModel() {
 
-    val db = Firebase.firestore
 
-    private val _animeInfo = MutableLiveData<List<AnimeInfo>>()
-    val animeInfo: LiveData<List<AnimeInfo>>
-        get() = _animeInfo
+    private val _combinedList: LiveData<List<AnimeInfo>> = flashAnimeRepository.getAllAnimeInfo()
+    val combinedList: LiveData<List<AnimeInfo>>
+        get() = _combinedList
 
-    init {
-        animeSnapshot()
-    }
-    private fun animeSnapshot() {
-        val articlesCollection = db.collection("animeInfo")
-
-        articlesCollection
-            .get()
-            .addOnSuccessListener { querySnapshot ->
-                Log.i(TAG, "SeasonViewModel animeSnapshot success")
-
-                val animeInfoList = mutableListOf<AnimeInfo>()
-
-                for (document in querySnapshot.documents) {
-
-                    val animeInfo = document.toObject(AnimeInfo::class.java)
-                    if (animeInfo != null) {
-                        animeInfoList.add(animeInfo)
-                    }
-
-                }
-                _animeInfo.value = animeInfoList
-            }
-            .addOnFailureListener { exception ->
-                Log.i(TAG, "SeasonViewModel animeSnapshot fail: $exception")
-            }
-
-    }
 }
