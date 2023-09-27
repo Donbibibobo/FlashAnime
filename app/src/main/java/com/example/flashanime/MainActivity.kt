@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_collected -> {
 
-                    findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToCollectedFragment())
+                    findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToCollectedFragment(false))
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_vocabulary -> {
@@ -97,7 +97,15 @@ class MainActivity : AppCompatActivity() {
             viewModel.currentFragmentType.value = when (navController.currentDestination?.id) {
                 R.id.homeFragment -> CurrentFragmentType.HOME
                 R.id.allFragment -> CurrentFragmentType.ALL
-                R.id.collectedFragment -> CurrentFragmentType.COLLECTED
+                R.id.collectedFragment -> {
+                    val fromProfile = navController.currentBackStackEntry?.arguments?.getBoolean("fromProfile") ?: false
+                    Log.i("aaasss","fromProfile: $fromProfile")
+                    if (fromProfile) {
+                        CurrentFragmentType.PROFILE_COLLECTED
+                    } else {
+                        CurrentFragmentType.COLLECTED
+                    }
+                }
                 R.id.vocabularyFragment -> CurrentFragmentType.VOCABULARY
                 R.id.profileFragment -> CurrentFragmentType.PROFILE
                 R.id.detailFragment -> CurrentFragmentType.DETAIL

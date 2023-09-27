@@ -7,6 +7,7 @@ import com.example.flashanime.data.JLPTWordInfo
 import com.example.flashanime.data.PlayWordEpisode
 import com.example.flashanime.data.PlayWords
 import com.example.flashanime.factory.AnimeInfoViewModelFactory
+import com.example.flashanime.factory.CollectedViewModelFactory
 import com.example.flashanime.factory.PlayWordsListViewModelFactory
 import com.example.flashanime.factory.ViewModelFactory
 import com.example.flashanime.factory.WordInfoViewModelFactory
@@ -29,4 +30,9 @@ fun Fragment.getVmFactory(wordInfo: JLPTWordInfo): WordInfoViewModelFactory {
 fun Fragment.getVmFactory(platWordEpisode: PlayWordEpisode): PlayWordsListViewModelFactory {
     val repository = (requireContext().applicationContext as FlashAnimeApplication).flashAnimeRepository
     return PlayWordsListViewModelFactory(repository, platWordEpisode)
+}
+
+fun Fragment.getVmFactory(fromProfile: Boolean): CollectedViewModelFactory {
+    val repository = (requireContext().applicationContext as FlashAnimeApplication).flashAnimeRepository
+    return CollectedViewModelFactory(repository, fromProfile)
 }

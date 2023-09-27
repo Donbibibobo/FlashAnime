@@ -42,9 +42,6 @@ class ViewModelFactory constructor(
                 isAssignableFrom(AllViewModel::class.java) ->
                     AllViewModel(flashAnimeRepository)
 
-                isAssignableFrom(CollectedViewModel::class.java) ->
-                    CollectedViewModel(flashAnimeRepository)
-
                 isAssignableFrom(VocabularyViewModel::class.java) ->
                     VocabularyViewModel(flashAnimeRepository)
 

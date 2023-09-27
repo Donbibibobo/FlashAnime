@@ -18,7 +18,11 @@
         android:id="@+id/collectedFragment"
         android:name="com.example.flashanime.collected.CollectedFragment"
         android:label="CollectedFragment"
-        tools:layout="@layout/fragment_collected"/>
+        tools:layout="@layout/fragment_collected">
+        <argument
+            android:name="fromProfile"
+            app:argType="boolean"/>
+    </fragment>
     <fragment
         android:id="@+id/vocabularyFragment"
         android:name="com.example.flashanime.vocabulary.VocabularyFragment"
@@ -110,6 +114,7 @@
     <action android:id="@+id/navigate_to_category_dialog" app:destination="@id/categoryDialog"/>
     <action android:id="@+id/navigate_to_wordTestFragment" app:destination="@id/wordTestFragment"/>
     <action android:id="@+id/navigate_to_login_dialog" app:destination="@id/loginDialog"/>
+    <action android:id="@+id/navigate_to_collected_fragment_from_profile" app:destination="@id/collectedFragment"/>
 
 
 

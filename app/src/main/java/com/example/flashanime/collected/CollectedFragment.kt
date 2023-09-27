@@ -14,10 +14,11 @@ import com.example.flashanime.all.AllListAdapter
 import com.example.flashanime.databinding.FragmentAllBinding
 import com.example.flashanime.databinding.FragmentCollectedBinding
 import com.example.flashanime.ext.getVmFactory
+import com.example.flashanime.wordstest.WordTestFragmentArgs
 
 class CollectedFragment: Fragment() {
 
-    private val viewModel by viewModels<CollectedViewModel> { getVmFactory() }
+    private val viewModel by viewModels<CollectedViewModel> { getVmFactory(CollectedFragmentArgs.fromBundle(requireArguments()).fromProfile) }
 
     override fun onCreateView(
         inflater: LayoutInflater,

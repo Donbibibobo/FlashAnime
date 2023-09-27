@@ -53,10 +53,9 @@ class WordTestFragment: Fragment() {
                 binding.scoreGood.visibility = View.VISIBLE
                 binding.scoreGood.text = it.toString()
             } else {
-//                binding.bad.visibility = View.VISIBLE
-//                binding.scoreBad.visibility = View.VISIBLE
-//                binding.scoreBad.text = it.toString()
-                binding.tempo.visibility = View.VISIBLE
+                binding.bad.visibility = View.VISIBLE
+                binding.scoreBad.visibility = View.VISIBLE
+                binding.scoreBad.text = it.toString()
             }
         })
 

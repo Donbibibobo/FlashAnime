@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import com.example.flashanime.MainActivity
 import com.example.flashanime.NavigationDirections
 import com.example.flashanime.R
+import com.example.flashanime.collected.CollectedFragmentDirections
 import com.example.flashanime.databinding.FragmentAllBinding
 import com.example.flashanime.databinding.FragmentProfileBinding
 import com.example.flashanime.ext.getVmFactory
@@ -40,6 +41,7 @@ class ProfileFragment: Fragment() {
         // collected anime
         binding.collectedAnime.setOnClickListener {
 
+            it.findNavController().navigate(ProfileFragmentDirections.navigateToCollectedFragmentFromProfile(true))
         }
 
         // test history
