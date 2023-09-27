@@ -80,6 +80,12 @@
         android:label="CategoryDialog"
         tools:layout="@layout/dialog_category"/>
 
+    <dialog
+        android:id="@+id/loginDialog"
+        android:name="com.example.flashanime.login.LoginDialog"
+        android:label="LoginDialog"
+        tools:layout="@layout/dialog_login"/>
+
 
 
     <action android:id="@+id/navigate_to_home_fragment" app:destination="@id/homeFragment"
@@ -103,7 +109,7 @@
     <action android:id="@+id/navigate_to_word_dialog" app:destination="@id/wordDialog"/>
     <action android:id="@+id/navigate_to_category_dialog" app:destination="@id/categoryDialog"/>
     <action android:id="@+id/navigate_to_wordTestFragment" app:destination="@id/wordTestFragment"/>
-
+    <action android:id="@+id/navigate_to_login_dialog" app:destination="@id/loginDialog"/>
 
 
 

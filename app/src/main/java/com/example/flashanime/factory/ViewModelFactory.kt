@@ -11,6 +11,7 @@ import com.example.flashanime.detail.DetailViewModel
 import com.example.flashanime.home.HomeViewModel
 import com.example.flashanime.home.viewpage2.season.SeasonViewModel
 import com.example.flashanime.home.viewpage2.week.WeekViewModel
+import com.example.flashanime.login.LoginViewModel
 import com.example.flashanime.profile.ProfileViewModel
 import com.example.flashanime.vocabulary.VocabularyViewModel
 import com.example.flashanime.vocabularydetail.VocabularyDetailViewModel
@@ -52,6 +53,9 @@ class ViewModelFactory constructor(
 
                 isAssignableFrom(CategoryViewModel::class.java) ->
                     CategoryViewModel(flashAnimeRepository)
+
+                isAssignableFrom(LoginViewModel::class.java) ->
+                    LoginViewModel(flashAnimeRepository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

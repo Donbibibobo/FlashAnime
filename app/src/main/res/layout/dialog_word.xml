@@ -1,116 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable name="viewModel" type="com.example.flashanime.word.WordViewModel"/>
-    </data>
+<data>
+    <variable name="viewModel" type="com.example.flashanime.word.WordViewModel"/>
+</data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:onClick="@{() -> viewModel.leave()}">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:onClick="@{() -> viewModel.leave()}">
+        android:id="@+id/layout_word"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_word"
+        android:background="@drawable/bg_dialog_corner"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_word"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/height_word"
-            android:background="@drawable/bg_dialog_corner"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <TextView
+            android:id="@+id/episode_words"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:fontFamily="@font/noto_sans"
+            android:letterSpacing="0.1"
+            android:text="@{viewModel.wordInfoArg.word}"
+            android:textColor="@color/black"
+            android:textSize="50sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="養う"/>
+
+        <TextView
+            android:id="@+id/episode_romaji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="95dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:letterSpacing="0.1"
+            android:text="@{viewModel.wordInfoArg.romaji}"
+            android:textColor="@color/gray_888888"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="yashinau"/>
+
+        <View
+            android:id="@+id/wordListDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/episode_romaji"
+            android:layout_margin="16dp"
+            android:background="@color/gray_999999"/>
 
-            <TextView
-                android:id="@+id/episode_words"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:fontFamily="@font/noto_sans"
-                android:letterSpacing="0.1"
-                android:text="@{viewModel.wordInfoArg.word}"
-                android:textColor="@color/black"
-                android:textSize="50sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="養う"/>
+        <TextView
+            android:id="@+id/episode_meaning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:fontFamily="@font/noto_sans"
+            android:letterSpacing="0.1"
+            android:text="@string/word_dialog_meaning"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/wordListDivider"
+            tools:text="語意："/>
 
-            <TextView
-                android:id="@+id/episode_romaji"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="95dp"
-                android:fontFamily="@font/noto_sans_bold"
-                android:letterSpacing="0.1"
-                android:text="@{viewModel.wordInfoArg.romaji}"
-                android:textColor="@color/gray_888888"
-                android:textSize="22sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="yashinau"/>
+        <TextView
+            android:id="@+id/episode_meaning_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/noto_sans"
+            android:letterSpacing="0.1"
+            android:text="@{viewModel.wordInfoArg.meaning}"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/episode_meaning"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="to rear; to maintain; to cultivate"/>
 
-            <View
-                android:id="@+id/wordListDivider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/episode_romaji"
-                android:layout_margin="16dp"
-                android:background="@color/gray_999999"/>
+        <ImageView
+            android:id="@+id/collectdSave"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/collected_save"
+            android:layout_margin="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"/>
 
-            <TextView
-                android:id="@+id/episode_meaning"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="30dp"
-                android:fontFamily="@font/noto_sans"
-                android:letterSpacing="0.1"
-                android:text="@string/word_dialog_meaning"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/wordListDivider"
-                tools:text="語意："/>
-
-            <TextView
-                android:id="@+id/episode_meaning_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:fontFamily="@font/noto_sans"
-                android:letterSpacing="0.1"
-                android:text="@{viewModel.wordInfoArg.meaning}"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/episode_meaning"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="to rear; to maintain; to cultivate"/>
-
-            <ImageView
-                android:id="@+id/collectdSave"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/collected_save"
-                android:layout_margin="40dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:visibility="gone"/>
-
-            <ImageView
-                android:id="@+id/collectdUnSave"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/collected_usave"
-                android:layout_margin="40dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/collectdUnSave"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/collected_usave"
+            android:layout_margin="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

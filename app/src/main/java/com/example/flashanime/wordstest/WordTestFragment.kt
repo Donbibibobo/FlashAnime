@@ -53,9 +53,10 @@ class WordTestFragment: Fragment() {
                 binding.scoreGood.visibility = View.VISIBLE
                 binding.scoreGood.text = it.toString()
             } else {
-                binding.bad.visibility = View.VISIBLE
-                binding.scoreBad.visibility = View.VISIBLE
-                binding.scoreBad.text = it.toString()
+//                binding.bad.visibility = View.VISIBLE
+//                binding.scoreBad.visibility = View.VISIBLE
+//                binding.scoreBad.text = it.toString()
+                binding.tempo.visibility = View.VISIBLE
             }
         })
 
@@ -75,13 +76,13 @@ class WordTestFragment: Fragment() {
             override fun onCardSwiped(direction: Direction?) {
 
                 when(direction) {
-                    Direction.Left -> Toast.makeText(requireContext(), "Swiped to Left", Toast.LENGTH_SHORT).show()
+//                    Direction.Left -> Toast.makeText(requireContext(), "Swiped to Left", Toast.LENGTH_SHORT).show()
                     Direction.Right -> {
-                        Toast.makeText(requireContext(), "Swiped to Right", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(requireContext(), "Swiped to Right", Toast.LENGTH_SHORT).show()
                         score++
                     }
-                    Direction.Top -> Toast.makeText(requireContext(), "Swiped to Top", Toast.LENGTH_SHORT).show()
-                    Direction.Bottom -> Toast.makeText(requireContext(), "Swiped to Bottom", Toast.LENGTH_SHORT).show()
+//                    Direction.Top -> Toast.makeText(requireContext(), "Swiped to Top", Toast.LENGTH_SHORT).show()
+//                    Direction.Bottom -> Toast.makeText(requireContext(), "Swiped to Bottom", Toast.LENGTH_SHORT).show()
                     else -> {}
                 }
 
