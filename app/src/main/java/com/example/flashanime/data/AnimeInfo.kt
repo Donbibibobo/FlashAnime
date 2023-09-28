@@ -48,6 +48,7 @@ data class PlayWordEpisode(
 data class PlayWords(
     val time: String = "",
     val word: String = "",
-    val level: String = ""
+    val level: String = "",
+    val isCollected: Boolean = false
 ) : Parcelable
 

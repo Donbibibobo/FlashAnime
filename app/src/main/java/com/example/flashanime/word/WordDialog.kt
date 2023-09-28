@@ -46,15 +46,26 @@ class WordDialog: AppCompatDialogFragment() {
             }
         )
 
-        // mock collected word
+
         binding.collectdUnSave.setOnClickListener {
-            it.visibility = View.GONE
-            binding.collectdSave.visibility = View.VISIBLE
+            viewModel.addUserCollectedWordsList()
         }
         binding.collectdSave.setOnClickListener {
-            it.visibility = View.GONE
-            binding.collectdUnSave.visibility = View.VISIBLE
+            viewModel.removeUserCollectedWord()
         }
+
+        viewModel.collectedWordsList.observe(viewLifecycleOwner) { collectedWords ->
+            val wordInCollectedList = collectedWords.contains(viewModel.wordInfoArg.value!!.word)
+
+            if (wordInCollectedList) {
+                val updatedWordInfo = viewModel.wordInfoArg.value!!.copy(isCollected = true)
+                viewModel.wordInfoArgForUi.value = updatedWordInfo
+            } else {
+                val updatedWordInfo = viewModel.wordInfoArg.value!!.copy(isCollected = false)
+                viewModel.wordInfoArgForUi.value = updatedWordInfo
+            }
+        }
+
 
 
 

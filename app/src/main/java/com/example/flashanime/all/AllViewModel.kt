@@ -9,6 +9,9 @@ import com.example.flashanime.data.source.FlashAnimeRepository
 class AllViewModel(private val flashAnimeRepository: FlashAnimeRepository): ViewModel() {
 
 
+    var selecting: Boolean = false
+
+    var categoriesSelected = listOf<String>()
 
     private val _combinedList: LiveData<List<AnimeInfo>> = flashAnimeRepository.getAllAnimeInfo()
     val combinedList: LiveData<List<AnimeInfo>>

@@ -3,6 +3,7 @@
 xmlns:tools="http://schemas.android.com/tools">
 
 <data>
+    <import type="android.view.View"/>
     <variable name="viewModel" type="com.example.flashanime.word.WordViewModel"/>
 </data>
 
@@ -99,7 +100,7 @@ xmlns:tools="http://schemas.android.com/tools">
             android:layout_margin="40dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:visibility="gone"/>
+            android:visibility="@{viewModel.wordInfoArgForUi.collected ? View.VISIBLE : View.GONE}"/>
 
         <ImageView
             android:id="@+id/collectdUnSave"
@@ -108,7 +109,8 @@ xmlns:tools="http://schemas.android.com/tools">
             android:src="@drawable/collected_usave"
             android:layout_margin="40dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="@{viewModel.wordInfoArgForUi.collected ? View.GONE : View.VISIBLE}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

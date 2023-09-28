@@ -24,6 +24,7 @@ class AllFragment: Fragment(), CategoryDialog.CategoryDialogListener {
 
     private val viewModel by viewModels<AllViewModel> { getVmFactory() }
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,6 +43,7 @@ class AllFragment: Fragment(), CategoryDialog.CategoryDialogListener {
 
 
         binding.fab.setOnClickListener{
+            viewModel.selecting = false
             val dialog = CategoryDialog()
             dialog.setCategoryDialogListener(this)
             dialog.show(childFragmentManager, "CATEGORY_DIALOG_TAG")
@@ -49,10 +51,15 @@ class AllFragment: Fragment(), CategoryDialog.CategoryDialogListener {
 
 
         viewModel.combinedList.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
+            if (!viewModel.selecting){
+                adapter.submitList(it)
+            } else {
+                viewModel.setSelectedList(viewModel.categoriesSelected)
+            }
         })
 
         viewModel.selectedCategoryList.observe(viewLifecycleOwner, Observer {
+            viewModel.selecting = true
             adapter.submitList(it)
         })
 
@@ -66,7 +73,13 @@ class AllFragment: Fragment(), CategoryDialog.CategoryDialogListener {
 
     override fun onCategoriesSelected(categories: List<String>) {
         Log.i("onCategoriesSelected","$categories")
+        viewModel.categoriesSelected = categories
         viewModel.setSelectedList(categories)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.selecting = false
     }
 
 }

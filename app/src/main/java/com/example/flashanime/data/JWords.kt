@@ -15,7 +15,7 @@ data class JLPTWord (
 
 @Parcelize
 data class JLPTWordInfo (
-    val isCollected: Boolean? = null,
+    val isCollected: Boolean = false,
     val word: String,
     val meaning: String,
     val furigana: String,
