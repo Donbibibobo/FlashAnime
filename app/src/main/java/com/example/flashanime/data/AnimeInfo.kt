@@ -29,7 +29,7 @@ data class AnimeInfo(
     @ColumnInfo(name = "rate")
     val rate: String = "",
     @ColumnInfo(name = "word_list")
-    val wordsList: List<PlayWordEpisode> = emptyList(),
+    var wordsList: List<PlayWordEpisode> = emptyList(),
     @ColumnInfo(name = "category")
     val category: List<String> = emptyList(),
     @ColumnInfo(name = "videos_id")
@@ -41,7 +41,7 @@ data class AnimeInfo(
 @Parcelize
 data class PlayWordEpisode(
     val episodeNum: String = "",
-    val playWords: List<PlayWords> = emptyList()
+    var playWords: List<PlayWords> = emptyList()
 ) : Parcelable
 
 @Parcelize

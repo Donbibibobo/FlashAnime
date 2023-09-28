@@ -1,7 +1,9 @@
 package com.example.flashanime.vocabularydetail
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -11,6 +13,7 @@ import com.example.flashanime.databinding.ItemWordListBinding
 import com.example.flashanime.databinding.ItemWordListTestBinding
 
 class VocabularyDetailListAdapter(private val clickWord: (PlayWords) -> Unit): ListAdapter<PlayWords, RecyclerView.ViewHolder>(DetailProductDiffCallback()) {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
@@ -40,6 +43,14 @@ class VocabularyDetailListAdapter(private val clickWord: (PlayWords) -> Unit): L
             }
             binding.listNumber.text = (adapterPosition+1).toString()
             binding.playWord = playWord
+
+            if (playWord.isCollected){
+                binding.collectdSave.visibility = View.VISIBLE
+            } else {
+                binding.collectdSave.visibility = View.GONE
+            }
+
+
             binding.executePendingBindings()
         }
     }

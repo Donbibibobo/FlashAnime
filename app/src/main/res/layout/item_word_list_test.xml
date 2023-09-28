@@ -47,17 +47,17 @@
             tools:text="0001"/>
 
 
-        <ImageButton
-            android:id="@+id/saveButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+
+        <ImageView
+            android:id="@+id/collectdSave"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_margin="12dp"
             app:layout_constraintBottom_toBottomOf="@+id/listNumber"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/listNumber"
-            android:background="@drawable/collected_save"
+            android:src="@drawable/collected_save"
             android:visibility="gone"/>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

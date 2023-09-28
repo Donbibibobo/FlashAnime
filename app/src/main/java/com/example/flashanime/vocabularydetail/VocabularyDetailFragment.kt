@@ -53,6 +53,7 @@ class VocabularyDetailFragment: Fragment() {
 
         viewModel.animeInfoArg.observe(viewLifecycleOwner, Observer {
             binding.animeInfo = it
+
             adapter.submitList(it.wordsList[0].playWords)
 
             // set episode word
@@ -90,6 +91,9 @@ class VocabularyDetailFragment: Fragment() {
             viewModel.animeInfoArg.value!!.wordsList[0].playWords[0].level != ""
 
 
+        viewModel.collectedWordsList.observe(viewLifecycleOwner){
+            viewModel.createCollectedWordList()
+        }
 
         return binding.root
     }
