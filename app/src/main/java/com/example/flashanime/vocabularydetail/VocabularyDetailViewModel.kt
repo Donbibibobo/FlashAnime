@@ -25,17 +25,13 @@ class VocabularyDetailViewModel(
     private var listenerRegistration: ListenerRegistration? = null
 
 
+
     // Detail has product data from arguments
     private val _animeInfoArg = MutableLiveData<AnimeInfo>().apply {
         value = arguments
     }
     val animeInfoArg: LiveData<AnimeInfo>
         get() = _animeInfoArg
-
-//    // update word's List with collectedWords
-//    private val _animeWordsList = MutableLiveData<JLPTWordInfo>()
-//    val animeWordsList: LiveData<JLPTWordInfo>
-//        get() = _animeWordsList
 
 
     // episode recyclerview list constrain selected word API
@@ -120,6 +116,7 @@ class VocabularyDetailViewModel(
 
         // update _animeInfoArg to upDate UI
         _animeInfoArg.value = currentAnimeInfo
+
     }
 
 }

@@ -24,7 +24,6 @@ class AllFragment: Fragment(), CategoryDialog.CategoryDialogListener {
 
     private val viewModel by viewModels<AllViewModel> { getVmFactory() }
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

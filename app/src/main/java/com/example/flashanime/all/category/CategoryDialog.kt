@@ -81,8 +81,6 @@ class CategoryDialog: AppCompatDialogFragment() {
             }
         }
 
-
-
         binding.buttonSend.setOnClickListener {
 
             listener?.onCategoriesSelected(selectedChipsText)

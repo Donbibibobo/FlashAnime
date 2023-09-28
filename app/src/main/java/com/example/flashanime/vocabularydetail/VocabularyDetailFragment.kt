@@ -56,6 +56,7 @@ class VocabularyDetailFragment: Fragment() {
 
             adapter.submitList(it.wordsList[0].playWords)
 
+
             // set episode word
             for (i in 1..it.videosId.size){
                 episodeCount.add("第${i}集")

@@ -25,7 +25,7 @@
             android:letterSpacing="0.1"
             android:text="@{animeInfo.title}"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="30sp"
             android:ellipsize="end"
             android:singleLine="true"
             app:layout_constraintTop_toTopOf="parent"
@@ -33,24 +33,76 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="@string/anime_info_title"/>
 
+        <TextView
+            android:id="@+id/test_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/noto_sans"
+            android:letterSpacing="0.1"
+            android:text="@string/test_mode"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/test_episode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/noto_sans"
+            android:letterSpacing="0.1"
+            android:text="@string/test_episode"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            app:layout_constraintTop_toBottomOf="@+id/test_mode"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/test_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/noto_sans"
+            android:letterSpacing="0.1"
+            android:text="@string/test_10"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            app:layout_constraintTop_toBottomOf="@+id/test_episode"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/underline"/>
+
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/testButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:backgroundTint="@color/blue"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:fontFamily="@font/noto_sans"
+            android:layout_marginStart="27dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
             android:text="@string/WordTest"
-            app:icon="@drawable/starttest"
-            android:fontFamily="@font/noto_sans"
+            app:backgroundTint="@color/blue"
             app:cornerRadius="5dp"
-            app:layout_constraintTop_toBottomOf="@+id/title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/recyclerView"/>
+            app:icon="@drawable/starttest"
+            app:layout_constraintBottom_toBottomOf="@+id/test_10"
+            app:layout_constraintTop_toTopOf="@+id/test_10"
+            app:layout_constraintStart_toEndOf="@+id/test_10"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
@@ -58,9 +110,9 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            app:layout_constraintBottom_toBottomOf="@+id/testButton"
-            app:layout_constraintStart_toEndOf="@+id/testButton"
-            app:layout_constraintTop_toTopOf="@+id/testButton"
+            app:layout_constraintBottom_toBottomOf="@+id/test_episode"
+            app:layout_constraintStart_toEndOf="@+id/test_episode"
+            app:layout_constraintTop_toTopOf="@+id/test_episode"
             app:endIconTint="@color/white">
 
             <AutoCompleteTextView
@@ -71,21 +123,60 @@
                 android:inputType="none"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@+id/test_mode"
+            app:layout_constraintBottom_toBottomOf="@+id/test_mode"
+            app:layout_constraintStart_toEndOf="@+id/test_mode">
 
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/mode_random"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:text="全部單字"
+                android:textSize="16sp" />
 
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/mode_collected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:text="收藏單字"
+                android:textSize="16sp" />
+        </RadioGroup>
 
+        <View
+            android:id="@+id/underline"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/gray_999999"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/test_10" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@+id/testButton"
+            app:layout_constraintTop_toBottomOf="@+id/underline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:itemCount="20"
             tools:listitem="@layout/item_word_list_test"/>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
