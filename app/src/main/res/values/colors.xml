@@ -31,4 +31,8 @@
     <!-- pink -->
     <color name="collected_heart_fill">#BF7B8A</color>
 
+    <!-- word test -->
+    <color name="unknown">#EA8476</color>
+    <color name="known">#D0EB7A</color>
+
 </resources>

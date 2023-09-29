@@ -22,8 +22,6 @@ class WordTestFragment: Fragment() {
 
     private lateinit var manager: CardStackLayoutManager
 
-    var score = 0
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,19 +41,21 @@ class WordTestFragment: Fragment() {
             binding.cardStackView.itemAnimator = DefaultItemAnimator()
 
             binding.cardStackView.adapter = WordTestAdapter(requireContext(), takeTen)
+
+            viewModel.platWordEpisodeSize.value = takeTen.size.toString()
         })
 
 
         // final score
-        viewModel.finalScore.observe(viewLifecycleOwner, Observer {
+        viewModel.numerator.observe(viewLifecycleOwner, Observer {
             if (it > 5){
-                binding.good.visibility = View.VISIBLE
-                binding.scoreGood.visibility = View.VISIBLE
-                binding.scoreGood.text = it.toString()
+//                binding.good.visibility = View.VISIBLE
+//                binding.scoreGood.visibility = View.VISIBLE
+//                binding.scoreGood.text = it.toString()
             } else {
-                binding.bad.visibility = View.VISIBLE
-                binding.scoreBad.visibility = View.VISIBLE
-                binding.scoreBad.text = it.toString()
+//                binding.bad.visibility = View.VISIBLE
+//                binding.scoreBad.visibility = View.VISIBLE
+//                binding.scoreBad.text = it.toString()
             }
         })
 
@@ -75,10 +75,13 @@ class WordTestFragment: Fragment() {
             override fun onCardSwiped(direction: Direction?) {
 
                 when(direction) {
-//                    Direction.Left -> Toast.makeText(requireContext(), "Swiped to Left", Toast.LENGTH_SHORT).show()
+                    Direction.Left -> {
+                        viewModel.addScore.value = viewModel.addScore.value?.plus(1)
+                        viewModel.numerator.value = viewModel.numerator.value?.plus(1)
+                    }
                     Direction.Right -> {
-//                        Toast.makeText(requireContext(), "Swiped to Right", Toast.LENGTH_SHORT).show()
-                        score++
+                        viewModel.minusScore.value = viewModel.minusScore.value?.plus(1)
+                        viewModel.numerator.value = viewModel.numerator.value?.plus(1)
                     }
 //                    Direction.Top -> Toast.makeText(requireContext(), "Swiped to Top", Toast.LENGTH_SHORT).show()
 //                    Direction.Bottom -> Toast.makeText(requireContext(), "Swiped to Bottom", Toast.LENGTH_SHORT).show()
@@ -87,7 +90,7 @@ class WordTestFragment: Fragment() {
 
                 if (manager.topPosition == playWords.size){
                     Toast.makeText(requireContext(), "this is last card", Toast.LENGTH_SHORT).show()
-                    viewModel.finalScore.value = score
+                    viewModel.isTesting.value = false
                 }
             }
 

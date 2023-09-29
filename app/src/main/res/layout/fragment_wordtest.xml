@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
         <variable name="viewModel" type="com.example.flashanime.wordstest.WordTestViewModel" />
     </data>
 
@@ -15,66 +16,99 @@
             android:id="@+id/card_stack_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:padding="30dp"
             android:clipToPadding="false"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:padding="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:listitem="@layout/item_wordcard"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_wordcard" />
         <ImageView
-            android:id="@+id/good"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/good"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/fake_card"
+            android:layout_width="300dp"
+            android:layout_height="330dp"
+            android:src="@drawable/wordcard_border"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:visibility="gone"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
 
         <TextView
-            android:id="@+id/score_good"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/good"
-            app:layout_constraintEnd_toEndOf="@+id/good"
-            app:layout_constraintHorizontal_bias="0.13"
-            app:layout_constraintStart_toStartOf="@+id/good"
-            app:layout_constraintTop_toTopOf="@+id/good"
-            app:layout_constraintVertical_bias="0.26" />
-
-        <ImageView
-            android:id="@+id/bad"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/bad"
-            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/add_score"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/wordcard_score_left"
+            android:gravity="center"
+            android:paddingEnd="18dp"
+            android:text="@{viewModel.addScore.toString()}"
+            android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:visibility="gone"/>
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/default_score"
+            android:visibility="@{viewModel.isTesting ? View.VISIBLE : View.GONE}"/>
 
         <TextView
-            android:id="@+id/score_bad"
+            android:id="@+id/minus_score"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/wordcard_score_right"
+            android:gravity="center"
+            android:paddingStart="18dp"
+            android:text="@{viewModel.minusScore.toString()}"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/default_score"
+            android:visibility="@{viewModel.isTesting ? View.VISIBLE : View.GONE}"/>
+
+        <TextView
+            android:id="@+id/score_numerator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/bad"
-            app:layout_constraintEnd_toEndOf="@+id/bad"
-            app:layout_constraintHorizontal_bias="0.92"
-            app:layout_constraintStart_toStartOf="@+id/bad"
-            app:layout_constraintTop_toTopOf="@+id/bad"
-            app:layout_constraintVertical_bias="0.88" />
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:text="@{viewModel.numerator.toString()}"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toStartOf="@+id/score_divider"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0"
+            android:visibility="@{viewModel.isTesting ? View.VISIBLE : View.GONE}"/>
 
+        <TextView
+            android:id="@+id/score_divider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:gravity="center"
+            android:text="@string/default_divider"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toStartOf="@+id/score_denominator"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/score_numerator"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="@{viewModel.isTesting ? View.VISIBLE : View.GONE}"/>
 
+        <TextView
+            android:id="@+id/score_denominator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:text="@{viewModel.platWordEpisodeSize}"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/score_divider"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="10"
+            android:visibility="@{viewModel.isTesting ? View.VISIBLE : View.GONE}"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
