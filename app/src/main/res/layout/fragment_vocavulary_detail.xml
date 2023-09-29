@@ -134,19 +134,20 @@
             app:layout_constraintStart_toEndOf="@+id/test_mode">
 
             <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/mode_random"
+                android:id="@+id/mode_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:text="全部單字"
-                android:textSize="16sp" />
+                android:text="@string/words_all"
+                android:textSize="16sp"
+                android:checked="true"/>
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/mode_collected"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:text="收藏單字"
+                android:text="@string/words_collected"
                 android:textSize="16sp" />
         </RadioGroup>
 

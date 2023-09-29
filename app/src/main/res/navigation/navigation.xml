@@ -114,11 +114,13 @@
         app:popUpTo="@id/navigation"
         app:popUpToInclusive="true"/>
 
+    <action android:id="@+id/navigate_to_wordTestFragment" app:destination="@id/wordTestFragment"/>
+
+
     <action android:id="@+id/navigate_to_detail_fragment" app:destination="@id/detailFragment"/>
     <action android:id="@+id/navigate_to_vocabularyDetailFragment" app:destination="@id/vocabularyDetailFragment"/>
     <action android:id="@+id/navigate_to_word_dialog" app:destination="@id/wordDialog"/>
     <action android:id="@+id/navigate_to_category_dialog" app:destination="@id/categoryDialog"/>
-    <action android:id="@+id/navigate_to_wordTestFragment" app:destination="@id/wordTestFragment"/>
     <action android:id="@+id/navigate_to_login_dialog" app:destination="@id/loginDialog"/>
     <action android:id="@+id/navigate_to_collected_fragment_from_profile" app:destination="@id/collectedFragment"/>
     <action android:id="@+id/navigate_to_watch_history_fragment" app:destination="@id/watchHistoryFragment"/>

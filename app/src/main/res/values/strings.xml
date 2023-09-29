@@ -32,6 +32,8 @@
     <string name="test_mode">複習模式：</string>
     <string name="test_episode">挑選集數：</string>
     <string name="test_10">隨機10題：</string>
+    <string name="words_all">全部單字</string>
+    <string name="words_collected">收藏單字</string>
 
     <!-- word dialog -->
     <string name="word_dialog_meaning">語意：</string>

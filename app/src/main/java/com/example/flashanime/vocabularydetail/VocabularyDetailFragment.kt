@@ -1,5 +1,6 @@
 package com.example.flashanime.vocabularydetail
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -21,40 +22,61 @@ import com.example.flashanime.databinding.FragmentVocavularyDetailBinding
 import com.example.flashanime.detail.DetailFragmentArgs
 import com.example.flashanime.ext.getVmFactory
 import com.google.android.material.textfield.TextInputLayout
+import kotlin.random.Random
 
 class VocabularyDetailFragment: Fragment() {
 
     private val viewModel by viewModels<VocabularyDetailViewModel> { getVmFactory(VocabularyDetailFragmentArgs.fromBundle(requireArguments()).animeInfoKey) }
 
+    private lateinit var binding: FragmentVocavularyDetailBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentVocavularyDetailBinding.inflate(inflater, container, false)
+        binding = FragmentVocavularyDetailBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
 
+        // ListAdapter
         val adapter = VocabularyDetailListAdapter{
             viewModel.getWordInfo(it.word)
         }
+        binding.recyclerView.adapter = adapter
+
 
         // show word info from word API
         viewModel.wordInfoSelected.observe(viewLifecycleOwner, Observer {
-            findNavController().navigate(NavigationDirections.navigateToWordDialog(it))
+            it?.let {
+                findNavController().navigate(NavigationDirections.navigateToWordDialog(it))
+            }
         })
 
+        // test list
+        var testList: PlayWordEpisode? = viewModel.animeInfoArg.value!!.wordsList[0]
 
-        binding.recyclerView.adapter = adapter
 
+        // init default episode 1
         val episodeCount = mutableListOf<String>()
-
         viewModel.animeInfoArg.observe(viewLifecycleOwner, Observer {
-            binding.animeInfo = it
+            if (binding.radioGroup.checkedRadioButtonId == R.id.mode_all){
+                binding.animeInfo = it
+                adapter.submitList(it.wordsList[0].playWords)
+            } else {
+                // new list
+                val collectedList =
+                    viewModel.animeInfoArg.value!!.wordsList[viewModel.autocompletePosition].playWords
+                        .filter { it.isCollected }
+                adapter.submitList(collectedList)
 
-            adapter.submitList(it.wordsList[0].playWords)
+                // new test lsit
+                val currentEpisode = viewModel.animeInfoArg.value!!.wordsList[viewModel.autocompletePosition]
+                val updatedPlayWords = currentEpisode.playWords.filter { it.isCollected }
+                val updatedEpisode = currentEpisode.copy(playWords = updatedPlayWords)
+                testList = updatedEpisode
+            }
 
 
             // set episode word
@@ -63,20 +85,24 @@ class VocabularyDetailFragment: Fragment() {
             }
             val adapterTextInputLayout = ArrayAdapter(requireContext(), R.layout.text_dropdown_item, episodeCount)
             binding.autocomplete.setAdapter(adapterTextInputLayout)
-            // default first
             binding.autocomplete.setText(episodeCount[0], false)
-
         })
 
-        // test list
-        var testList: PlayWordEpisode? = viewModel.animeInfoArg.value!!.wordsList[0]
 
+        // change list according to autocomplete
         binding.autocomplete.setOnItemClickListener { _, _, position, _ ->
-            adapter.submitList(viewModel.animeInfoArg.value!!.wordsList[position].playWords)
+            // current episode position
+            viewModel.autocompletePosition = position
+
+            // back to default mode_all
+            binding.radioGroup.check(R.id.mode_all)
 
             // close [start test] if it doesn't have content
             binding.testButton.isEnabled =
                 viewModel.animeInfoArg.value!!.wordsList[position].playWords[0].level != ""
+
+            // set new list
+            adapter.submitList(viewModel.animeInfoArg.value!!.wordsList[position].playWords)
 
             // set test list
             testList = viewModel.animeInfoArg.value!!.wordsList[position]
@@ -91,11 +117,53 @@ class VocabularyDetailFragment: Fragment() {
         binding.testButton.isEnabled =
             viewModel.animeInfoArg.value!!.wordsList[0].playWords[0].level != ""
 
-
+        // get collected words and refresh listAdapter
         viewModel.collectedWordsList.observe(viewLifecycleOwner){
             viewModel.createCollectedWordList()
         }
 
+        // radioGroup
+        binding.radioGroup.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.mode_all -> {
+                    // set new list
+                    adapter.submitList(viewModel.animeInfoArg.value!!.wordsList[viewModel.autocompletePosition].playWords)
+
+                    // set test list
+                    testList = viewModel.animeInfoArg.value!!.wordsList[viewModel.autocompletePosition]
+
+                }
+                R.id.mode_collected -> {
+                    // set new list
+                    val collectedList =
+                        viewModel.animeInfoArg.value!!.wordsList[viewModel.autocompletePosition].playWords
+                            .filter { it.isCollected }
+                    if (collectedList.isEmpty()){
+                        binding.radioGroup.check(R.id.mode_all)
+                        viewModel.showNoCollectedWordsAlert(requireContext())
+                    }else{
+                        adapter.submitList(collectedList)
+
+                        // set test list
+                        val currentEpisode = viewModel.animeInfoArg.value!!.wordsList[viewModel.autocompletePosition]
+                        val updatedPlayWords = currentEpisode.playWords.filter { it.isCollected }
+                        val updatedEpisode = currentEpisode.copy(playWords = updatedPlayWords)
+                        testList = updatedEpisode
+                    }
+                }
+            }
+        }
+
         return binding.root
+    }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.resetWordInfoSelected()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.radioGroup.check(R.id.mode_all)
     }
 }

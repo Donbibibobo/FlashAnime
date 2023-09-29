@@ -1,5 +1,7 @@
 package com.example.flashanime.vocabularydetail
 
+import android.app.AlertDialog
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -22,16 +24,26 @@ class VocabularyDetailViewModel(
 
     val db = Firebase.firestore
 
+    // current episode position
+    var autocompletePosition = 0
+
     private var listenerRegistration: ListenerRegistration? = null
 
 
+    private var hasCollectedWords: Boolean = false
 
     // Detail has product data from arguments
     private val _animeInfoArg = MutableLiveData<AnimeInfo>().apply {
-        value = arguments
+        if (hasCollectedWords.not()){
+            Log.i("OMGG ","value = arguments")
+            Log.i("OMGG ","A: $hasCollectedWords")
+            value = arguments
+        }
     }
     val animeInfoArg: LiveData<AnimeInfo>
         get() = _animeInfoArg
+
+
 
 
     // episode recyclerview list constrain selected word API
@@ -50,6 +62,10 @@ class VocabularyDetailViewModel(
         snapShotCollectedList()
     }
 
+    fun resetWordInfoSelected() {
+        _wordInfoSelected.value = null
+    }
+
     fun getWordInfo(word: String) {
         viewModelScope.launch {
             try {
@@ -63,6 +79,8 @@ class VocabularyDetailViewModel(
     }
 
     private fun snapShotCollectedList() {
+
+
         val userCollectedWordList =
             db.collection("userInfo").document("Bstm28YuZ3ih78afvdq9")
                 .collection("wordsCollection")
@@ -74,6 +92,8 @@ class VocabularyDetailViewModel(
                 return@addSnapshotListener
 
             } else if (value != null) {
+
+                hasCollectedWords = false
 
                 val collectedList = mutableListOf<String>()
 
@@ -99,24 +119,36 @@ class VocabularyDetailViewModel(
     }
 
     fun createCollectedWordList() {
+        if (!hasCollectedWords){
+            // get a copy form _animeInfoArg
+            val currentAnimeInfo = _animeInfoArg.value?.copy()
 
-        // get a copy form _animeInfoArg
-        val currentAnimeInfo = _animeInfoArg.value?.copy()
-
-        // update every wordsList's PlayWordEpisode's playWords
-        val updatedWordsList = currentAnimeInfo?.wordsList?.map { playWordEpisode ->
-            val updatedPlayWords = playWordEpisode.playWords.map { playWord ->
-                playWord.copy(isCollected = _collectedWordsList.value?.contains(playWord.word) == true)
+            // update every wordsList's PlayWordEpisode's playWords
+            val updatedWordsList = currentAnimeInfo?.wordsList?.map { playWordEpisode ->
+                val updatedPlayWords = playWordEpisode.playWords.map { playWord ->
+                    playWord.copy(isCollected = _collectedWordsList.value?.contains(playWord.word) == true)
+                }
+                playWordEpisode.copy(playWords = updatedPlayWords)
             }
-            playWordEpisode.copy(playWords = updatedPlayWords)
+
+            // give wordsList to AnimeInfo
+            currentAnimeInfo?.wordsList = updatedWordsList ?: emptyList()
+
+            // update _animeInfoArg to upDate UI
+            _animeInfoArg.value = currentAnimeInfo
+
+            hasCollectedWords = true
+            Log.i("OMGG ","B: $hasCollectedWords")
         }
 
-        // give wordsList to AnimeInfo
-        currentAnimeInfo?.wordsList = updatedWordsList ?: emptyList()
+    }
 
-        // update _animeInfoArg to upDate UI
-        _animeInfoArg.value = currentAnimeInfo
-
+    fun showNoCollectedWordsAlert(context: Context){
+        AlertDialog.Builder(context)
+            .setTitle("No collected Words!")
+            .setMessage("There is no collected words in this episode!" +
+                    "Go add some words!")
+            .setPositiveButton("OK", null).show()
     }
 
 }

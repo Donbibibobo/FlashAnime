@@ -29,7 +29,7 @@ class VocabularyDetailListAdapter(private val clickWord: (PlayWords) -> Unit): L
         val animeInfo = getItem(position)
         when(holder){
             is ViewHolder -> {
-                holder.bind(animeInfo, clickWord)
+                holder.bind(animeInfo, clickWord, position)
             }
             else -> throw IllegalArgumentException("SeasonListAdapter onBindViewHolder holder unknown.")
         }
@@ -37,11 +37,11 @@ class VocabularyDetailListAdapter(private val clickWord: (PlayWords) -> Unit): L
 
     class ViewHolder(private val binding: ItemWordListTestBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(playWord: PlayWords, clickWord: (PlayWords) -> Unit) {
+        fun bind(playWord: PlayWords, clickWord: (PlayWords) -> Unit, position: Int) {
             binding.constraint.setOnClickListener {
                 clickWord(playWord)
             }
-            binding.listNumber.text = (adapterPosition+1).toString()
+            binding.listNumber.text = (position+1).toString()
             binding.playWord = playWord
 
             if (playWord.isCollected){
@@ -63,6 +63,6 @@ private class DetailProductDiffCallback() : DiffUtil.ItemCallback<PlayWords>() {
     }
 
     override fun areContentsTheSame(oldItem: PlayWords, newItem: PlayWords): Boolean {
-        return oldItem == newItem
+        return false
     }
 }
