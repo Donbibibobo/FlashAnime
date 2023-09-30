@@ -118,7 +118,7 @@
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:layout_marginTop="200dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="30dp"
             app:cpb_background_progressbar_color="#b6bbd8"
             app:cpb_background_progressbar_width="18dp"
             app:cpb_progress_direction="to_right"
@@ -129,6 +129,116 @@
             app:layout_constraintStart_toStartOf="parent"
             android:visibility="@{viewModel.isTesting ? View.GONE : View.VISIBLE}"/>
 
+        <TextView
+            android:id="@+id/finish_know"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/finish_know"
+            android:textSize="20sp"
+            android:layout_marginStart="30dp"
+            app:layout_constraintTop_toTopOf="@+id/progress_circular"
+            app:layout_constraintStart_toEndOf="@+id/progress_circular"
+            app:layout_constraintBottom_toTopOf="@+id/finish_unKnow"
+            android:visibility="@{viewModel.isTesting ? View.GONE : View.VISIBLE}"/>
+
+        <TextView
+            android:id="@+id/finish_know_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginEnd="50dp"
+            android:text="@{viewModel.minusScore.toString()}"
+            app:layout_constraintTop_toTopOf="@+id/finish_know"
+            app:layout_constraintBottom_toBottomOf="@+id/finish_know"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="@{viewModel.isTesting ? View.GONE : View.VISIBLE}"
+            tools:text="7"/>
+
+        <TextView
+            android:id="@+id/finish_unKnow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/finish_unKnow"
+            android:textSize="20sp"
+            android:layout_marginStart="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/progress_circular"
+            app:layout_constraintStart_toEndOf="@+id/progress_circular"
+            app:layout_constraintTop_toBottomOf="@+id/finish_know"
+            android:visibility="@{viewModel.isTesting ? View.GONE : View.VISIBLE}"/>
+
+        <TextView
+            android:id="@+id/finish_unKnow_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginEnd="50dp"
+            android:text="@{viewModel.addScore.toString()}"
+            app:layout_constraintTop_toTopOf="@+id/finish_unKnow"
+            app:layout_constraintBottom_toBottomOf="@+id/finish_unKnow"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="@{viewModel.isTesting ? View.GONE : View.VISIBLE}"
+            tools:text="3"/>
+
+
+        <TextView
+            android:id="@+id/finish_encouragement"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/finish_encouragement"
+            android:fontFamily="@font/noto_sans_bold"
+            android:textSize="24sp"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cheer"
+            android:visibility="@{viewModel.isTesting ? View.GONE : View.VISIBLE}"/>
+
+        <ImageView
+            android:id="@+id/cheer"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/fans"
+            android:layout_margin = "34dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="@{viewModel.isTesting ? View.GONE : View.VISIBLE}"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_finish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="80dp"
+            android:text="@string/back2words"
+            android:textSize="20sp"
+            app:backgroundTint="@color/blue"
+            app:cornerRadius="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progress_circular"
+            android:visibility="@{viewModel.isTesting ? View.GONE : View.VISIBLE}"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_checkHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/check_words_test_history"
+            android:textSize="20sp"
+            app:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            app:strokeColor="@color/blue"
+            app:strokeWidth="1dp"
+            app:cornerRadius="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_finish"
+            android:visibility="@{viewModel.isTesting ? View.GONE : View.VISIBLE}"/>
 
 
 

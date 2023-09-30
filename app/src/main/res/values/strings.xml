@@ -28,6 +28,11 @@
     <string name="default_divider">/</string>
     <string name="default_score_denominator">10</string>
     <string name="percentage_format">%d%%</string>
+    <string name="finish_know">知道</string>
+    <string name="finish_unKnow">仍在學習</string>
+    <string name="finish_encouragement">表現得很棒！繼續專注在困難的語詞上！！</string>
+    <string name="back2words">繼續複習語詞</string>
+    <string name="check_words_test_history">查看複習紀錄</string>
 
 
     <!-- word list -->

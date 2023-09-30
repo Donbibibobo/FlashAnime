@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.example.flashanime.data.PlayWords
 import com.example.flashanime.databinding.FragmentWordtestBinding
@@ -80,6 +81,9 @@ class WordTestFragment: Fragment() {
             viewModel.scorePercent.value = ((progress/viewModel.platWordEpisodeSize.value!!.toFloat())*100).toInt()
         }
 
+        binding.buttonFinish.setOnClickListener {
+            it.findNavController().navigateUp()
+        }
 
 
 
