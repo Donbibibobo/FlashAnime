@@ -27,6 +27,8 @@
     <string name="default_score">0</string>
     <string name="default_divider">/</string>
     <string name="default_score_denominator">10</string>
+    <string name="percentage_format">%d%%</string>
+
 
     <!-- word list -->
     <string name="wordsNumber">0001</string>

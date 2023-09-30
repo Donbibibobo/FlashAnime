@@ -1,6 +1,8 @@
 package com.example.flashanime.wordstest
 
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +45,8 @@ class WordTestFragment: Fragment() {
             binding.cardStackView.adapter = WordTestAdapter(requireContext(), takeTen)
 
             viewModel.platWordEpisodeSize.value = takeTen.size.toString()
+            Log.i("progressCircular11", "takeTen.size: ${takeTen.size}")
+
         })
 
 
@@ -58,6 +62,24 @@ class WordTestFragment: Fragment() {
 //                binding.scoreBad.text = it.toString()
             }
         })
+
+        viewModel.isTesting.observe(viewLifecycleOwner){
+            // progress circular
+            binding.progressCircular.apply {
+//                progressMax = 100f
+//                setProgressWithAnimation(50f, 800)
+
+                progressMax = viewModel.platWordEpisodeSize.value!!.toFloat()
+                setProgressWithAnimation(viewModel.minusScore.value!!.toFloat(), 800)
+
+                Log.i("progressCircular11", "minusScore: ${viewModel.minusScore.value!!.toFloat()}")
+            }
+        }
+        binding.progressCircular.onProgressChangeListener = { progress ->
+            Log.i("progressCircular", "$progress")
+            viewModel.scorePercent.value = ((progress/viewModel.platWordEpisodeSize.value!!.toFloat())*100).toInt()
+        }
+
 
 
 
@@ -89,7 +111,7 @@ class WordTestFragment: Fragment() {
                 }
 
                 if (manager.topPosition == playWords.size){
-                    Toast.makeText(requireContext(), "this is last card", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(), "this is last card", Toast.LENGTH_SHORT).show()
                     viewModel.isTesting.value = false
                 }
             }

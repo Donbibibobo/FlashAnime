@@ -140,6 +140,10 @@ dependencies {
     // swipe card
     implementation("com.yuyakaido.android:card-stack-view:2.3.4")
 
+    // Circular Progress Bar
+    implementation ("com.mikhaellopez:circularprogressbar:3.1.0")
+
+
 
 }
 kapt {

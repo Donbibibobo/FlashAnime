@@ -40,6 +40,10 @@ class WordTestViewModel(
     val numerator = MutableLiveData<Int>(0)
 
 
+    // score percent
+    val scorePercent = MutableLiveData<Int>()
+
+
 
 
 }

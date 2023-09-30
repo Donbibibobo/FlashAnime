@@ -23,17 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_wordcard" />
-        <ImageView
-            android:id="@+id/fake_card"
-            android:layout_width="300dp"
-            android:layout_height="330dp"
-            android:src="@drawable/wordcard_border"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible" />
+
 
         <TextView
             android:id="@+id/add_score"
@@ -109,6 +99,37 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="10"
             android:visibility="@{viewModel.isTesting ? View.VISIBLE : View.GONE}"/>
+
+        <TextView
+            android:id="@+id/score_percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/percentage_format(viewModel.scorePercent)}"
+            android:textSize="25sp"
+            app:layout_constraintTop_toTopOf="@+id/progress_circular"
+            app:layout_constraintStart_toStartOf="@+id/progress_circular"
+            app:layout_constraintEnd_toEndOf="@+id/progress_circular"
+            app:layout_constraintBottom_toBottomOf="@+id/progress_circular"
+            tools:text="50%"
+            android:visibility="@{viewModel.isTesting ? View.GONE : View.VISIBLE}"/>
+
+        <com.mikhaellopez.circularprogressbar.CircularProgressBar
+            android:id="@+id/progress_circular"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginStart="40dp"
+            app:cpb_background_progressbar_color="#b6bbd8"
+            app:cpb_background_progressbar_width="18dp"
+            app:cpb_progress_direction="to_right"
+            app:cpb_progressbar_color="#3f51b5"
+            app:cpb_progressbar_width="18dp"
+            app:cpb_round_border="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="@{viewModel.isTesting ? View.GONE : View.VISIBLE}"/>
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
