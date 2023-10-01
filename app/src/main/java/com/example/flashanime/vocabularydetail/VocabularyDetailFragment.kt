@@ -42,7 +42,7 @@ class VocabularyDetailFragment: Fragment() {
 
         // ListAdapter
         val adapter = VocabularyDetailListAdapter{
-            viewModel.getWordInfo(it.word)
+            viewModel.getWordInfoVocabulary(it.word)
         }
         binding.recyclerView.adapter = adapter
 
@@ -110,7 +110,9 @@ class VocabularyDetailFragment: Fragment() {
         }
 
         binding.testButton.setOnClickListener {
+            viewModel.hasCollectedWords = false
             it.findNavController().navigate(NavigationDirections.navigateToWordTestFragment(testList!!))
+//            viewModel.removeListenerRegistration()
         }
 
         // default first page check if have words
@@ -119,7 +121,10 @@ class VocabularyDetailFragment: Fragment() {
 
         // get collected words and refresh listAdapter
         viewModel.collectedWordsList.observe(viewLifecycleOwner){
+            Log.i("collectedList", "collectedWordsList.observe")
+            Log.i("collectedList", "O:_collectedWordsList ${viewModel.collectedWordsList.value}")
             viewModel.createCollectedWordList()
+
         }
 
         // radioGroup

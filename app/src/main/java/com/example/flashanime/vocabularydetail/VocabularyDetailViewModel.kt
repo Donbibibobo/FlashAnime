@@ -30,7 +30,7 @@ class VocabularyDetailViewModel(
     private var listenerRegistration: ListenerRegistration? = null
 
 
-    private var hasCollectedWords: Boolean = false
+    var hasCollectedWords: Boolean = false
 
     // Detail has product data from arguments
     private val _animeInfoArg = MutableLiveData<AnimeInfo>().apply {
@@ -57,16 +57,24 @@ class VocabularyDetailViewModel(
     val collectedWordsList: LiveData<List<String>>
         get() = _collectedWordsList
 
+    private val collectedList = mutableListOf<String>()
 
     init {
         snapShotCollectedList()
+
+        // snap wont' remove when nav to wordTest(same as this VM), so give
+        // collectedList to _collectedWordsList again
+        _collectedWordsList.value = collectedList
+
     }
 
     fun resetWordInfoSelected() {
         _wordInfoSelected.value = null
     }
 
-    fun getWordInfo(word: String) {
+
+
+    fun getWordInfoVocabulary(word: String) {
         viewModelScope.launch {
             try {
                 val wordInfo = flashAnimeRepository.getWordInfo(word)
@@ -95,33 +103,45 @@ class VocabularyDetailViewModel(
 
                 hasCollectedWords = false
 
-                val collectedList = mutableListOf<String>()
+                collectedList.clear()
 
                 for (document in value){
                     val collected = document.id
                     collectedList.add(collected)
                 }
 
-                Log.i("collectedList", "collectedList: $collectedList")
-
+                Log.i("collectedList", "1collectedList: $collectedList")
+                Log.i("collectedList", "2hasCollectedWords: $hasCollectedWords")
 
                 _collectedWordsList.value = collectedList
 
-                collectedList.clear()
+                Log.i("collectedList", "3_collectedWordsList.value: ${_collectedWordsList.value}")
+
+
             }
         }
 
     }
 
+//    fun removeListenerRegistration(){
+//        listenerRegistration?.remove()
+//        Log.i(TAG, "Listener removed!")
+//    }
+
     override fun onCleared() {
         super.onCleared()
         listenerRegistration?.remove()
+        Log.i(TAG, "Listener removed!")
     }
 
+
     fun createCollectedWordList() {
+        Log.i("collectedList", "createCollectedWordList hasCollectedWords: $hasCollectedWords")
         if (!hasCollectedWords){
             // get a copy form _animeInfoArg
             val currentAnimeInfo = _animeInfoArg.value?.copy()
+
+            Log.i("collectedList", "x:_collectedWordsList ${_collectedWordsList.value}")
 
             // update every wordsList's PlayWordEpisode's playWords
             val updatedWordsList = currentAnimeInfo?.wordsList?.map { playWordEpisode ->
@@ -134,10 +154,14 @@ class VocabularyDetailViewModel(
             // give wordsList to AnimeInfo
             currentAnimeInfo?.wordsList = updatedWordsList ?: emptyList()
 
+            Log.i("collectedList", "currentAnimeInfo :$currentAnimeInfo")
+
+            hasCollectedWords = true
+
+
             // update _animeInfoArg to upDate UI
             _animeInfoArg.value = currentAnimeInfo
 
-            hasCollectedWords = true
             Log.i("OMGG ","B: $hasCollectedWords")
         }
 

@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.flashanime.data.PlayWords
 import com.example.flashanime.databinding.FragmentWordtestBinding
 import com.example.flashanime.ext.getVmFactory
@@ -36,6 +37,16 @@ class WordTestFragment: Fragment() {
         binding.viewModel = viewModel
 
 
+        // review recyclerview
+        val wordReviewListAdapter = WordReviewListAdapter{
+        }
+        binding.reviewRecyclerview.adapter = wordReviewListAdapter
+        binding.reviewRecyclerview.layoutManager =
+            LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
+        viewModel.reviewList.observe(viewLifecycleOwner){
+            wordReviewListAdapter.submitList(it)
+        }
+
 
         viewModel.platWordEpisode.observe(viewLifecycleOwner, Observer {
             val takeTen = it.playWords.shuffled().take(10)
@@ -47,22 +58,10 @@ class WordTestFragment: Fragment() {
 
             viewModel.platWordEpisodeSize.value = takeTen.size.toString()
             Log.i("progressCircular11", "takeTen.size: ${takeTen.size}")
+            Log.i("progressCircular11", "takeTen.size: $takeTen")
 
         })
 
-
-        // final score
-        viewModel.numerator.observe(viewLifecycleOwner, Observer {
-            if (it > 5){
-//                binding.good.visibility = View.VISIBLE
-//                binding.scoreGood.visibility = View.VISIBLE
-//                binding.scoreGood.text = it.toString()
-            } else {
-//                binding.bad.visibility = View.VISIBLE
-//                binding.scoreBad.visibility = View.VISIBLE
-//                binding.scoreBad.text = it.toString()
-            }
-        })
 
         viewModel.isTesting.observe(viewLifecycleOwner){
             // progress circular
@@ -89,11 +88,12 @@ class WordTestFragment: Fragment() {
 
 
 
-
         return binding.root
     }
 
     private fun init(playWords: List<PlayWords>) {
+        val reviewWordsList = mutableListOf<PlayWords>()
+
         manager = CardStackLayoutManager(requireContext(), object : CardStackListener{
             override fun onCardDragging(direction: Direction?, ratio: Float) {
             }
@@ -104,6 +104,9 @@ class WordTestFragment: Fragment() {
                     Direction.Left -> {
                         viewModel.addScore.value = viewModel.addScore.value?.plus(1)
                         viewModel.numerator.value = viewModel.numerator.value?.plus(1)
+
+                        val currentWord = playWords[manager.topPosition - 1]
+                        reviewWordsList.add(currentWord)
                     }
                     Direction.Right -> {
                         viewModel.minusScore.value = viewModel.minusScore.value?.plus(1)
@@ -117,6 +120,7 @@ class WordTestFragment: Fragment() {
                 if (manager.topPosition == playWords.size){
 //                    Toast.makeText(requireContext(), "this is last card", Toast.LENGTH_SHORT).show()
                     viewModel.isTesting.value = false
+                    viewModel.reviewList.value = reviewWordsList
                 }
             }
 

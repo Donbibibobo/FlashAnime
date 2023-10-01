@@ -15,6 +15,9 @@ class WordTestViewModel(
     private val animeInfoArg: PlayWordEpisode
 ): ViewModel() {
 
+    // review list
+    val reviewList = MutableLiveData<List<PlayWords>>()
+
     // Detail has product data from arguments
     private val _platWordEpisode = MutableLiveData<PlayWordEpisode>().apply {
         value = animeInfoArg
