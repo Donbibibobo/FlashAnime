@@ -113,6 +113,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.wordTestFragment -> CurrentFragmentType.WORD_TEST
 
                 R.id.watchHistoryFragment -> CurrentFragmentType.WATCH_HISTORY
+                R.id.wordsCollectionFragment -> CurrentFragmentType.WORDS_COLLECTION
 
                 else -> viewModel.currentFragmentType.value
             }

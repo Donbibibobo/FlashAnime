@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flashanime.data.PlayWords
+import com.example.flashanime.databinding.ItemWordTestReviewBigBinding
 import com.example.flashanime.databinding.ItemWordTestReviewBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -17,7 +18,7 @@ class WordsCollectionListAdapter(private val clickWord: (PlayWords) -> Unit): Li
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
-            ItemWordTestReviewBinding.inflate(
+            ItemWordTestReviewBigBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -35,9 +36,13 @@ class WordsCollectionListAdapter(private val clickWord: (PlayWords) -> Unit): Li
         }
     }
 
-    class ViewHolder(private val binding: ItemWordTestReviewBinding) :
+    class ViewHolder(private val binding: ItemWordTestReviewBigBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(playWord: PlayWords, clickWord: (PlayWords) -> Unit, position: Int) {
+
+            binding.constraint.setOnClickListener {
+                clickWord(playWord)
+            }
 
             val db = Firebase.firestore
             val userCollectedWordsList =

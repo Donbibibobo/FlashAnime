@@ -1,6 +1,7 @@
 package com.example.flashanime.word
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +10,12 @@ import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.flashanime.MainViewModel
 import com.example.flashanime.R
 import com.example.flashanime.databinding.DialogWordBinding
 import com.example.flashanime.ext.getVmFactory
+import com.example.flashanime.util.CurrentFragmentType
 
 class WordDialog: AppCompatDialogFragment() {
 
@@ -64,6 +68,16 @@ class WordDialog: AppCompatDialogFragment() {
                 val updatedWordInfo = viewModel.wordInfoArg.value!!.copy(isCollected = false)
                 viewModel.wordInfoArgForUi.value = updatedWordInfo
             }
+        }
+
+
+        val mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
+        val currentFragmentType = mainViewModel.getCurrentFragmentTypeToHideCollected()
+
+        if (currentFragmentType == CurrentFragmentType.WORD_TEST || currentFragmentType == CurrentFragmentType.WORDS_COLLECTION){
+            val parentViewGroup = binding.collectdSave.parent as? ViewGroup
+            parentViewGroup?.removeView(binding.collectdSave)
+            parentViewGroup?.removeView(binding.collectdUnSave)
         }
 
 

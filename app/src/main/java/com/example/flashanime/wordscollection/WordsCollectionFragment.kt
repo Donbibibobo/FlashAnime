@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.flashanime.NavigationDirections
 import com.example.flashanime.databinding.FragmentWordsCollectedBinding
 import com.example.flashanime.ext.getVmFactory
 
@@ -26,7 +28,7 @@ class WordsCollectionFragment: Fragment() {
 
 
         val adapter = WordsCollectionListAdapter{
-            Log.i("WordsCollectionFragment", "$it")
+            viewModel.getWordInfoWordsCollection(it.word)
         }
         binding.recyclerView.adapter = adapter
 
@@ -34,6 +36,12 @@ class WordsCollectionFragment: Fragment() {
         viewModel.wordsCollectionList.observe(viewLifecycleOwner){
             adapter.submitList(it)
         }
+
+        viewModel.wordInfoSelected.observe(viewLifecycleOwner){
+            findNavController().navigate(NavigationDirections.navigateToWordDialog(it))
+        }
+
+
 
 
         return binding.root

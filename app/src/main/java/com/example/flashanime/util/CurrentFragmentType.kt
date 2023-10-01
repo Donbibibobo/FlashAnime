@@ -17,4 +17,5 @@ enum class CurrentFragmentType(val value: String) {
 
     PROFILE_COLLECTED(getString(R.string.first_collected)),
     WATCH_HISTORY(getString(R.string.watch_history)),
+    WORDS_COLLECTION(getString(R.string.test_history)),
 }

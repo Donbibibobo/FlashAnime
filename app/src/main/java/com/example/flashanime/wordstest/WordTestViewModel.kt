@@ -1,14 +1,18 @@
 package com.example.flashanime.wordstest
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.flashanime.R
 import com.example.flashanime.data.AnimeInfo
+import com.example.flashanime.data.JLPTWordInfo
 import com.example.flashanime.data.PlayWordEpisode
 import com.example.flashanime.data.PlayWords
 import com.example.flashanime.data.source.FlashAnimeRepository
 import com.example.flashanime.util.Util
+import kotlinx.coroutines.launch
 
 class WordTestViewModel(
     private val flashAnimeRepository: FlashAnimeRepository,
@@ -46,7 +50,22 @@ class WordTestViewModel(
     // score percent
     val scorePercent = MutableLiveData<Int>()
 
+    // JLPt API
+    private val _wordInfoSelected = MutableLiveData<JLPTWordInfo>()
+    val wordInfoSelected: LiveData<JLPTWordInfo>
+        get() = _wordInfoSelected
 
 
+    fun getWordInfoWordsTest(word: String) {
+        viewModelScope.launch {
+            try {
+                val wordInfo = flashAnimeRepository.getWordInfo(word)
+                Log.i("getWordInfo", wordInfo.words[0].romaji)
+                _wordInfoSelected.value = wordInfo.words[0]
+            } catch (e: Exception) {
+                throw IllegalArgumentException("DetailViewModel getWordInfo fail!")
+            }
+        }
+    }
 
 }

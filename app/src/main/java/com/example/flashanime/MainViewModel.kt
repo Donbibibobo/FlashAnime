@@ -106,4 +106,8 @@ class MainViewModel(private val flashAnimeRepository: FlashAnimeRepository): Vie
         }
     }
 
+    fun getCurrentFragmentTypeToHideCollected(): CurrentFragmentType? {
+        return currentFragmentType.value
+    }
+
 }

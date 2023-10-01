@@ -11,8 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.flashanime.NavigationDirections
 import com.example.flashanime.data.PlayWords
 import com.example.flashanime.databinding.FragmentWordtestBinding
 import com.example.flashanime.ext.getVmFactory
@@ -54,7 +56,7 @@ class WordTestFragment: Fragment() {
             binding.cardStackView.layoutManager = manager
             binding.cardStackView.itemAnimator = DefaultItemAnimator()
 
-            binding.cardStackView.adapter = WordTestAdapter(requireContext(), takeTen)
+            binding.cardStackView.adapter = WordTestAdapter(requireContext(), takeTen, viewModel)
 
             viewModel.platWordEpisodeSize.value = takeTen.size.toString()
             Log.i("progressCircular11", "takeTen.size: ${takeTen.size}")
@@ -85,6 +87,9 @@ class WordTestFragment: Fragment() {
         }
 
 
+        viewModel.wordInfoSelected.observe(viewLifecycleOwner){
+            findNavController().navigate(NavigationDirections.navigateToWordDialog(it))
+        }
 
 
 

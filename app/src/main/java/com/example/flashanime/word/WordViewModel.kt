@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.flashanime.data.JLPTWordInfo
 import com.example.flashanime.data.source.FlashAnimeRepository
+import com.example.flashanime.util.CurrentFragmentType
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -130,5 +131,7 @@ class WordViewModel(
         super.onCleared()
         listenerRegistration?.remove()
     }
+
+
 
 }

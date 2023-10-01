@@ -14,14 +14,14 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
             app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:listitem="@layout/item_word_test_review"
-            tools:itemCount="6"/>
+            tools:listitem="@layout/item_word_test_review_big"
+            tools:itemCount="8"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
