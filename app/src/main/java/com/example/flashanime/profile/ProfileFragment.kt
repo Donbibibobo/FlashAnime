@@ -46,7 +46,10 @@ class ProfileFragment: Fragment() {
             it.findNavController().navigate(ProfileFragmentDirections.navigateToCollectedFragmentFromProfile(true))
         }
 
-        // test history
+        // words collected
+        binding.wordsCollection.setOnClickListener {
+            it.findNavController().navigate(ProfileFragmentDirections.navigateToWordsCollectionFragment())
+        }
 
         // about
         binding.about.setOnClickListener {

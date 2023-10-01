@@ -66,7 +66,7 @@ class WordViewModel(
 
         val collectedWords = mapOf(
             "word" to wordInfoArg.value!!.word,
-            "level" to wordInfoArg.value!!.level,
+            "level" to "N${wordInfoArg.value!!.level}",
             "isCollected" to true
         )
 

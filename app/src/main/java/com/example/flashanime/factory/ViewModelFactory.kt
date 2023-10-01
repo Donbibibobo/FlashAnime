@@ -17,6 +17,7 @@ import com.example.flashanime.profile.ProfileViewModel
 import com.example.flashanime.vocabulary.VocabularyViewModel
 import com.example.flashanime.vocabularydetail.VocabularyDetailViewModel
 import com.example.flashanime.word.WordViewModel
+import com.example.flashanime.wordscollection.WordsCollectionViewModel
 import com.example.flashanime.wordstest.WordTestViewModel
 
 // Factory for all ViewModels
@@ -58,6 +59,8 @@ class ViewModelFactory constructor(
                 isAssignableFrom(WatchHistoryViewModel::class.java) ->
                     WatchHistoryViewModel(flashAnimeRepository)
 
+                isAssignableFrom(WordsCollectionViewModel::class.java) ->
+                    WordsCollectionViewModel(flashAnimeRepository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

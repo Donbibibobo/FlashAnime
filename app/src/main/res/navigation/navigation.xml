@@ -73,6 +73,12 @@
         android:label="WatchHistoryFragment"
         tools:layout="@layout/fragment_history"/>
 
+    <fragment
+        android:id="@+id/wordsCollectionFragment"
+        android:name="com.example.flashanime.wordscollection.WordsCollectionFragment"
+        android:label="WordsCollectionFragment"
+        tools:layout="@layout/fragment_words_collected"/>
+
     <dialog
         android:id="@+id/wordDialog"
         android:name="com.example.flashanime.word.WordDialog"
@@ -124,6 +130,8 @@
     <action android:id="@+id/navigate_to_login_dialog" app:destination="@id/loginDialog"/>
     <action android:id="@+id/navigate_to_collected_fragment_from_profile" app:destination="@id/collectedFragment"/>
     <action android:id="@+id/navigate_to_watch_history_fragment" app:destination="@id/watchHistoryFragment"/>
+    <action android:id="@+id/navigate_to_words_collection_fragment" app:destination="@id/wordsCollectionFragment"/>
+
 
 
 
