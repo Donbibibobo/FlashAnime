@@ -45,6 +45,7 @@ class WordTestFragment: Fragment() {
         binding.reviewRecyclerview.adapter = wordReviewListAdapter
         binding.reviewRecyclerview.layoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
+
         viewModel.reviewList.observe(viewLifecycleOwner){
             wordReviewListAdapter.submitList(it)
         }

@@ -42,7 +42,9 @@ class SeasonViewModel(private val flashAnimeRepository: FlashAnimeRepository): V
 
 //        TemporaryFile.addOtherAnimeInfo()
 
-
+//        TemporaryFile.setAnimeInfo5_1()
+//        TemporaryFile.addFirebaseAnimeInfo()
+        
 //        TemporaryFile.addUserCollectedWordsList()
 //        TemporaryFile.addWeekList()
 //        TemporaryFile.addFirebaseAnimeInfo()
