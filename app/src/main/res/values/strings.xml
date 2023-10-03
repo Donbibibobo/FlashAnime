@@ -34,6 +34,10 @@
     <string name="finish_encouragement">表現得很棒！繼續專注在困難的語詞上！！</string>
     <string name="back2words">繼續複習語詞</string>
     <string name="check_words_test_history">查看複習紀錄</string>
+    <string name="demo_word">知道往右滑\n不知道往左滑\n點擊卡片可以看解釋</string>
+    <string name="demo_word_title">複習方法</string>
+    <string name="demo_word_start">(點擊開始)</string>
+
 
 
     <!-- word list -->

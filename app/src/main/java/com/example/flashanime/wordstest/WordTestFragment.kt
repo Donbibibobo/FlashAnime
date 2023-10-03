@@ -94,6 +94,11 @@ class WordTestFragment: Fragment() {
         }
 
 
+        binding.instructions.setOnClickListener {
+            it.visibility = View.GONE
+        }
+
+
 
         return binding.root
     }
