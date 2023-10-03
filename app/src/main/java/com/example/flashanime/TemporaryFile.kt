@@ -221,31 +221,30 @@ object TemporaryFile {
         // fire
         val articlesCollection = db.collection("weekInfo")
 
-        val monday1a1 = WeeklyAnime("01:00","書店裡的骷髏店員本田","全12集","IWoNOgF1WWR7rgX7IOuD")
-        val monday1a2 = WeeklyAnime("01:05","黑暗集會","全12集","ParS5uxVFIekx3A2k1TE")
-        val monday1a3 = WeeklyAnime("21:30","LV1 魔王與獨居廢勇者","全12集","R4pEoRSkc840H7swsDxZ")
+        val monday1a1 = WeeklyAnime("01:00","書店裡的骷髏店員本田","第2集","IWoNOgF1WWR7rgX7IOuD")
+        val monday1a2 = WeeklyAnime("01:05","黑暗集會","第1集","ParS5uxVFIekx3A2k1TE")
+        val monday1a3 = WeeklyAnime("21:30","LV1 魔王與獨居廢勇者","第1集","R4pEoRSkc840H7swsDxZ")
         val mondayList = WeeklyAnimeList(listOf(monday1a1,monday1a2,monday1a3))
 
-        val tuesday2a1 = WeeklyAnime("23:30","我喜歡的女孩忘記戴眼鏡","全12集","YJUR23GtxGMql64yUg56")
+        val tuesday2a1 = WeeklyAnime("23:30","我喜歡的女孩忘記戴眼鏡","第1集","YJUR23GtxGMql64yUg56")
         val tuesdayList = WeeklyAnimeList(listOf(tuesday2a1))
 
-        val wednesday3a1 = WeeklyAnime("01:29","勇者赫魯庫","全11集","W3NeoHNqZXUqgrBYCJXY")
-        val wednesday3a2 = WeeklyAnime("22:00","AI 電子基因","全11集","BxS3XoY6VgBlfl4GUIuC")
-        val wednesday3a3 = WeeklyAnime("22:00","雖然等級只有 1 級但固有技能是最強的","全12集","nuufstFX2ui4OhYn2Bbf")
-        val wednesdayList = WeeklyAnimeList(listOf(wednesday3a1,wednesday3a2,wednesday3a3))
+        val wednesday3a1 = WeeklyAnime("01:29","勇者赫魯庫","第1集","W3NeoHNqZXUqgrBYCJXY")
+        val wednesday3a2 = WeeklyAnime("22:00","雖然等級只有 1 級但固有技能是最強的","第1集","nuufstFX2ui4OhYn2Bbf")
+        val wednesdayList = WeeklyAnimeList(listOf(wednesday3a1,wednesday3a2))
 
-        val thursday4a1 = WeeklyAnime("00:00","不死少女的謀殺鬧劇","全12集","Ybvn5MriCOcdaTiW8kqo")
-        val thursday4a2 = WeeklyAnime("01:00","成為悲劇元兇的最強異端，最後頭目女王為了人民犧牲奉獻","全12集","Di0LVMYWEERVOmIBcwGI")
-        val thursdayList = WeeklyAnimeList(listOf(thursday4a1,thursday4a2))
 
-        val friday5a1 = WeeklyAnime("01:25","聖者無雙～上班族的異世界生存之道～","全12集","jxmKxYr65kyx9GXVuhvq")
-        val friday5a2 = WeeklyAnime("01:30","七魔劍支配天下","全12集","Tdhg6zKQ8dow0Ea4DEoY")
-        val friday5a3 = WeeklyAnime("20:35","能幹貓今天也憂鬱","全12集","GPaNphqGKY8JZdUSDAv6")
-        val fridayList = WeeklyAnimeList(listOf(friday5a1,friday5a2,friday5a3))
+        val thursday4a1 = WeeklyAnime("01:25","聖者無雙～上班族的異世界生存之道～","第1集","jxmKxYr65kyx9GXVuhvq")
+        val thursday4a2 = WeeklyAnime("01:30","七魔劍支配天下","第1集","Tdhg6zKQ8dow0Ea4DEoY")
+        val thursday4a3 = WeeklyAnime("20:35","能幹貓今天也憂鬱","第1集","GPaNphqGKY8JZdUSDAv6")
+        val thursdayList = WeeklyAnimeList(listOf(thursday4a1,thursday4a2,thursday4a3))
+
+        val friday5a1 = WeeklyAnime("00:00","不死少女的謀殺鬧劇","第1集","Ybvn5MriCOcdaTiW8kqo")
+        val fridayList = WeeklyAnimeList(listOf(friday5a1))
 
         val saturdayList = WeeklyAnimeList(listOf(monday1a1,monday1a2,monday1a3)) // use monday
 
-        val sundayList = WeeklyAnimeList(listOf(wednesday3a1,wednesday3a2,wednesday3a3)) // use wednesday
+        val sundayList = WeeklyAnimeList(listOf(wednesday3a1,wednesday3a2)) // use wednesday
 
         val weeklyData = hashMapOf(
             "monday" to mondayList,

@@ -59,7 +59,6 @@ class VocabularyDetailFragment: Fragment() {
 
 
         // init default episode 1
-        val episodeCount = mutableListOf<String>()
         viewModel.animeInfoArg.observe(viewLifecycleOwner, Observer {
             if (binding.radioGroup.checkedRadioButtonId == R.id.mode_all){
                 binding.animeInfo = it
@@ -78,7 +77,7 @@ class VocabularyDetailFragment: Fragment() {
                 testList = updatedEpisode
             }
 
-
+            val episodeCount = mutableListOf<String>()
             // set episode word
             Log.i("episoedd", "${it.videosId.size}")
             for (i in 1..it.videosId.size){
@@ -88,7 +87,6 @@ class VocabularyDetailFragment: Fragment() {
             val adapterTextInputLayout = ArrayAdapter(requireContext(), R.layout.text_dropdown_item, episodeCount)
             binding.autocomplete.setAdapter(adapterTextInputLayout)
             binding.autocomplete.setText(episodeCount[0], false)
-//            episodeCount.clear()
         })
 
 

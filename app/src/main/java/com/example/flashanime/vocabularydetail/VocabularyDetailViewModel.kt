@@ -169,9 +169,9 @@ class VocabularyDetailViewModel(
 
     fun showNoCollectedWordsAlert(context: Context){
         AlertDialog.Builder(context)
-            .setTitle("No collected Words!")
-            .setMessage("There is no collected words in this episode!" +
-                    "Go add some words!")
+            .setTitle("尚未收藏單字")
+            .setMessage("這集還沒有收藏單字喔～" +
+                    "快去加入一些吧！")
             .setPositiveButton("OK", null).show()
     }
 
