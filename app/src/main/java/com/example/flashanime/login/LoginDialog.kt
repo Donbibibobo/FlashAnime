@@ -72,13 +72,37 @@ class LoginDialog: AppCompatDialogFragment() {
             .requestEmail()
             .build()
 
-
-
         googleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
 
         binding.googleLogin.setOnClickListener {
             googleSignIn()
         }
+
+
+
+
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            Log.i("googleLogin","1currentUser != null")
+        } else {
+            Log.i("googleLogin","2currentUser == null")
+        }
+
+        val uid = currentUser?.uid
+        Log.i("googleLogin","3uid: $uid")
+
+        binding.googleLogout.setOnClickListener {
+            // logout Firebase
+            auth.signOut()
+
+            // logout GoogleSignInClient
+            googleSignInClient.signOut().addOnCompleteListener {
+                Toast.makeText(requireContext(), "Logged out successfully", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+
 
 
 

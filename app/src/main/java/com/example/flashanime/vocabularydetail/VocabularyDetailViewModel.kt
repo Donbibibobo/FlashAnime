@@ -7,9 +7,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.flashanime.R
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.JLPTWordInfo
 import com.example.flashanime.data.source.FlashAnimeRepository
+import com.example.flashanime.util.Util.getString
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -169,10 +171,10 @@ class VocabularyDetailViewModel(
 
     fun showNoCollectedWordsAlert(context: Context){
         AlertDialog.Builder(context)
-            .setTitle("尚未收藏單字")
-            .setMessage("這集還沒有收藏單字喔～" +
-                    "快去加入一些吧！")
-            .setPositiveButton("OK", null).show()
+            .setTitle(getString(R.string.collectedWordsAlert_title))
+            .setMessage(getString(R.string.collectedWordsAlert_message))
+            .setPositiveButton(getString(R.string.collectedWordsAlert_positiveButton), null).show()
     }
 
 }
+

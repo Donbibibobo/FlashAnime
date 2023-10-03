@@ -81,8 +81,8 @@ class VocabularyDetailFragment: Fragment() {
             // set episode word
             Log.i("episoedd", "${it.videosId.size}")
             for (i in 1..it.videosId.size){
-                episodeCount.add("第${i}集")
-                Log.i("episoedd", "add")
+                val episodeString = getString(R.string.episodeCount, i)
+                episodeCount.add(episodeString)
             }
             val adapterTextInputLayout = ArrayAdapter(requireContext(), R.layout.text_dropdown_item, episodeCount)
             binding.autocomplete.setAdapter(adapterTextInputLayout)

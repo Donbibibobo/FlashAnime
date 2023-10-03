@@ -54,13 +54,17 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginTop="5dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_sans"
                     android:letterSpacing="0.1"
                     android:text="@{playWords.word}"
                     android:textColor="@color/black"
-                    android:textSize="25sp"
+                    android:textSize="20sp"
                     tools:text="養う" />
 
                 <ImageView

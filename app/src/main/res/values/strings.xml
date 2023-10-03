@@ -47,6 +47,7 @@
     <string name="test_10">隨機10題：</string>
     <string name="words_all">全部單字</string>
     <string name="words_collected">收藏單字</string>
+    <string name="episodeCount">第%d集</string>
 
     <!-- word dialog -->
     <string name="word_dialog_meaning">語意：</string>
@@ -91,6 +92,14 @@
 
     <!-- profile page -->
     <string name="google_login">Google 登入</string>
+    <string name="google_logout">Google 登出</string>
+
+
+    <!-- profile page -->
+    <string name="collectedWordsAlert_title">尚未收藏單字</string>
+    <string name="collectedWordsAlert_message">"這集還沒有收藏單字喔～快去加入一些吧！"</string>
+    <string name="collectedWordsAlert_positiveButton">確認</string>
+
 
 
 
