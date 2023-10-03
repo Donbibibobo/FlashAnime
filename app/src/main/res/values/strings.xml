@@ -89,5 +89,10 @@
     <string name="release_time_text">上架日期：</string>
 
 
+    <!-- profile page -->
+    <string name="google_login">Google 登入</string>
+
+
+
 
 </resources>

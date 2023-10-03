@@ -12,7 +12,20 @@
           "package_name": "com.example.flashanime"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "21127564044-v0qej45pot41f0f38t5mjkdvck9q8534.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flashanime",
+            "certificate_hash": "86e5e99e3e5346115e01d4c1a35ae22cb561d299"
+          }
+        },
+        {
+          "client_id": "21127564044-3hee6mgc1umt7fskf3hje4q13bts6rei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyD4rVTarxNaHoRCF4xK4tDQp1a2S6zqAVY"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "21127564044-3hee6mgc1umt7fskf3hje4q13bts6rei.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

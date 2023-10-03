@@ -57,6 +57,9 @@ class ProfileFragment: Fragment() {
         }
 
         // logout
+        binding.logout.setOnClickListener {
+            it.findNavController().navigate(ProfileFragmentDirections.navigateToLoginDialog())
+        }
 
 
 

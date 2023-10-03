@@ -15,8 +15,10 @@ buildscript {
     dependencies {
         // 添加 Safe Args 插件的 classpath
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.5.0")
-        classpath("com.google.gms:google-services:4.4.0")
+        classpath("com.google.gms:google-services:4.3.8")
         //classpath "com.android.tools.build:gradle:4.0.1"
         //classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72"
     }
 }
+
+
