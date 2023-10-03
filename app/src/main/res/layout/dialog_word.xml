@@ -15,7 +15,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_word"
         android:layout_width="0dp"
-        android:layout_height="@dimen/height_word"
+        android:layout_height="wrap_content"
         android:background="@drawable/bg_dialog_corner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,31 +23,34 @@ xmlns:tools="http://schemas.android.com/tools">
 
         <TextView
             android:id="@+id/episode_words"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="120dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/noto_sans"
             android:letterSpacing="0.1"
             android:text="@{viewModel.wordInfoArg.word}"
             android:textColor="@color/black"
             android:textSize="50sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="養う"/>
+            tools:text="養う" />
 
         <TextView
             android:id="@+id/episode_romaji"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="95dp"
             android:fontFamily="@font/noto_sans_bold"
             android:letterSpacing="0.1"
             android:text="@{viewModel.wordInfoArg.romaji}"
             android:textColor="@color/gray_888888"
             android:textSize="22sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/episode_words"
             tools:text="yashinau"/>
 
         <View
@@ -79,35 +82,38 @@ xmlns:tools="http://schemas.android.com/tools">
             android:id="@+id/episode_meaning_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
+            android:layout_marginBottom="60dp"
             android:fontFamily="@font/noto_sans"
             android:letterSpacing="0.1"
             android:text="@{viewModel.wordInfoArg.meaning}"
             android:textColor="@color/black"
             android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/episode_meaning"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="to rear; to maintain; to cultivate"/>
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="to rear; to maintain; to cultivate" />
 
         <ImageView
             android:id="@+id/collectdSave"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/collected_save"
-            android:layout_margin="40dp"
+            android:layout_margin="50dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:visibility="@{viewModel.wordInfoArgForUi.collected ? View.VISIBLE : View.GONE}"/>
 
         <ImageView
             android:id="@+id/collectdUnSave"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/collected_usave"
-            android:layout_margin="40dp"
+            android:layout_margin="50dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:visibility="@{viewModel.wordInfoArgForUi.collected ? View.GONE : View.VISIBLE}"/>
