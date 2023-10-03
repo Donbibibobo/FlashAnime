@@ -41,6 +41,7 @@ class WordTestFragment: Fragment() {
 
         // review recyclerview
         val wordReviewListAdapter = WordReviewListAdapter{
+            viewModel.getWordInfoWordsTest(it.word)
         }
         binding.reviewRecyclerview.adapter = wordReviewListAdapter
         binding.reviewRecyclerview.layoutManager =
@@ -111,12 +112,17 @@ class WordTestFragment: Fragment() {
                         viewModel.addScore.value = viewModel.addScore.value?.plus(1)
                         viewModel.numerator.value = viewModel.numerator.value?.plus(1)
 
-                        val currentWord = playWords[manager.topPosition - 1]
+                        val currentWord = playWords[manager.topPosition - 1].copy(time = "0")
                         reviewWordsList.add(currentWord)
+
                     }
                     Direction.Right -> {
                         viewModel.minusScore.value = viewModel.minusScore.value?.plus(1)
                         viewModel.numerator.value = viewModel.numerator.value?.plus(1)
+
+                        val currentWord = playWords[manager.topPosition - 1].copy(time = "1")
+                        reviewWordsList.add(currentWord)
+
                     }
 //                    Direction.Top -> Toast.makeText(requireContext(), "Swiped to Top", Toast.LENGTH_SHORT).show()
 //                    Direction.Bottom -> Toast.makeText(requireContext(), "Swiped to Bottom", Toast.LENGTH_SHORT).show()

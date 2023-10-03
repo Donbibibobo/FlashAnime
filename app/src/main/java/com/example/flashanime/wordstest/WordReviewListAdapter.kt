@@ -1,5 +1,6 @@
 package com.example.flashanime.wordstest
 
+import android.os.Parcelable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flashanime.R
 import com.example.flashanime.data.PlayWords
 import com.example.flashanime.databinding.ItemWordTestReviewBinding
 import com.example.flashanime.databinding.ItemWordcardBinding
@@ -46,6 +48,9 @@ class WordReviewListAdapter(private val clickWord: (PlayWords) -> Unit): ListAda
                     .collection("wordsCollection").document(playWord.word)
 
             binding.playWords = playWord
+            binding.constraint.setOnClickListener {
+                clickWord(playWord)
+            }
 
 
             // remove from collected
@@ -80,6 +85,13 @@ class WordReviewListAdapter(private val clickWord: (PlayWords) -> Unit): ListAda
                     .addOnFailureListener { e ->
                         Log.w("AddFirebase+", "Error adding document", e)
                     }
+            }
+
+
+            // change ui with correct or incorrect
+            if (playWord.time == "0"){
+                binding.border.setImageResource(R.drawable.wordcard_border_small_incorrect)
+                binding.cardView.cardElevation = 1f
             }
 
         }

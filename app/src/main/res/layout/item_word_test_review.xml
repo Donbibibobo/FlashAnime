@@ -15,8 +15,9 @@
         android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             app:cardCornerRadius="12dp"
-            app:cardElevation="2dp"
+            app:cardElevation="3dp"
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="true"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -31,6 +32,7 @@
             android:foreground="?attr/selectableItemBackground">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
