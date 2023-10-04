@@ -1,16 +1,18 @@
 package com.example.flashanime
 
+import android.annotation.SuppressLint
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.source.FlashAnimeRepository
-import com.example.flashanime.data.source.local.FlashAnimeDatabase
 import com.example.flashanime.util.CurrentFragmentType
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.launch
 
 private const val TAG: String = "MainViewModel"
@@ -21,11 +23,35 @@ class MainViewModel(private val flashAnimeRepository: FlashAnimeRepository): Vie
     val currentFragmentType = MutableLiveData<CurrentFragmentType>()
 
 
+// login
+    // handle leave dialog
+    private lateinit var auth: FirebaseAuth
+    fun getAuthInstance(){
+        auth = FirebaseAuth.getInstance()
+        UserManager.user = auth
+    }
+    fun checkIsLogin(): Boolean{
+        val currentUser = auth.currentUser
+        Log.i("googleLogin","${currentUser != null}")
+        return currentUser != null
+    }
+    @SuppressLint("StaticFieldLeak")
+    private lateinit var bottomNavigation: BottomNavigationView
+    fun setBottomNavigation(bottomNavigation: BottomNavigationView){
+        this.bottomNavigation = bottomNavigation
+    }
+    fun backToHome() {
+        bottomNavigation.selectedItemId = R.id.navigation_home
+    }
+
+
+
     val db = Firebase.firestore
     init {
         getAnimeList()
         snapShotFavoriteList()
 
+        getAuthInstance()
     }
 
 

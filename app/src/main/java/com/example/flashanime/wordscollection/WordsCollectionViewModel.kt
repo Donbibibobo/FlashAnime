@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.flashanime.UserManager
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.JLPTWordInfo
 import com.example.flashanime.data.PlayWords
@@ -34,6 +35,8 @@ class WordsCollectionViewModel(private val flashAnimeRepository: FlashAnimeRepos
         val db = Firebase.firestore
         val wordsCollection = db.collection("userInfo")
             .document("Bstm28YuZ3ih78afvdq9").collection("wordsCollection")
+
+        Log.i("loginTest","${UserManager.user?.uid}")
 
         wordsCollection.get()
             .addOnSuccessListener { value ->

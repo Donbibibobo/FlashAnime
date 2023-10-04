@@ -13,8 +13,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.core.view.children
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.flashanime.MainViewModel
+import com.example.flashanime.NavigationDirections
 import com.example.flashanime.R
 import com.example.flashanime.all.category.CategoryViewModel
 import com.example.flashanime.databinding.DialogCategoryBinding
@@ -36,6 +41,8 @@ class LoginDialog: AppCompatDialogFragment() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+
+    private val mainActivityViewModel by activityViewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,9 +67,12 @@ class LoginDialog: AppCompatDialogFragment() {
                 it?.let {
                     dismiss()
                     viewModel.onLeaveCompleted()
+                    mainActivityViewModel.backToHome()
                 }
             }
         )
+
+
 
         // google singIn
         auth = FirebaseAuth.getInstance()
@@ -84,8 +94,10 @@ class LoginDialog: AppCompatDialogFragment() {
         val currentUser = auth.currentUser
         if (currentUser != null) {
             Log.i("googleLogin","1currentUser != null")
+            binding.googleLogin.visibility = View.GONE
         } else {
             Log.i("googleLogin","2currentUser == null")
+            binding.googleLogout.visibility = View.GONE
         }
 
         val uid = currentUser?.uid
@@ -97,8 +109,16 @@ class LoginDialog: AppCompatDialogFragment() {
 
             // logout GoogleSignInClient
             googleSignInClient.signOut().addOnCompleteListener {
-                Toast.makeText(requireContext(), "Logged out successfully", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(), "Logged out successfully", Toast.LENGTH_SHORT).show()
             }
+
+            // refresh auth
+            mainActivityViewModel.getAuthInstance()
+
+            // nav to home
+            mainActivityViewModel.backToHome()
+
+
         }
 
 
@@ -109,8 +129,8 @@ class LoginDialog: AppCompatDialogFragment() {
         return binding.root
     }
 
-    private fun googleSignIn() {
 
+    private fun googleSignIn() {
 
         val signInClient = googleSignInClient.signInIntent
         launcher.launch(signInClient)
@@ -124,6 +144,16 @@ class LoginDialog: AppCompatDialogFragment() {
         }
 
     }
+    private fun dismissDialog(){
+        // refresh auth
+        mainActivityViewModel.getAuthInstance()
+
+        // nav to home
+        mainActivityViewModel.backToHome()
+
+        dismiss()
+    }
+
 
     private fun manageResults(task: Task<GoogleSignInAccount>) {
         val account: GoogleSignInAccount? = task.result
@@ -134,15 +164,18 @@ class LoginDialog: AppCompatDialogFragment() {
 
                 if (task.isSuccessful){
 
-                    Toast.makeText(requireContext(), "Account created", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(), "Account created", Toast.LENGTH_SHORT).show()
+
+                    dismissDialog()
+
 
                 }else{
-                    Toast.makeText(requireContext(), task.exception.toString(), Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(), task.exception.toString(), Toast.LENGTH_SHORT).show()
 
                 }
             }
         }else {
-            Toast.makeText(requireContext(), task.exception.toString(), Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireContext(), task.exception.toString(), Toast.LENGTH_SHORT).show()
 
         }
     }

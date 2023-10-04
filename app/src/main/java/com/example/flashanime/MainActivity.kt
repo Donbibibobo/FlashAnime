@@ -32,6 +32,10 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+
+        // set BottomNavigation
+        viewModel.setBottomNavigation(binding.bottomNavView)
+
         // observe current fragment change, only for show info
         viewModel.currentFragmentType.observe(
             this,
@@ -55,6 +59,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupBottomNav() {
         binding.bottomNavView.setOnItemSelectedListener { item ->
+            Log.i("itemIddd","${item.itemId}")
             when (item.itemId) {
 
 
@@ -70,18 +75,42 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_collected -> {
 
-                    findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToCollectedFragment(false))
-                    return@setOnItemSelectedListener true
+                    when(viewModel.checkIsLogin()){
+                        true -> {
+                            findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToCollectedFragment(false))
+                            return@setOnItemSelectedListener true
+                        }
+                        false -> {
+                            findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToLoginDialog())
+                            return@setOnItemSelectedListener true
+                        }
+                    }
                 }
                 R.id.navigation_vocabulary -> {
 
-                    findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToVocabularyFragment())
-                    return@setOnItemSelectedListener true
+                    when(viewModel.checkIsLogin()){
+                        true -> {
+                            findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToVocabularyFragment())
+                            return@setOnItemSelectedListener true
+                        }
+                        false -> {
+                            findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToLoginDialog())
+                            return@setOnItemSelectedListener true
+                        }
+                    }
                 }
                 R.id.navigation_profile -> {
 
-                    findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToProfileFragment())
-                    return@setOnItemSelectedListener true
+                    when(viewModel.checkIsLogin()){
+                        true -> {
+                            findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToProfileFragment())
+                            return@setOnItemSelectedListener true
+                        }
+                        false -> {
+                            findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToLoginDialog())
+                            return@setOnItemSelectedListener true
+                        }
+                    }
                 }
             }
             false
