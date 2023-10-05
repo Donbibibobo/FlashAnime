@@ -39,7 +39,6 @@
     <string name="demo_word_start">(點擊開始)</string>
 
 
-
     <!-- word list -->
     <string name="wordsNumber">0001</string>
     <string name="word">これ</string>
@@ -103,9 +102,6 @@
     <string name="collectedWordsAlert_title">尚未收藏單字</string>
     <string name="collectedWordsAlert_message">"這集還沒有收藏單字喔～快去加入一些吧！"</string>
     <string name="collectedWordsAlert_positiveButton">確認</string>
-
-
-
 
 
 </resources>

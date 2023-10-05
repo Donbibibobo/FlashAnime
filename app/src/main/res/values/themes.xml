@@ -9,7 +9,10 @@
 
     <style name="Theme.FlashAnime" parent="Base.Theme.FlashAnime" />
 
-<!--    <style name="BottomNavStyle">-->
-<!--        <item name="android:backgroundTint">@color/transparent</item>-->
-<!--    </style>-->
+
+    <style name="SplashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryDark">@color/gray_888888</item>
+        <item name="colorAccent">@color/collected_heart_fill</item>
+    </style>
 </resources>
