@@ -35,7 +35,6 @@ class WordsCollectionViewModel(private val flashAnimeRepository: FlashAnimeRepos
         val db = Firebase.firestore
         val wordsCollection = db.collection("userInfo")
             .document("Bstm28YuZ3ih78afvdq9").collection("wordsCollection")
-
         Log.i("loginTest","${UserManager.user?.uid}")
 
         wordsCollection.get()

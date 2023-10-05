@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flashanime.UserManager
 import com.example.flashanime.data.PlayWords
 import com.example.flashanime.databinding.ItemWordTestReviewBigBinding
 import com.example.flashanime.databinding.ItemWordTestReviewBinding
@@ -48,6 +49,8 @@ class WordsCollectionListAdapter(private val clickWord: (PlayWords) -> Unit): Li
             val userCollectedWordsList =
                 db.collection("userInfo").document("Bstm28YuZ3ih78afvdq9")
                     .collection("wordsCollection").document(playWord.word)
+            Log.i("loginTest","${UserManager.user?.uid}")
+
 
             binding.playWords = playWord
 

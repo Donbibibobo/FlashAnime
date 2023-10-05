@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.flashanime.MainViewModel
 import com.example.flashanime.R
+import com.example.flashanime.UserManager
 import com.example.flashanime.databinding.DialogWordBinding
 import com.example.flashanime.ext.getVmFactory
 import com.example.flashanime.util.CurrentFragmentType
@@ -80,7 +81,11 @@ class WordDialog: AppCompatDialogFragment() {
             parentViewGroup?.removeView(binding.collectdUnSave)
         }
 
-
+        if (UserManager.user?.uid == null){
+            val parentViewGroup = binding.collectdSave.parent as? ViewGroup
+            parentViewGroup?.removeView(binding.collectdSave)
+            parentViewGroup?.removeView(binding.collectdUnSave)
+        }
 
 
         return binding.root

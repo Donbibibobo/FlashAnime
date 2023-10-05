@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.flashanime.UserManager
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.source.FlashAnimeRepository
 import com.google.android.gms.tasks.Task
@@ -30,6 +31,8 @@ class WatchHistoryViewModel(private val flashAnimeRepository: FlashAnimeReposito
         val animeInfoCollection = db.collection("userInfo")
             .document("Bstm28YuZ3ih78afvdq9").collection("watchHistory")
             .orderBy("timestamp", Query.Direction.DESCENDING)
+        Log.i("loginTest","${UserManager.user?.uid}")
+
 
         // get watchHistory
         animeInfoCollection.get()

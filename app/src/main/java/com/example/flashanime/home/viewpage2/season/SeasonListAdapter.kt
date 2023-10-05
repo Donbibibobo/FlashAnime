@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flashanime.UserManager
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.databinding.ItemAnimeSmallBinding
 import com.google.firebase.firestore.ktx.firestore
@@ -42,6 +43,8 @@ class SeasonListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<Ani
             val userInfoCollection =
                 db.collection("userInfo").document("Bstm28YuZ3ih78afvdq9")
                     .collection("animeCollection")
+            Log.i("loginTest","${UserManager.user?.uid}")
+
 
             binding.animeConstrain.setOnClickListener {
                 click(animeInfo)
@@ -66,6 +69,12 @@ class SeasonListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<Ani
             }
             binding.heatFill.setOnClickListener {
                 userInfoCollection.document(animeInfo.animeId).delete()
+            }
+
+            // login
+            if (UserManager.user?.uid == null){
+                binding.heatFill.visibility = View.GONE
+                binding.heatStroke.visibility = View.GONE
             }
         }
     }

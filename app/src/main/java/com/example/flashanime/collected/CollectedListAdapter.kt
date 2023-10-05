@@ -1,11 +1,13 @@
 package com.example.flashanime.collected
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flashanime.UserManager
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.databinding.ItemAnimeLargeBinding
 import com.google.firebase.firestore.ktx.firestore
@@ -38,6 +40,8 @@ class CollectedListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<
             val userInfoCollection =
                 db.collection("userInfo").document("Bstm28YuZ3ih78afvdq9")
                     .collection("animeCollection")
+            Log.i("loginTest","${UserManager.user?.uid}")
+
 
 
             binding.animeConstrain.setOnClickListener {

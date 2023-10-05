@@ -292,6 +292,8 @@ object TemporaryFile {
         val userAnimeListDocument =
             db.collection("userInfo").document("Bstm28YuZ3ih78afvdq9")
                 .collection("animeCollection").document("IWoNOgF1WWR7rgX7IOuD")
+        Log.i("loginTest","${UserManager.user?.uid}")
+
 
         val userData = hashMapOf(
             "animeId" to "IWoNOgF1WWR7rgX7IOuD",
@@ -378,38 +380,13 @@ object TemporaryFile {
 
 
 
-//    fun addUserCollectedWordsList() {
-//        val userAnimeListDocument =
-//            db.collection("userInfo").document("Bstm28YuZ3ih78afvdq9")
-//                .collection("wordsCollection").document("collectedWords")
-//
-//        val collectedWords = mapOf("word" to "薄い", "level" to "N4", "isCollected" to true)
-//
-//        userAnimeListDocument.get().addOnSuccessListener { document ->
-//            if (document.exists()) {
-//                // 如果文檔已存在，添加到列表中
-//                userAnimeListDocument.update("collectedWords", FieldValue.arrayUnion(collectedWords))
-//            } else {
-//                // 若文檔不存在，創建新的文檔和集合
-//                val collectedWordsList = mutableListOf(collectedWords)
-//                val userData = hashMapOf("collectedWords" to collectedWordsList)
-//
-//                userAnimeListDocument.set(userData).addOnSuccessListener {
-//                    Log.d("AddFirebase", "DocumentSnapshot successfully written!")
-//                }.addOnFailureListener { e ->
-//                    Log.w("AddFirebase", "Error writing document", e)
-//                }
-//            }
-//        }.addOnFailureListener { e ->
-//            Log.w("GetFirebase", "Error getting document", e)
-//        }
-//    }
-
     fun addUserCollectedWordsList() {
         // fire
         val userCollectedWordsList =
             db.collection("userInfo").document("Bstm28YuZ3ih78afvdq9")
                 .collection("wordsCollection").document("突然")
+        Log.i("loginTest","${UserManager.user?.uid}")
+
 
         val collectedWords = mapOf(
             "word" to "突然",

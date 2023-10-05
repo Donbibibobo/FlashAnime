@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.flashanime.UserManager
 import com.example.flashanime.data.JLPTWordInfo
 import com.example.flashanime.data.source.FlashAnimeRepository
 import com.example.flashanime.util.CurrentFragmentType
@@ -64,6 +65,8 @@ class WordViewModel(
         val userCollectedWordsList =
             db.collection("userInfo").document("Bstm28YuZ3ih78afvdq9")
                 .collection("wordsCollection").document(wordInfoArg.value!!.word)
+        Log.i("loginTest","${UserManager.user?.uid}")
+
 
         val collectedWords = mapOf(
             "word" to wordInfoArg.value!!.word,
@@ -86,6 +89,8 @@ class WordViewModel(
         val userCollectedWordsList =
             db.collection("userInfo").document("Bstm28YuZ3ih78afvdq9")
                 .collection("wordsCollection").document(wordInfoArg.value!!.word)
+        Log.i("loginTest","${UserManager.user?.uid}")
+
 
         userCollectedWordsList.delete()
             .addOnSuccessListener {
@@ -101,6 +106,8 @@ class WordViewModel(
         val userCollectedWordList =
             db.collection("userInfo").document("Bstm28YuZ3ih78afvdq9")
                 .collection("wordsCollection")
+        Log.i("loginTest","${UserManager.user?.uid}")
+
 
 
         listenerRegistration = userCollectedWordList.addSnapshotListener { value, error ->

@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.flashanime.R
+import com.example.flashanime.UserManager
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.JLPTWordInfo
 import com.example.flashanime.data.source.FlashAnimeRepository
@@ -94,6 +95,8 @@ class VocabularyDetailViewModel(
         val userCollectedWordList =
             db.collection("userInfo").document("Bstm28YuZ3ih78afvdq9")
                 .collection("wordsCollection")
+        Log.i("loginTest","${UserManager.user?.uid}")
+
 
 
         listenerRegistration = userCollectedWordList.addSnapshotListener { value, error ->

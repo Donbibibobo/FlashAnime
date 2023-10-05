@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flashanime.TemporaryFile
+import com.example.flashanime.UserManager
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.Episode
 import com.example.flashanime.data.JLPTWordInfo
@@ -130,6 +131,8 @@ class DetailViewModel(
 
         val userAnimeListDocument =
             db.collection("userInfo").document("Bstm28YuZ3ih78afvdq9").collection("watchHistory").document(animeId)
+        Log.i("loginTest","${UserManager.user?.uid}")
+
 
         val userData = hashMapOf(
             "animeId" to "animeId",

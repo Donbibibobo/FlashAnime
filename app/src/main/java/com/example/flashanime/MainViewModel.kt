@@ -75,6 +75,8 @@ class MainViewModel(private val flashAnimeRepository: FlashAnimeRepository): Vie
     private fun snapShotFavoriteList() {
         val userInfoCollection =
             db.collection("userInfo").document("Bstm28YuZ3ih78afvdq9").collection("animeCollection")
+        Log.i("loginTest","${UserManager.user?.uid}")
+
 
         val favoriteList = mutableListOf<String>()
 
