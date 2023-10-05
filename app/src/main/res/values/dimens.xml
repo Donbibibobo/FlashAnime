@@ -5,11 +5,11 @@
     <dimen name="height_toolbar">60dp</dimen>
 
     <!-- Bottom Navigation -->
-    <dimen name="height_bottom_nav_view_main">70dp</dimen>
-    <dimen name="size_bottom_nav_icon">22dp</dimen>
+    <dimen name="height_bottom_nav_view_main">60dp</dimen>
+    <dimen name="size_bottom_nav_icon">20dp</dimen>
 
     <!-- tab layout -->
-    <dimen name="height_tab_layout">50dp</dimen>
+    <dimen name="height_tab_layout">60dp</dimen>
 
     <!-- episode item-->
     <dimen name="episode_item">48dp</dimen>

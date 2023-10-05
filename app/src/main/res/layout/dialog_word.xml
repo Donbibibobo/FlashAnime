@@ -100,20 +100,22 @@ xmlns:tools="http://schemas.android.com/tools">
 
         <ImageView
             android:id="@+id/collectdSave"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/collected_save"
-            android:layout_margin="50dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="40dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:visibility="@{viewModel.wordInfoArgForUi.collected ? View.VISIBLE : View.GONE}"/>
 
         <ImageView
             android:id="@+id/collectdUnSave"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/collected_usave"
-            android:layout_margin="50dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="40dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:visibility="@{viewModel.wordInfoArgForUi.collected ? View.GONE : View.VISIBLE}"/>

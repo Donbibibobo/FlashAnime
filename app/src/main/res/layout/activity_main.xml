@@ -68,6 +68,8 @@
             android:background="@color/white"
             app:itemIconSize="@dimen/size_bottom_nav_icon"
             app:labelVisibilityMode="labeled"
+            android:padding="2dp"
+            style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
             android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.DETAIL || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_COLLECTED || viewModel.currentFragmentType == CurrentFragmentType.WATCH_HISTORY || viewModel.currentFragmentType == CurrentFragmentType.WORDS_COLLECTION ? View.GONE : View.VISIBLE}"
             app:itemTextColor="@drawable/bottom_nav_item_selector"
             app:itemIconTint="@drawable/bottom_nav_item_selector"

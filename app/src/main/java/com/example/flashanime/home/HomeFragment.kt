@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -38,12 +39,25 @@ class HomeFragment: Fragment() {
         binding.viewPager2.isUserInputEnabled = false
 
         // connect TabLayout and ViewPager2
-        TabLayoutMediator(binding.tabLayout, binding.viewPager2) {tab, position ->
+//        TabLayoutMediator(binding.tabLayout, binding.viewPager2) {tab, position ->
+//            val textView = LayoutInflater.from(requireContext()).inflate(R.layout.custom_tab_item, null) as TextView
+//            when (position) {
+//                FRAGMENT_SEASON -> tab.text = getString(R.string.first_tab_season)
+//                FRAGMENT_WEEK -> tab.text = getString(R.string.first_tab_week)
+//            }
+//            tab.customView = textView
+//        }.attach()
+
+        TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
+            val textView = LayoutInflater.from(requireContext()).inflate(R.layout.custom_tab_item, null) as TextView
             when (position) {
-                FRAGMENT_SEASON -> tab.text = getString(R.string.first_tab_season)
-                FRAGMENT_WEEK -> tab.text = getString(R.string.first_tab_week)
+                FRAGMENT_SEASON -> textView.text = getString(R.string.first_tab_season)
+                FRAGMENT_WEEK -> textView.text = getString(R.string.first_tab_week)
             }
+            tab.customView = textView
         }.attach()
+
+
 
 
 

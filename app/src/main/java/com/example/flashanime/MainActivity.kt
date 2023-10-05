@@ -1,9 +1,13 @@
 package com.example.flashanime
 
+import android.animation.ValueAnimator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
+import android.view.animation.BounceInterpolator
+import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -57,8 +61,14 @@ class MainActivity : AppCompatActivity() {
         setupBottomNav()
     }
 
+
+
     private fun setupBottomNav() {
         binding.bottomNavView.setOnItemSelectedListener { item ->
+
+            val menuItemView = binding.bottomNavView.findViewById<View>(item.itemId) as? BottomNavigationItemView
+            menuItemView?.let { viewModel.animateIcon(it) }
+
             Log.i("itemIddd","${item.itemId}")
             when (item.itemId) {
 

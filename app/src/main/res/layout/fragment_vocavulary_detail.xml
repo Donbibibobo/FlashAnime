@@ -90,10 +90,10 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/testButton"
-            android:layout_width="200dp"
+            android:layout_width="180dp"
             android:layout_height="50dp"
             android:fontFamily="@font/noto_sans"
-            android:layout_marginStart="27dp"
+            android:layout_marginStart="37dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="@string/WordTest"
@@ -107,20 +107,23 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
             style="@style/BlueTextInputLayout"
-            android:layout_width="200dp"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/test_episode"
             app:layout_constraintStart_toEndOf="@+id/test_episode"
             app:layout_constraintTop_toTopOf="@+id/test_episode"
-            app:endIconTint="@color/white">
+            app:endIconTint="@color/gray_999999">
 
             <AutoCompleteTextView
                 android:id="@+id/autocomplete"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:inputType="none"/>
+                android:inputType="none"
+                android:background="@drawable/bg_autocomplete"/>
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
@@ -140,7 +143,8 @@
                 android:layout_marginStart="18dp"
                 android:text="@string/words_all"
                 android:textSize="16sp"
-                android:checked="true"/>
+                android:checked="true"
+                android:buttonTint="@color/blue"/>
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/mode_collected"
@@ -148,7 +152,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:text="@string/words_collected"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:buttonTint="@color/blue"/>
         </RadioGroup>
 
         <View

@@ -66,6 +66,12 @@ class AllListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<AnimeI
             binding.heatFill.setOnClickListener {
                 userInfoCollection.document(animeInfo.animeId).delete()
             }
+
+            // login
+            if (UserManager.user?.uid == null){
+                binding.heatFill.visibility = View.GONE
+                binding.heatStroke.visibility = View.GONE
+            }
         }
     }
 

@@ -108,9 +108,10 @@ class LoginDialog: AppCompatDialogFragment() {
             auth.signOut()
 
             // logout GoogleSignInClient
-            googleSignInClient.signOut().addOnCompleteListener {
+            googleSignInClient.signOut()
+//                .addOnCompleteListener {
 //                Toast.makeText(requireContext(), "Logged out successfully", Toast.LENGTH_SHORT).show()
-            }
+//            }
 
             // refresh auth
             mainActivityViewModel.getAuthInstance()

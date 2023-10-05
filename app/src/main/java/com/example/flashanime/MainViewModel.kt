@@ -1,7 +1,9 @@
 package com.example.flashanime
 
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -138,4 +140,16 @@ class MainViewModel(private val flashAnimeRepository: FlashAnimeRepository): Vie
         return currentFragmentType.value
     }
 
+    fun animateIcon(view: View) {
+        val bounceAnimator = ValueAnimator.ofFloat(1f, 1.2f, 0.8f, 1.15f, 0.9f, 1f).apply {
+            duration = 600
+//            interpolator = BounceInterpolator()
+            addUpdateListener {
+                val scaleValue = it.animatedValue as Float
+                view.scaleX = scaleValue
+                view.scaleY = scaleValue
+            }
+        }
+        bounceAnimator.start()
+    }
 }
