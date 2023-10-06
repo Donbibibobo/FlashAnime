@@ -5,6 +5,8 @@
 
     <data>
         <variable name="viewModel" type="com.example.flashanime.all.AllViewModel" />
+        <import type="android.view.View"/>
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,6 +38,33 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:icon="@drawable/soundbar"
             android:text="@string/fab_word"/>
+
+
+        <TextView
+            android:id="@+id/no_result_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/noto_sans"
+            android:letterSpacing="0.1"
+            android:text="@string/no_result"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/no_result_image"
+            android:visibility="@{viewModel.selectedCategoryList.isEmpty ? View.VISIBLE : View.GONE}"/>
+        <ImageView
+            android:id="@+id/no_result_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/noresult"
+            android:layout_marginTop="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="@{viewModel.selectedCategoryList.isEmpty ? View.VISIBLE : View.GONE}"/>
+
 
 
 

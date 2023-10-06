@@ -60,6 +60,9 @@ class AllFragment: Fragment(), CategoryDialog.CategoryDialogListener {
         viewModel.selectedCategoryList.observe(viewLifecycleOwner, Observer {
             viewModel.selecting = true
             adapter.submitList(it)
+
+            Log.i("zxcvzxcv","$it")
+
         })
 
 

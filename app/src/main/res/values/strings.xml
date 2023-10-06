@@ -38,6 +38,9 @@
     <string name="demo_word_title">複習方法</string>
     <string name="demo_word_start">(點擊開始)</string>
 
+    <!-- collected -->
+    <string name="no_result">沒有搜尋報結果</string>
+
 
     <!-- word list -->
     <string name="wordsNumber">0001</string>
