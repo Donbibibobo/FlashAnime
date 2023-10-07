@@ -22,6 +22,7 @@
     <string name="anime_info_releaseTime">01:05</string>
     <string name="anime_info_episode">全10集</string>
     <string name="anime_word_List_title">本集單字</string>
+    <string name="auto_tracking">自動追蹤</string>
 
     <!--word test-->
     <string name="default_score">0</string>

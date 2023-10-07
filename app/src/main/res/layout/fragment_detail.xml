@@ -109,6 +109,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/wordListDivider"/>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/autoTrack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/white"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/auto_tracking"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:icon="@drawable/locked"
+            app:iconPadding="10dp"
+            app:iconTint="@color/black"
+            android:elevation="3dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/gray_cccccc"
+            app:cornerRadius="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/episode_words"
+            app:layout_constraintBottom_toBottomOf="@+id/episode_words"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/wordList"
             android:layout_width="match_parent"

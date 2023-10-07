@@ -1,6 +1,6 @@
 package com.example.flashanime.detail
 
-import android.net.Uri
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -21,9 +22,6 @@ import com.example.flashanime.NavigationDirections
 import com.example.flashanime.R
 import com.example.flashanime.databinding.FragmentDetailBinding
 import com.example.flashanime.ext.getVmFactory
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.Player
 import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
@@ -64,6 +62,20 @@ class DetailFragment: Fragment() {
         }
 
 
+        var isAutoTrack = true
+        val colorGray = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gray_f0f0f0))
+        val colorWhite = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.autoTrack.setOnClickListener {
+            isAutoTrack = !isAutoTrack
+            if (isAutoTrack) {
+                binding.autoTrack.setIconResource(R.drawable.locked)
+                binding.autoTrack.backgroundTintList = colorWhite
+            } else {
+                binding.autoTrack.setIconResource(R.drawable.unlocked)
+                binding.autoTrack.backgroundTintList = colorGray
+            }
+        }
+
         // change the wordList
         val updateRunnable = object : Runnable {
             override fun run() {
@@ -76,7 +88,9 @@ class DetailFragment: Fragment() {
                         it.highlightWordPosition(matchingWordPosition-1)
                     }
                 }
-                viewModel.scrollToWord(matchingWordPosition, binding.wordList)
+                if (isAutoTrack){
+                    viewModel.scrollToWord(matchingWordPosition, binding.wordList)
+                }
                 updateHandler.postDelayed(this, 500)
             }
         }
