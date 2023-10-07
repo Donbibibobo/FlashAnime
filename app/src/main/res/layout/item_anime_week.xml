@@ -10,7 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/new_secondary">
 
 
         <TextView
@@ -23,7 +24,7 @@
             android:fontFamily="@font/noto_sans"
             android:letterSpacing="0.1"
             android:text="@{weeklyAnime.title}"
-            android:textColor="@color/black"
+            android:textColor="@color/new_text"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/releaseTime"
             app:layout_constraintTop_toTopOf="parent"
@@ -39,7 +40,7 @@
             android:fontFamily="@font/noto_sans"
             android:letterSpacing="0.1"
             android:text="@{weeklyAnime.releaseTime}"
-            android:textColor="@color/gray_999999"
+            android:textColor="@color/new_text"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -54,7 +55,7 @@
             android:fontFamily="@font/noto_sans"
             android:letterSpacing="0.1"
             android:text="@{weeklyAnime.episode}"
-            android:textColor="@color/gray_999999"
+            android:textColor="@color/new_text"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

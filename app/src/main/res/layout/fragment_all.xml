@@ -12,7 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:background="@color/new_bg">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -32,11 +33,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
-            app:backgroundTint="@color/white"
+            app:backgroundTint="@color/new_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:icon="@drawable/soundbar"
+            android:textColor="@color/new_bg"
             android:text="@string/fab_word"/>
 
 
@@ -48,7 +50,7 @@
             android:fontFamily="@font/noto_sans"
             android:letterSpacing="0.1"
             android:text="@string/no_result"
-            android:textColor="@color/black"
+            android:textColor="@color/new_text"
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

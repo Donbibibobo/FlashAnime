@@ -25,11 +25,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.85"
+            android:backgroundTint="@color/new_secondary"
             android:layout_margin="10dp"
             android:layout_width="135dp"
-            android:layout_height="140dp"
-            android:background="?attr/selectableItemBackground"
-            android:foreground="?attr/selectableItemBackground">
+            android:layout_height="140dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint"
@@ -63,7 +62,7 @@
                     android:fontFamily="@font/noto_sans"
                     android:letterSpacing="0.1"
                     android:text="@{playWords.word}"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_text"
                     android:textSize="20sp"
                     tools:text="養う" />
 

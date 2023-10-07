@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable name="viewModel" type="com.example.flashanime.home.HomeViewModel" />
@@ -8,22 +9,25 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/new_bg">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/height_tab_layout"
+            android:background="@color/new_bg"
             app:tabMode="scrollable"
             app:tabIndicatorGravity="stretch"
             app:tabIndicatorAnimationMode="elastic"
-            app:tabSelectedTextColor="@color/black"
             app:tabIndicatorColor="@null"
             app:tabIndicator="@drawable/tab_indicator"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="10dp"
             android:paddingTop="5dp"
-            android:paddingBottom="5dp"/>
+            android:paddingBottom="5dp"
+            tools:layout_width="200dp"/>
         
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager2"

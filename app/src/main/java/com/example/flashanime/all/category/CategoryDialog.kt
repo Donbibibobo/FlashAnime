@@ -70,6 +70,9 @@ class CategoryDialog: AppCompatDialogFragment() {
                 if (chipView.isChecked && binding.chipAll.isChecked) {
                     binding.chipAll.isChecked = false
                 }
+
+                Log.i("seeChip","O: $it")
+                viewModel.categoryIcon(it)
             }
         }
 
@@ -79,6 +82,11 @@ class CategoryDialog: AppCompatDialogFragment() {
                 binding.chipGroup.children.filter { it is Chip && it.id != binding.chipAll.id }
                     .forEach { (it as Chip).isChecked = false }
             }
+            binding.chipAll.isChecked = true
+
+            // set animation
+            Log.i("seeChip","all: $it")
+            viewModel.categoryIcon(it)
         }
 
         binding.buttonSend.setOnClickListener {
@@ -92,6 +100,9 @@ class CategoryDialog: AppCompatDialogFragment() {
 
 
 
+//        binding.chipFantasy.setOnClickListener {
+//            viewModel.categoryIcon(it)
+//        }
 
 
 

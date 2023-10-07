@@ -17,8 +17,7 @@
             app:layout_constraintWidth_percent="0.85"
             android:layout_marginTop="60dp"
             app:cardElevation="8dp"
-            android:background="?attr/selectableItemBackground"
-            android:foreground="?attr/selectableItemBackground"
+            android:backgroundTint="@color/new_secondary"
             app:cardCornerRadius="12dp"
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="true"
@@ -44,18 +43,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>
 
-                <ImageView
-                    android:id="@+id/logo"
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/flash_anime"
-                    android:visibility="visible"
-                    android:background="@color/white"
-                    android:paddingStart="14dp"
-                    android:paddingEnd="14dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+<!--                <ImageView-->
+<!--                    android:id="@+id/logo"-->
+<!--                    android:layout_width="140dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:src="@drawable/flash_anime"-->
+<!--                    android:visibility="visible"-->
+<!--                    android:background="@color/white"-->
+<!--                    android:paddingStart="14dp"-->
+<!--                    android:paddingEnd="14dp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"/>-->
 
 
                 <TextView
@@ -69,7 +68,7 @@
                     android:gravity="center"
                     android:letterSpacing="0.1"
                     android:text=""
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_text"
                     android:textSize="50sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

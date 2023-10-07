@@ -18,11 +18,13 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_toolbar"
-            android:background="@color/blue"
+            android:background="@color/new_bg"
             android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.DETAIL ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
+
 
             <TextView
                 android:id="@+id/text_toolbar_title"
@@ -31,7 +33,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/noto_sans"
                 android:letterSpacing="0.15"
-                android:textColor="@color/white"
+                android:textColor="@color/new_text"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:text="@{viewModel.currentFragmentType.value}"
@@ -47,7 +49,18 @@
                 android:layout_marginStart="25dp"
                 android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.VOCABULARY_DETAIL || viewModel.currentFragmentType == CurrentFragmentType.WORD_TEST || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_COLLECTED || viewModel.currentFragmentType == CurrentFragmentType.WATCH_HISTORY || viewModel.currentFragmentType == CurrentFragmentType.WORDS_COLLECTION ? View.VISIBLE : View.GONE}"/>
 
+
         </androidx.appcompat.widget.Toolbar>
+
+
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="10dp"-->
+<!--            android:background="@drawable/vertical_gradient"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/toolbar"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            android:elevation="1dp"/>-->
 
         <fragment
             android:id="@+id/myNavHostFragment"
@@ -65,7 +78,7 @@
             android:id="@+id/bottomNavView"
             android:layout_width="0dp"
             android:layout_height="@dimen/height_bottom_nav_view_main"
-            android:background="@color/white"
+            android:background="@color/new_bg"
             app:itemIconSize="@dimen/size_bottom_nav_icon"
             app:labelVisibilityMode="labeled"
             android:padding="2dp"

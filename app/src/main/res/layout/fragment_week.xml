@@ -31,7 +31,8 @@
                     android:id="@+id/recyclerView_W1"
                     android:layout_width="250dp"
                     android:layout_height="match_parent"
-                    android:background="@color/gray_f0f0f0"
+                    android:background="@drawable/tab_indicator"
+                    android:backgroundTint="@color/new_secondary"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -44,7 +45,7 @@
                         android:fontFamily="@font/noto_sans"
                         android:letterSpacing="0.1"
                         android:text="@string/week_1"
-                        android:textColor="@color/black"
+                        android:textColor="@color/new_text"
                         android:textSize="25sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
@@ -69,8 +70,8 @@
                     android:id="@+id/recyclerView_W2"
                     android:layout_width="250dp"
                     android:layout_height="match_parent"
-                    android:background="@color/gray_f0f0f0"
-                    app:layout_constraintStart_toEndOf="@+id/recyclerView_W1"
+                    android:background="@drawable/tab_indicator"
+                    android:backgroundTint="@color/new_secondary"                    app:layout_constraintStart_toEndOf="@+id/recyclerView_W1"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginStart="20dp">
 
@@ -83,7 +84,7 @@
                         android:fontFamily="@font/noto_sans"
                         android:letterSpacing="0.1"
                         android:text="@string/week_2"
-                        android:textColor="@color/black"
+                        android:textColor="@color/new_text"
                         android:textSize="25sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
@@ -106,8 +107,8 @@
                     android:id="@+id/recyclerView_W3"
                     android:layout_width="250dp"
                     android:layout_height="match_parent"
-                    android:background="@color/gray_f0f0f0"
-                    app:layout_constraintStart_toEndOf="@+id/recyclerView_W2"
+                    android:background="@drawable/tab_indicator"
+                    android:backgroundTint="@color/new_secondary"                     app:layout_constraintStart_toEndOf="@+id/recyclerView_W2"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginStart="20dp">
 
@@ -120,7 +121,7 @@
                         android:fontFamily="@font/noto_sans"
                         android:letterSpacing="0.1"
                         android:text="@string/week_3"
-                        android:textColor="@color/black"
+                        android:textColor="@color/new_text"
                         android:textSize="25sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
@@ -143,8 +144,8 @@
                     android:id="@+id/recyclerView_W4"
                     android:layout_width="250dp"
                     android:layout_height="match_parent"
-                    android:background="@color/gray_f0f0f0"
-                    app:layout_constraintStart_toEndOf="@+id/recyclerView_W3"
+                    android:background="@drawable/tab_indicator"
+                    android:backgroundTint="@color/new_secondary"                     app:layout_constraintStart_toEndOf="@+id/recyclerView_W3"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginStart="20dp">
 
@@ -157,7 +158,7 @@
                         android:fontFamily="@font/noto_sans"
                         android:letterSpacing="0.1"
                         android:text="@string/week_4"
-                        android:textColor="@color/black"
+                        android:textColor="@color/new_text"
                         android:textSize="25sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
@@ -180,8 +181,8 @@
                     android:id="@+id/recyclerView_W5"
                     android:layout_width="250dp"
                     android:layout_height="match_parent"
-                    android:background="@color/gray_f0f0f0"
-                    app:layout_constraintStart_toEndOf="@+id/recyclerView_W4"
+                    android:background="@drawable/tab_indicator"
+                    android:backgroundTint="@color/new_secondary"                     app:layout_constraintStart_toEndOf="@+id/recyclerView_W4"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginStart="20dp">
 
@@ -194,7 +195,7 @@
                         android:fontFamily="@font/noto_sans"
                         android:letterSpacing="0.1"
                         android:text="@string/week_5"
-                        android:textColor="@color/black"
+                        android:textColor="@color/new_text"
                         android:textSize="25sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
@@ -217,8 +218,8 @@
                     android:id="@+id/recyclerView_W6"
                     android:layout_width="250dp"
                     android:layout_height="match_parent"
-                    android:background="@color/gray_f0f0f0"
-                    app:layout_constraintStart_toEndOf="@+id/recyclerView_W5"
+                    android:background="@drawable/tab_indicator"
+                    android:backgroundTint="@color/new_secondary"                     app:layout_constraintStart_toEndOf="@+id/recyclerView_W5"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginStart="20dp">
 
@@ -231,7 +232,7 @@
                         android:fontFamily="@font/noto_sans"
                         android:letterSpacing="0.1"
                         android:text="@string/week_6"
-                        android:textColor="@color/black"
+                        android:textColor="@color/new_text"
                         android:textSize="25sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
@@ -254,8 +255,8 @@
                     android:id="@+id/recyclerView_W7"
                     android:layout_width="250dp"
                     android:layout_height="match_parent"
-                    android:background="@color/gray_f0f0f0"
-                    app:layout_constraintStart_toEndOf="@+id/recyclerView_W6"
+                    android:background="@drawable/tab_indicator"
+                    android:backgroundTint="@color/new_secondary"                     app:layout_constraintStart_toEndOf="@+id/recyclerView_W6"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginStart="20dp">
 
@@ -268,7 +269,7 @@
                         android:fontFamily="@font/noto_sans"
                         android:letterSpacing="0.1"
                         android:text="@string/week_7"
-                        android:textColor="@color/black"
+                        android:textColor="@color/new_text"
                         android:textSize="25sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>

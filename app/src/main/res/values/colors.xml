@@ -35,6 +35,24 @@
     <color name="unknown">#EA8476</color>
     <color name="known">#D0EB7A</color>
 
+    <!-- new theme -->
+    <color name="new_blue1">#55799E</color>
+    <color name="new_blue2">#68839F</color>
+    <color name="new_blue3">#7D91A6</color>
+    <color name="new_blue4">#959EA8</color>
+    <color name="new_yellow">#CA9B6A</color>
+    <color name="new_light_yellow">#F2E6CF</color>
+    <color name="new_red">#D36274</color>
+
+    <color name="new_bg">#24293E</color>
+    <color name="new_accent">#8EBBFF</color>
+    <color name="new_text">#F4F4FC</color>
+    <color name="new_secondary">#313853</color>
+    <color name="new_topic">#E5AD7D</color>
+
+
+
+
 
 
 </resources>

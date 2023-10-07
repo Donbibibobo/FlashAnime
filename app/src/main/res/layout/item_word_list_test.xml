@@ -11,7 +11,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/new_bg">
 
 
         <TextView
@@ -22,7 +23,7 @@
             android:fontFamily="@font/noto_sans"
             android:letterSpacing="0.1"
             android:text="@{playWord.word}"
-            android:textColor="@color/black"
+            android:textColor="@color/new_text"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/listNumber"
             app:layout_constraintStart_toEndOf="@+id/listNumber"
@@ -39,7 +40,7 @@
             android:fontFamily="@font/noto_sans"
             android:letterSpacing="0.1"
             android:text="@string/wordsNumber"
-            android:textColor="@color/black"
+            android:textColor="@color/new_text"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

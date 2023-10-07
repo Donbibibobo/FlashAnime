@@ -10,7 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/new_bg">
 
 
 
@@ -28,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/gray_646464"
-                android:alpha="0.6"
+                android:alpha="0.5"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -39,16 +40,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/new_secondary"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text="@string/noInstruction"
-                android:textColor="@color/black"
+                android:textColor="@color/new_text"
                 android:textSize="14sp"
                 app:icon="@drawable/checkbox_false"
                 app:iconPadding="10dp"
-                app:iconTint="@color/black"
+                app:iconTint="@color/new_topic"
                 android:elevation="3dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -87,12 +87,11 @@
                 android:layout_height="400dp"
                 app:layout_constraintWidth_percent="0.8"
                 app:cardElevation="8dp"
-                android:background="?attr/selectableItemBackground"
-                android:foreground="?attr/selectableItemBackground"
                 app:cardCornerRadius="12dp"
                 app:cardPreventCornerOverlap="false"
                 app:cardUseCompatPadding="true"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/new_secondary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -115,18 +114,18 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"/>
 
-                    <ImageView
-                        android:id="@+id/logo"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/flash_anime"
-                        android:visibility="visible"
-                        android:background="@color/white"
-                        android:paddingStart="14dp"
-                        android:paddingEnd="14dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+<!--                    <ImageView-->
+<!--                        android:id="@+id/logo"-->
+<!--                        android:layout_width="140dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/flash_anime"-->
+<!--                        android:visibility="visible"-->
+<!--                        android:background="@color/new_bg"-->
+<!--                        android:paddingStart="14dp"-->
+<!--                        android:paddingEnd="14dp"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"/>-->
 
                     <TextView
                         android:id="@+id/demo_word_title"
@@ -139,7 +138,7 @@
                         android:gravity="center"
                         android:letterSpacing="0.1"
                         android:text="@string/demo_word_title"
-                        android:textColor="@color/black"
+                        android:textColor="@color/new_text"
                         android:textSize="35sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -156,7 +155,7 @@
                         android:gravity="center"
                         android:letterSpacing="0.1"
                         android:text="@string/demo_word"
-                        android:textColor="@color/black"
+                        android:textColor="@color/new_text"
                         android:textSize="24sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -174,7 +173,7 @@
                         android:gravity="center"
                         android:letterSpacing="0.1"
                         android:text="@string/demo_word_start"
-                        android:textColor="@color/black"
+                        android:textColor="@color/new_text"
                         android:textSize="25sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -205,6 +204,7 @@
             android:background="@drawable/wordcard_score_left"
             android:gravity="center"
             android:paddingEnd="18dp"
+            android:textColor="@color/new_text"
             android:text="@{viewModel.addScore.toString()}"
             android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -220,6 +220,7 @@
             android:background="@drawable/wordcard_score_right"
             android:gravity="center"
             android:paddingStart="18dp"
+            android:textColor="@color/new_text"
             android:text="@{viewModel.minusScore.toString()}"
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -235,6 +236,7 @@
             android:gravity="center"
             android:text="@{viewModel.numerator.toString()}"
             android:textSize="25sp"
+            android:textColor="@color/new_text"
             app:layout_constraintEnd_toStartOf="@+id/score_divider"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
@@ -252,6 +254,7 @@
             android:gravity="center"
             android:text="@string/default_divider"
             android:textSize="25sp"
+            android:textColor="@color/new_text"
             app:layout_constraintEnd_toStartOf="@+id/score_denominator"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/score_numerator"
@@ -266,6 +269,7 @@
             android:gravity="center"
             android:text="@{viewModel.platWordEpisodeSize}"
             android:textSize="25sp"
+            android:textColor="@color/new_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/score_divider"
             app:layout_constraintTop_toTopOf="parent"
@@ -278,6 +282,7 @@
             android:layout_height="wrap_content"
             android:text="@{@string/percentage_format(viewModel.scorePercent)}"
             android:textSize="25sp"
+            android:textColor="@color/new_text"
             app:layout_constraintTop_toTopOf="@+id/progress_circular"
             app:layout_constraintStart_toStartOf="@+id/progress_circular"
             app:layout_constraintEnd_toEndOf="@+id/progress_circular"
@@ -308,6 +313,7 @@
             android:text="@string/finish_know"
             android:textSize="20sp"
             android:layout_marginStart="30dp"
+            android:textColor="@color/new_text"
             app:layout_constraintTop_toTopOf="@+id/progress_circular"
             app:layout_constraintStart_toEndOf="@+id/progress_circular"
             app:layout_constraintBottom_toTopOf="@+id/finish_unKnow"
@@ -319,6 +325,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_marginEnd="50dp"
+            android:textColor="@color/new_text"
             android:text="@{viewModel.minusScore.toString()}"
             app:layout_constraintTop_toTopOf="@+id/finish_know"
             app:layout_constraintBottom_toBottomOf="@+id/finish_know"
@@ -327,16 +334,17 @@
             tools:text="7"/>
 
         <TextView
-        android:id="@+id/finish_unKnow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/finish_unKnow"
-        android:textSize="20sp"
-        android:layout_marginStart="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/progress_circular"
-        app:layout_constraintStart_toEndOf="@+id/progress_circular"
-        app:layout_constraintTop_toBottomOf="@+id/finish_know"
-        android:visibility="@{viewModel.isTesting ? View.GONE : View.VISIBLE}"/>
+            android:id="@+id/finish_unKnow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/finish_unKnow"
+            android:textSize="20sp"
+            android:layout_marginStart="30dp"
+            android:textColor="@color/new_text"
+            app:layout_constraintBottom_toBottomOf="@+id/progress_circular"
+            app:layout_constraintStart_toEndOf="@+id/progress_circular"
+            app:layout_constraintTop_toBottomOf="@+id/finish_know"
+            android:visibility="@{viewModel.isTesting ? View.GONE : View.VISIBLE}"/>
 
         <TextView
             android:id="@+id/finish_unKnow_num"
@@ -344,6 +352,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_marginEnd="50dp"
+            android:textColor="@color/new_text"
             android:text="@{viewModel.addScore.toString()}"
             app:layout_constraintTop_toTopOf="@+id/finish_unKnow"
             app:layout_constraintBottom_toBottomOf="@+id/finish_unKnow"
@@ -361,6 +370,7 @@
             android:textSize="24sp"
             android:layout_marginTop="30dp"
             android:layout_marginStart="20dp"
+            android:textColor="@color/new_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/lottie"
@@ -388,6 +398,7 @@
             android:textSize="20sp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="20sp"
+            android:textColor="@color/new_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/progress_circular"
             android:visibility="@{viewModel.isTesting ? View.GONE : View.VISIBLE}"/>
@@ -412,31 +423,12 @@
             android:layout_marginTop="20dp"
             android:text="@string/back2words"
             android:textSize="20sp"
-            app:backgroundTint="@color/blue"
+            app:backgroundTint="@color/new_secondary"
             app:cornerRadius="5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/review_recyclerview"
             android:visibility="@{viewModel.isTesting ? View.GONE : View.VISIBLE}"/>
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/button_checkHistory"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="60dp"-->
-<!--            android:layout_marginStart="40dp"-->
-<!--            android:layout_marginEnd="40dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:text="@string/check_words_test_history"-->
-<!--            android:textSize="20sp"-->
-<!--            app:backgroundTint="@color/white"-->
-<!--            android:textColor="@color/black"-->
-<!--            app:strokeColor="@color/blue"-->
-<!--            app:strokeWidth="1dp"-->
-<!--            app:cornerRadius="5dp"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/button_finish"-->
-<!--            android:visibility="@{viewModel.isTesting ? View.GONE : View.VISIBLE}"/>-->
 
 
 

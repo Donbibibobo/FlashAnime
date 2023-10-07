@@ -5,6 +5,11 @@
         <item name="android:windowBackground">@color/translucent_40</item>
     </style>
 
+<!--    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+<!--        <item name="android:windowBackground">@color/black</item>-->
+<!--    </style>-->
+
+
 
     <style name="BlueTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu">
 <!--        <item name="android:textColor">@color/black</item>-->

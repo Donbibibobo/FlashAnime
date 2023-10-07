@@ -10,7 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:background="@color/new_bg">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
