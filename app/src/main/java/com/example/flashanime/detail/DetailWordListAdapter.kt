@@ -1,6 +1,8 @@
 package com.example.flashanime.detail
 
+import android.content.res.ColorStateList
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -42,12 +44,17 @@ class DetailWordListAdapter(private val clickSound: (PlayWords) -> Unit, private
 
     class ViewHolder(private val binding: ItemWordListBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        private var currentBackgroundColor = Color.WHITE
+
         fun bind(playWord: PlayWords, clickSound: (PlayWords) -> Unit, isHighlighted: Boolean,  clickWord: (PlayWords) -> Unit) {
             //---- word list
-            if (isHighlighted) {
+            if (isHighlighted && currentBackgroundColor != Color.GRAY) {
                 binding.constraint.setBackgroundColor(Color.GRAY)
-            } else {
+                currentBackgroundColor = Color.GRAY
+            } else if (!isHighlighted && currentBackgroundColor != Color.WHITE) {
                 binding.root.setBackgroundColor(Color.WHITE)
+                currentBackgroundColor = Color.WHITE
             }
             //---- word list
             binding.voiceButton.setOnClickListener {
