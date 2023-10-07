@@ -46,6 +46,9 @@ class MainViewModel(private val flashAnimeRepository: FlashAnimeRepository): Vie
         bottomNavigation.selectedItemId = R.id.navigation_home
     }
 
+// instruction info
+    var hideInstructionInfo = false
+
 
 
     val db = Firebase.firestore

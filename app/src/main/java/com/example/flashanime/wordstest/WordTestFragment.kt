@@ -7,14 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat.getDrawable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.flashanime.MainViewModel
 import com.example.flashanime.NavigationDirections
+import com.example.flashanime.R
 import com.example.flashanime.data.PlayWords
 import com.example.flashanime.databinding.FragmentWordtestBinding
 import com.example.flashanime.ext.getVmFactory
@@ -96,6 +100,24 @@ class WordTestFragment: Fragment() {
 
         binding.instructions.setOnClickListener {
             it.visibility = View.GONE
+        }
+
+        // instruction Info
+        var isChecked = false
+        val mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
+        binding.noInstruction.setOnClickListener {
+            isChecked = !isChecked
+            if (isChecked) {
+                binding.noInstruction.setIconResource(R.drawable.checkbox_true)
+                mainViewModel.hideInstructionInfo = true
+            } else {
+                binding.noInstruction.setIconResource(R.drawable.checkbox_false)
+                mainViewModel.hideInstructionInfo = false
+            }
+        }
+
+        if (mainViewModel.hideInstructionInfo){
+            binding.instructions.visibility = View.GONE
         }
 
 

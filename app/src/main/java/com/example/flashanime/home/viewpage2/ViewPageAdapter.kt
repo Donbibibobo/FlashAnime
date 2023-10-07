@@ -1,5 +1,6 @@
 package com.example.flashanime.home.viewpage2
 
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -23,7 +24,9 @@ class ViewPageAdapter(
         return when(position) {
             FRAGMENT_SEASON -> SeasonFragment()
             FRAGMENT_WEEK -> WeekFragment()
-            else -> throw IllegalArgumentException("No such fragment exist.")
+            else -> {
+                throw IllegalArgumentException("No such fragment exist.")
+            }
         }
     }
 }

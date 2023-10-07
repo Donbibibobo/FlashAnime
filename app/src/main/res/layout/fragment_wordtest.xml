@@ -24,7 +24,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
 
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -35,7 +34,25 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
-
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/noInstruction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/white"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/noInstruction"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:icon="@drawable/checkbox_false"
+                app:iconPadding="10dp"
+                app:iconTint="@color/black"
+                android:elevation="3dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView"/>
 
             <ImageView
                 android:id="@+id/arrow_right"
@@ -75,7 +92,7 @@
                 app:cardCornerRadius="12dp"
                 app:cardPreventCornerOverlap="false"
                 app:cardUseCompatPadding="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -344,19 +361,20 @@
             android:textSize="24sp"
             android:layout_marginTop="30dp"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/cheer"
+            app:layout_constraintEnd_toStartOf="@+id/lottie"
             android:visibility="@{viewModel.isTesting ? View.GONE : View.VISIBLE}"/>
 
-        <ImageView
-            android:id="@+id/cheer"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/fans"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            app:lottie_autoPlay="true"
+            app:lottie_speed="1"
             android:layout_marginEnd="30dp"
             android:layout_marginTop="20dp"
+            app:lottie_fileName="congratulations.json"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:visibility="@{viewModel.isTesting ? View.GONE : View.VISIBLE}"/>

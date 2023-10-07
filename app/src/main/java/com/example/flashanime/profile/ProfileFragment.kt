@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import com.example.flashanime.MainActivity
 import com.example.flashanime.NavigationDirections
@@ -38,17 +39,28 @@ class ProfileFragment: Fragment() {
 
         // watch history
         binding.watchHistory.setOnClickListener {
-            it.findNavController().navigate(ProfileFragmentDirections.navigateToWatchHistoryFragment())
+            it.findNavController().navigate(ProfileFragmentDirections.navigateToWatchHistoryFragment(),
+                NavOptions.Builder()
+                    .setEnterAnim(R.anim.enter_left_to_right)
+                    .setExitAnim(R.anim.enter_right_to_left)
+                    .build())
         }
 
         // collected anime
         binding.collectedAnime.setOnClickListener {
-            it.findNavController().navigate(ProfileFragmentDirections.navigateToCollectedFragmentFromProfile(true))
+            it.findNavController().navigate(ProfileFragmentDirections.navigateToCollectedFragmentFromProfile(true),NavOptions.Builder()
+                .setEnterAnim(R.anim.enter_left_to_right)
+                .setExitAnim(R.anim.enter_right_to_left)
+                .build())
         }
 
         // words collected
         binding.wordsCollection.setOnClickListener {
-            it.findNavController().navigate(ProfileFragmentDirections.navigateToWordsCollectionFragment())
+            it.findNavController().navigate(ProfileFragmentDirections.navigateToWordsCollectionFragment(),
+                NavOptions.Builder()
+                .setEnterAnim(R.anim.enter_left_to_right)
+                .setExitAnim(R.anim.enter_right_to_left)
+                .build())
         }
 
         // about

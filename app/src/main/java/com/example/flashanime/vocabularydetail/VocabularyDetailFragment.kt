@@ -62,15 +62,23 @@ class VocabularyDetailFragment: Fragment() {
         viewModel.animeInfoArg.observe(viewLifecycleOwner, Observer {
             if (binding.radioGroup.checkedRadioButtonId == R.id.mode_all){
                 binding.animeInfo = it
+
+                Log.i("findList","1: ${it.wordsList[0].playWords}")
                 adapter.submitList(it.wordsList[0].playWords)
             } else {
                 // new list
                 val collectedList =
                     viewModel.animeInfoArg.value!!.wordsList[viewModel.autocompletePosition].playWords
                         .filter { it.isCollected }
-                adapter.submitList(collectedList)
 
-                // new test lsit
+                Log.i("findList","2: $collectedList")
+                if (collectedList.isEmpty()){
+                    binding.radioGroup.check(R.id.mode_all)
+                }else{
+                    adapter.submitList(collectedList)
+                }
+
+                // new test list
                 val currentEpisode = viewModel.animeInfoArg.value!!.wordsList[viewModel.autocompletePosition]
                 val updatedPlayWords = currentEpisode.playWords.filter { it.isCollected }
                 val updatedEpisode = currentEpisode.copy(playWords = updatedPlayWords)
@@ -103,6 +111,7 @@ class VocabularyDetailFragment: Fragment() {
                 viewModel.animeInfoArg.value!!.wordsList[position].playWords[0].level != ""
 
             // set new list
+            Log.i("findList","3: ${viewModel.animeInfoArg.value!!.wordsList[position].playWords}")
             adapter.submitList(viewModel.animeInfoArg.value!!.wordsList[position].playWords)
 
             // set test list
@@ -148,6 +157,7 @@ class VocabularyDetailFragment: Fragment() {
                         binding.radioGroup.check(R.id.mode_all)
                         viewModel.showNoCollectedWordsAlert(requireContext())
                     }else{
+                        Log.i("findList","4: $collectedList")
                         adapter.submitList(collectedList)
 
                         // set test list

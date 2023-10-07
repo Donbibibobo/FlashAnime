@@ -1,5 +1,8 @@
 package com.example.flashanime.home.viewpage2.season
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ObjectAnimator
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -66,7 +69,9 @@ class SeasonListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<Ani
                     "animeId" to animeInfo.animeId,
                 )
                 userInfoCollection.document(animeInfo.animeId).set(userData)
+
             }
+
             binding.heatFill.setOnClickListener {
                 userInfoCollection.document(animeInfo.animeId).delete()
             }

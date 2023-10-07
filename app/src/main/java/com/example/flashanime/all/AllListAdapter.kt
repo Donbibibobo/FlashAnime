@@ -28,7 +28,10 @@ class AllListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<AnimeI
         val animeInfo = getItem(position)
         when(holder){
             is ViewHolder -> holder.bind(animeInfo,click)
-            else -> throw IllegalArgumentException("SeasonListAdapter onBindViewHolder holder unknown.")
+            else -> {
+                Log.i("AllListAdapter", "SeasonListAdapter onBindViewHolder holder unknown.")
+//                throw IllegalArgumentException("SeasonListAdapter onBindViewHolder holder unknown.")
+            }
         }
     }
 
