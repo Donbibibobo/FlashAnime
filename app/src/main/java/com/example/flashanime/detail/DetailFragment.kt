@@ -61,18 +61,20 @@ class DetailFragment: Fragment() {
             it.findNavController().navigateUp()
         }
 
-
+        // auto track color
         var isAutoTrack = true
-        val colorGray = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gray_f0f0f0))
-        val colorWhite = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.white))
+        val colorBg = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.new_bg))
+        val colorWhite = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.new_text))
         binding.autoTrack.setOnClickListener {
             isAutoTrack = !isAutoTrack
             if (isAutoTrack) {
                 binding.autoTrack.setIconResource(R.drawable.locked)
-                binding.autoTrack.backgroundTintList = colorWhite
+                binding.autoTrack.backgroundTintList = colorBg
+                binding.autoTrack.setTextColor(colorWhite)
             } else {
                 binding.autoTrack.setIconResource(R.drawable.unlocked)
-                binding.autoTrack.backgroundTintList = colorGray
+                binding.autoTrack.backgroundTintList = colorWhite
+                binding.autoTrack.setTextColor(colorBg)
             }
         }
 
@@ -144,6 +146,7 @@ class DetailFragment: Fragment() {
                 if (it.level != ""){
                     val desiredTimeInSeconds = viewModel.timeToMillis(it.time) / 1000f
                     youTubePlayerDetailFragment?.seekTo(desiredTimeInSeconds)
+                    Log.i("soundbuttob","$desiredTimeInSeconds")
                 }
             },{
             // click to get word info through JLPt API
@@ -151,7 +154,8 @@ class DetailFragment: Fragment() {
                 if (it.level != ""){
                     viewModel.getWordInfo(it.word)
                 }
-            })
+            },
+            requireContext())
         binding.wordList.adapter = adapterWordList
 
 

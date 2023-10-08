@@ -65,7 +65,15 @@ class ProfileFragment: Fragment() {
 
         // about
         binding.about.setOnClickListener {
+            binding.dialogBackground.visibility = View.VISIBLE
             viewModel.showAbout(requireContext())
+        }
+
+        viewModel.leaveDialog.observe(viewLifecycleOwner){
+            it?.let {
+                binding.dialogBackground.visibility = View.GONE
+                viewModel.leaveDialogComplete()
+            }
         }
 
         // logout

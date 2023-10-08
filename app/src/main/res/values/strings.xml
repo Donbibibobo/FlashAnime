@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">FlashAnime</string>
+    <string name="app_about">透過看動畫來學習單字，希望大家可以在娛樂中學習，在學習中成長！</string>
+    <string name="confirm">確認</string>
 
     <string name="first_home">首頁</string>
     <string name="first_all">所有動畫</string>

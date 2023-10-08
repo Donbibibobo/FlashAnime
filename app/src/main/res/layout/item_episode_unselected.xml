@@ -20,13 +20,14 @@
             android:layout_width="@dimen/episode_item"
             android:layout_height="@dimen/episode_item"
             android:background="@drawable/tab_indicator"
-            android:backgroundTint="@color/gray_f0f0f0"
+            android:backgroundTint="@color/new_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:text="@{episode}"
             android:textSize="20sp"
             android:gravity="center"
+            android:textColor="@color/new_bg"
             tools:text="1"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

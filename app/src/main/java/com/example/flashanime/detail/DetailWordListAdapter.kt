@@ -1,17 +1,22 @@
 package com.example.flashanime.detail
 
+import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flashanime.R
 import com.example.flashanime.data.PlayWords
 import com.example.flashanime.databinding.ItemWordListBinding
 
-class DetailWordListAdapter(private val clickSound: (PlayWords) -> Unit, private val clickWord: (PlayWords) -> Unit): ListAdapter<PlayWords, RecyclerView.ViewHolder>(DetailProductDiffCallback()) {
+class DetailWordListAdapter(private val clickSound: (PlayWords) -> Unit,
+                            private val clickWord: (PlayWords) -> Unit,
+                            private val context: Context): ListAdapter<PlayWords, RecyclerView.ViewHolder>(DetailProductDiffCallback()) {
     //----
     private var currentPlayingWordPosition: Int? = null
     fun highlightWordPosition(position: Int) {
@@ -27,7 +32,7 @@ class DetailWordListAdapter(private val clickSound: (PlayWords) -> Unit, private
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),context
         )
     }
 
@@ -42,19 +47,23 @@ class DetailWordListAdapter(private val clickSound: (PlayWords) -> Unit, private
         }
     }
 
-    class ViewHolder(private val binding: ItemWordListBinding) :
+    class ViewHolder(private val binding: ItemWordListBinding, context: Context) :
         RecyclerView.ViewHolder(binding.root) {
 
-        private var currentBackgroundColor = Color.WHITE
+        private val colorBg = ContextCompat.getColor(context, R.color.new_bg)
+        private val colorSecondary = ContextCompat.getColor(context, R.color.new_secondary)
 
-        fun bind(playWord: PlayWords, clickSound: (PlayWords) -> Unit, isHighlighted: Boolean,  clickWord: (PlayWords) -> Unit) {
+        private var currentBackgroundColor = colorBg
+
+        fun bind(playWord: PlayWords, clickSound: (PlayWords) -> Unit,
+                 isHighlighted: Boolean,  clickWord: (PlayWords) -> Unit) {
             //---- word list
-            if (isHighlighted && currentBackgroundColor != Color.GRAY) {
-                binding.constraint.setBackgroundColor(Color.GRAY)
-                currentBackgroundColor = Color.GRAY
-            } else if (!isHighlighted && currentBackgroundColor != Color.WHITE) {
-                binding.root.setBackgroundColor(Color.WHITE)
-                currentBackgroundColor = Color.WHITE
+            if (isHighlighted && currentBackgroundColor != colorSecondary) {
+                binding.constraint.setBackgroundColor(colorSecondary)
+                currentBackgroundColor = colorSecondary
+            } else if (!isHighlighted && currentBackgroundColor != colorBg) {
+                binding.root.setBackgroundColor(colorBg)
+                currentBackgroundColor = colorBg
             }
             //---- word list
             binding.voiceButton.setOnClickListener {
