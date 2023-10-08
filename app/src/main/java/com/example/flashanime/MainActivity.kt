@@ -7,8 +7,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.BounceInterpolator
+import android.view.animation.TranslateAnimation
 import android.widget.ImageView
 import androidx.activity.viewModels
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -21,6 +23,7 @@ import com.example.flashanime.ext.getVmFactory
 import com.example.flashanime.util.CurrentFragmentType
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -59,8 +62,9 @@ class MainActivity : AppCompatActivity() {
 
         setupNavController()
         setupBottomNav()
-    }
 
+
+    }
 
 
     private fun setupBottomNav() {
