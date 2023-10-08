@@ -4,17 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashActivity">
+    tools:context=".SplashActivity"
+    android:background="@color/new_bg">
 
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        app:layout_constraintStart_toStartOf="parent"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_splash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_autoPlay="true"
+        app:lottie_speed="1"
+        app:lottie_fileName="FlashAnime_splash.json"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:src="@mipmap/ic_launcher_flash_anime"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

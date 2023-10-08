@@ -11,7 +11,7 @@
 
     <style name="SplashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/new_bg</item>
-        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorPrimaryDark">@color/new_bg</item>
         <item name="colorAccent">@color/collected_heart_fill</item>
     </style>
 
