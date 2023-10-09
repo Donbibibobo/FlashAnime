@@ -17,7 +17,9 @@ import com.example.flashanime.MainActivity
 import com.example.flashanime.NavigationDirections
 import com.example.flashanime.R
 import com.example.flashanime.data.PlayWordEpisode
+import com.example.flashanime.data.PlayWordEpisodePlusAnimeInfo
 import com.example.flashanime.data.PlayWords
+import com.example.flashanime.data.WordsCollection
 import com.example.flashanime.databinding.FragmentVocavularyDetailBinding
 import com.example.flashanime.detail.DetailFragmentArgs
 import com.example.flashanime.ext.getVmFactory
@@ -43,6 +45,9 @@ class VocabularyDetailFragment: Fragment() {
         // ListAdapter
         val adapter = VocabularyDetailListAdapter{
             viewModel.getWordInfoVocabulary(it.word)
+
+            // this is for words collection
+            viewModel.playWords.value = it
         }
         binding.recyclerView.adapter = adapter
 
@@ -50,7 +55,21 @@ class VocabularyDetailFragment: Fragment() {
         // show word info from word API
         viewModel.wordInfoSelected.observe(viewLifecycleOwner, Observer {
             it?.let {
-                findNavController().navigate(NavigationDirections.navigateToWordDialog(it))
+                val episodeNum = viewModel.animeInfoArg.value!!.wordsList[viewModel.autocompletePosition].episodeNum
+                val wordsCollection = WordsCollection(
+                    viewModel.animeInfoArg.value!!.animeId,
+                    viewModel.playWords.value!!.time,
+                    viewModel.animeInfoArg.value!!.title,
+                    viewModel.animeInfoArg.value!!.pictureURL,
+                    episodeNum,
+                    it.word,
+                    false,
+                    false,
+                    it.meaning,
+                    it.furigana,
+                    it.romaji,
+                    viewModel.animeInfoArg.value!!.videosId[episodeNum.toInt()-1])
+                findNavController().navigate(NavigationDirections.navigateToWordDialog(wordsCollection))
             }
         })
 
@@ -121,8 +140,13 @@ class VocabularyDetailFragment: Fragment() {
 
         binding.testButton.setOnClickListener {
             viewModel.hasCollectedWords = false
-            it.findNavController().navigate(NavigationDirections.navigateToWordTestFragment(testList!!))
-//            viewModel.removeListenerRegistration()
+            Log.i("testListFinal","list: $testList")
+            Log.i("testListFinal","animeInfo: ${viewModel.animeInfoArg.value!!.animeId}")
+
+            val playWordEpisodePlusAnimeInfo = PlayWordEpisodePlusAnimeInfo(testList!!,viewModel.animeInfoArg.value!!)
+
+            it.findNavController().navigate(NavigationDirections.navigateToWordTestFragment(playWordEpisodePlusAnimeInfo))
+//            it.findNavController().navigate(NavigationDirections.navigateToWordTestFragment(testList!!))
         }
 
         // default first page check if have words

@@ -11,12 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.flashanime.R
 import com.example.flashanime.UserManager
 import com.example.flashanime.data.PlayWords
+import com.example.flashanime.data.WordsCollection
 import com.example.flashanime.databinding.ItemWordTestReviewBinding
 import com.example.flashanime.databinding.ItemWordcardBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class WordReviewListAdapter(private val clickWord: (PlayWords) -> Unit): ListAdapter<PlayWords, RecyclerView.ViewHolder>(DetailProductDiffCallback()) {
+class WordReviewListAdapter(private val clickWord: (WordsCollection) -> Unit): ListAdapter<WordsCollection, RecyclerView.ViewHolder>(DetailProductDiffCallback()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -41,7 +42,7 @@ class WordReviewListAdapter(private val clickWord: (PlayWords) -> Unit): ListAda
 
     class ViewHolder(private val binding: ItemWordTestReviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(playWord: PlayWords, clickWord: (PlayWords) -> Unit, position: Int) {
+        fun bind(playWord: WordsCollection, clickWord: (WordsCollection) -> Unit, position: Int) {
 
             val db = Firebase.firestore
             val userCollectedWordsList =
@@ -77,10 +78,16 @@ class WordReviewListAdapter(private val clickWord: (PlayWords) -> Unit): ListAda
                 binding.collectdUnSave.visibility = View.GONE
 
                 val collectedWords = mapOf(
+                    "videoId" to playWord.videoId,
+                    "wordsTime" to playWord.wordsTime,
+                    "videoTitle" to playWord.videoTitle,
+                    "image" to playWord.image,
+                    "episodeNum" to playWord.episodeNum,
                     "word" to playWord.word,
-                    "level" to playWord.level,
-                    "isCollected" to true
+                    "isCollected" to true,
+                    "episodeId" to playWord.episodeId
                 )
+
                 userCollectedWordsList.set(collectedWords)
                     .addOnSuccessListener { documentReference ->
                         Log.d("AddFirebase+", "DocumentSnapshot written with ID: $documentReference")
@@ -92,7 +99,7 @@ class WordReviewListAdapter(private val clickWord: (PlayWords) -> Unit): ListAda
 
 
             // change ui with correct or incorrect
-            if (playWord.time == "0"){
+            if (!playWord.forReview){
                 binding.border.setImageResource(R.drawable.wordcard_border_small_incorrect)
                 binding.cardView.cardElevation = 1f
             }
@@ -102,12 +109,12 @@ class WordReviewListAdapter(private val clickWord: (PlayWords) -> Unit): ListAda
 
 }
 
-private class DetailProductDiffCallback() : DiffUtil.ItemCallback<PlayWords>() {
-    override fun areItemsTheSame(oldItem: PlayWords, newItem: PlayWords): Boolean {
+private class DetailProductDiffCallback() : DiffUtil.ItemCallback<WordsCollection>() {
+    override fun areItemsTheSame(oldItem: WordsCollection, newItem: WordsCollection): Boolean {
         return oldItem.word == newItem.word
     }
 
-    override fun areContentsTheSame(oldItem: PlayWords, newItem: PlayWords): Boolean {
+    override fun areContentsTheSame(oldItem: WordsCollection, newItem: WordsCollection): Boolean {
         return oldItem == newItem
     }
 }

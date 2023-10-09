@@ -20,6 +20,7 @@ import com.example.flashanime.MainViewModel
 import com.example.flashanime.NavigationDirections
 import com.example.flashanime.R
 import com.example.flashanime.data.PlayWords
+import com.example.flashanime.data.WordsCollection
 import com.example.flashanime.databinding.FragmentWordtestBinding
 import com.example.flashanime.ext.getVmFactory
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
@@ -52,12 +53,13 @@ class WordTestFragment: Fragment() {
             LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
 
         viewModel.reviewList.observe(viewLifecycleOwner){
+
             wordReviewListAdapter.submitList(it)
         }
 
 
         viewModel.platWordEpisode.observe(viewLifecycleOwner, Observer {
-            val takeTen = it.playWords.shuffled().take(10)
+            val takeTen = it.playWordEpisode.playWords.shuffled().take(10)
             init(takeTen)
             binding.cardStackView.layoutManager = manager
             binding.cardStackView.itemAnimator = DefaultItemAnimator()
@@ -94,7 +96,26 @@ class WordTestFragment: Fragment() {
 
 
         viewModel.wordInfoSelected.observe(viewLifecycleOwner){
-            findNavController().navigate(NavigationDirections.navigateToWordDialog(it))
+            val targetWord = it.word
+            val foundTime = viewModel.platWordEpisode.value!!.playWordEpisode.playWords.firstOrNull {
+                it.word == targetWord }?.time
+
+            val episodeNum = viewModel.platWordEpisode.value!!.playWordEpisode.episodeNum
+            val wordsCollection = WordsCollection(
+                viewModel.platWordEpisode.value!!.animeInfo.animeId,
+                foundTime!!,
+                viewModel.platWordEpisode.value!!.animeInfo.title,
+                viewModel.platWordEpisode.value!!.animeInfo.pictureURL,
+                episodeNum,
+                it.word,
+                false,
+                false,
+                it.meaning,
+                it.furigana,
+                it.romaji,
+                viewModel.platWordEpisode.value!!.animeInfo.videosId[episodeNum.toInt()-1])
+
+            findNavController().navigate(NavigationDirections.navigateToWordDialog(wordsCollection))
         }
 
 
@@ -126,7 +147,7 @@ class WordTestFragment: Fragment() {
     }
 
     private fun init(playWords: List<PlayWords>) {
-        val reviewWordsList = mutableListOf<PlayWords>()
+        val reviewWordsList = mutableListOf<WordsCollection>()
 
         manager = CardStackLayoutManager(requireContext(), object : CardStackListener{
             override fun onCardDragging(direction: Direction?, ratio: Float) {
@@ -139,16 +160,46 @@ class WordTestFragment: Fragment() {
                         viewModel.addScore.value = viewModel.addScore.value?.plus(1)
                         viewModel.numerator.value = viewModel.numerator.value?.plus(1)
 
-                        val currentWord = playWords[manager.topPosition - 1].copy(time = "0")
-                        reviewWordsList.add(currentWord)
+                        val targetWord = playWords[manager.topPosition - 1]
+                        val episodeNum = viewModel.platWordEpisode.value!!.playWordEpisode.episodeNum
+                        val wordsCollection = WordsCollection(
+                            viewModel.platWordEpisode.value!!.animeInfo.animeId,
+                            targetWord.time,
+                            viewModel.platWordEpisode.value!!.animeInfo.title,
+                            viewModel.platWordEpisode.value!!.animeInfo.pictureURL,
+                            episodeNum,
+                            targetWord.word,
+                            targetWord.isCollected,
+                            false,
+                            "",
+                            "",
+                            "",
+                            viewModel.platWordEpisode.value!!.animeInfo.videosId[episodeNum.toInt()-1])
+
+                        reviewWordsList.add(wordsCollection)
 
                     }
                     Direction.Right -> {
                         viewModel.minusScore.value = viewModel.minusScore.value?.plus(1)
                         viewModel.numerator.value = viewModel.numerator.value?.plus(1)
 
-                        val currentWord = playWords[manager.topPosition - 1].copy(time = "1")
-                        reviewWordsList.add(currentWord)
+                        val targetWord = playWords[manager.topPosition - 1]
+                        val episodeNum = viewModel.platWordEpisode.value!!.playWordEpisode.episodeNum
+                        val wordsCollection = WordsCollection(
+                            viewModel.platWordEpisode.value!!.animeInfo.animeId,
+                            targetWord.time,
+                            viewModel.platWordEpisode.value!!.animeInfo.title,
+                            viewModel.platWordEpisode.value!!.animeInfo.pictureURL,
+                            episodeNum,
+                            targetWord.word,
+                            targetWord.isCollected,
+                            true,
+                            "",
+                            "",
+                            "",
+                            viewModel.platWordEpisode.value!!.animeInfo.videosId[episodeNum.toInt()-1])
+
+                        reviewWordsList.add(wordsCollection)
 
                     }
 //                    Direction.Top -> Toast.makeText(requireContext(), "Swiped to Top", Toast.LENGTH_SHORT).show()

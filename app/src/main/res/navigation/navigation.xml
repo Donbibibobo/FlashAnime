@@ -63,7 +63,7 @@
         tools:layout="@layout/fragment_wordtest">
 
         <argument android:name="wordTestInfoKey"
-            app:argType="com.example.flashanime.data.PlayWordEpisode"
+            app:argType="com.example.flashanime.data.PlayWordEpisodePlusAnimeInfo"
             app:nullable="false"/>
     </fragment>
 
@@ -86,7 +86,7 @@
         tools:layout="@layout/dialog_word">
 
         <argument android:name="wordInfoKey"
-            app:argType="com.example.flashanime.data.JLPTWordInfo"
+            app:argType="com.example.flashanime.data.WordsCollection"
             app:nullable="false"/>
     </dialog>
 

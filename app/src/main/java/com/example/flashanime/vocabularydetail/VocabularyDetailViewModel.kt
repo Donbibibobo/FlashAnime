@@ -11,6 +11,7 @@ import com.example.flashanime.R
 import com.example.flashanime.UserManager
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.JLPTWordInfo
+import com.example.flashanime.data.PlayWords
 import com.example.flashanime.data.source.FlashAnimeRepository
 import com.example.flashanime.util.Util.getString
 import com.google.firebase.firestore.ListenerRegistration
@@ -61,6 +62,12 @@ class VocabularyDetailViewModel(
         get() = _collectedWordsList
 
     private val collectedList = mutableListOf<String>()
+
+
+    // this is for words collection
+    val playWords = MutableLiveData<PlayWords>()
+
+
 
     init {
         snapShotCollectedList()

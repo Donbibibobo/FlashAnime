@@ -9,6 +9,7 @@ import com.example.flashanime.UserManager
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.JLPTWordInfo
 import com.example.flashanime.data.PlayWords
+import com.example.flashanime.data.WordsCollection
 import com.example.flashanime.data.source.FlashAnimeRepository
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -17,8 +18,8 @@ import kotlinx.coroutines.launch
 class WordsCollectionViewModel(private val flashAnimeRepository: FlashAnimeRepository) : ViewModel()  {
 
 
-    private val _wordsCollectionList = MutableLiveData<List<PlayWords>>()
-    val wordsCollectionList: LiveData<List<PlayWords>>
+    private val _wordsCollectionList = MutableLiveData<List<WordsCollection>>()
+    val wordsCollectionList: LiveData<List<WordsCollection>>
         get() = _wordsCollectionList
 
 
@@ -39,10 +40,10 @@ class WordsCollectionViewModel(private val flashAnimeRepository: FlashAnimeRepos
 
         wordsCollection.get()
             .addOnSuccessListener { value ->
-                val playWordsList = mutableListOf<PlayWords>()
+                val playWordsList = mutableListOf<WordsCollection>()
 
                 for (document in value){
-                    val playWords = document.toObject(PlayWords::class.java)
+                    val playWords = document.toObject(WordsCollection::class.java)
                     playWordsList.add(playWords.copy(isCollected = true))
                     Log.i("getWordsCollectionList", "playWords: $playWords")
                 }

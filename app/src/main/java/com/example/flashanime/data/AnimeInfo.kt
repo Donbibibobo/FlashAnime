@@ -52,3 +52,33 @@ data class PlayWords(
     val isCollected: Boolean = false
 ) : Parcelable
 
+
+// this is for words collection
+@Parcelize
+data class WordsCollection(
+    val videoId: String = "",
+    val wordsTime: String = "",
+    val videoTitle: String = "",
+    val image: String = "",
+    val episodeNum: String = "",
+    val word: String = "",
+    val isCollected: Boolean = false,
+    val forReview: Boolean = false,
+
+    // for word dialog
+    val meaning: String = "",
+    val furigana: String = "",
+    val romaji: String = "",
+
+    // episode id
+    val episodeId: String = ""
+) : Parcelable
+
+
+
+
+@Parcelize
+data class PlayWordEpisodePlusAnimeInfo(
+    val playWordEpisode: PlayWordEpisode,
+    var animeInfo: AnimeInfo
+) : Parcelable

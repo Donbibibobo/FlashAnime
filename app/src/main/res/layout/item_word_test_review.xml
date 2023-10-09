@@ -6,7 +6,7 @@
     <data>
         <variable
             name="playWords"
-            type="com.example.flashanime.data.PlayWords" />
+            type="com.example.flashanime.data.WordsCollection" />
         <import type="android.view.View"/>
     </data>
 
@@ -68,9 +68,9 @@
 
                 <ImageView
                     android:id="@+id/collectdSave"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_margin="12dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="16dp"
                     android:src="@drawable/collected_save"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -78,9 +78,9 @@
 
                 <ImageView
                     android:id="@+id/collectdUnSave"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_margin="12dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="16dp"
                     android:src="@drawable/collected_usave"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

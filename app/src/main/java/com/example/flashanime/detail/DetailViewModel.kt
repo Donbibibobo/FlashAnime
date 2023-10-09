@@ -11,6 +11,7 @@ import com.example.flashanime.UserManager
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.Episode
 import com.example.flashanime.data.JLPTWordInfo
+import com.example.flashanime.data.PlayWords
 import com.example.flashanime.data.source.FlashAnimeRepository
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
@@ -53,6 +54,8 @@ class DetailViewModel(
     val wordInfoSelected: LiveData<JLPTWordInfo>
         get() = _wordInfoSelected
 
+    // this is for words collection
+    val playWords = MutableLiveData<PlayWords>()
 
 
 

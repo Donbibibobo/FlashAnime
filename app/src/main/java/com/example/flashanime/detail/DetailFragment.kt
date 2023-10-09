@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flashanime.NavigationDirections
 import com.example.flashanime.R
+import com.example.flashanime.data.WordsCollection
 import com.example.flashanime.databinding.FragmentDetailBinding
 import com.example.flashanime.ext.getVmFactory
 import com.google.android.flexbox.AlignItems
@@ -153,6 +154,9 @@ class DetailFragment: Fragment() {
                 // if doesn't have words List
                 if (it.level != ""){
                     viewModel.getWordInfo(it.word)
+
+                    // this is for words collection
+                    viewModel.playWords.value = it
                 }
             },
             requireContext())
@@ -189,7 +193,23 @@ class DetailFragment: Fragment() {
 
         // show word info from word API
         viewModel.wordInfoSelected.observe(viewLifecycleOwner, Observer {
-            findNavController().navigate(NavigationDirections.navigateToWordDialog(it))
+            val episodeNum = viewModel.animeInfoArg.value!!.wordsList[viewModel.episodeExo].episodeNum
+            // this is for words collection
+            val wordsCollection = WordsCollection(
+                viewModel.animeInfoArg.value!!.animeId,
+                viewModel.playWords.value!!.time,
+                viewModel.animeInfoArg.value!!.title,
+                viewModel.animeInfoArg.value!!.pictureURL,
+                episodeNum,
+                it.word,
+                false,
+                false,
+                it.meaning,
+                it.furigana,
+                it.romaji,
+                viewModel.animeInfoArg.value!!.videosId[episodeNum.toInt()-1]
+                )
+            findNavController().navigate(NavigationDirections.navigateToWordDialog(wordsCollection))
         })
 
 
@@ -198,10 +218,6 @@ class DetailFragment: Fragment() {
             viewModel.setUserWatchHistoryList(it.animeId)
         })
 
-
-        // file picker
-//        val dialogProperties: DialogProperties
-//        val filePickerDialog: FilePickerDialog
 
         return binding.root
     }

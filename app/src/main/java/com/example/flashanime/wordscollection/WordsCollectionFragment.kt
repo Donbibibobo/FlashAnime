@@ -29,16 +29,19 @@ class WordsCollectionFragment: Fragment() {
 
         val adapter = WordsCollectionListAdapter{
             viewModel.getWordInfoWordsCollection(it.word)
+            Log.i("newNew","newNew")
         }
         binding.recyclerView.adapter = adapter
 
 
         viewModel.wordsCollectionList.observe(viewLifecycleOwner){
+
             adapter.submitList(it)
         }
 
         viewModel.wordInfoSelected.observe(viewLifecycleOwner){
-            findNavController().navigate(NavigationDirections.navigateToWordDialog(it))
+
+//            findNavController().navigate(NavigationDirections.navigateToWordDialog(it))
         }
 
 

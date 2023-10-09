@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.flashanime.UserManager
 import com.example.flashanime.data.JLPTWordInfo
+import com.example.flashanime.data.WordsCollection
 import com.example.flashanime.data.source.FlashAnimeRepository
 import com.example.flashanime.util.CurrentFragmentType
 import com.google.firebase.firestore.ListenerRegistration
@@ -16,7 +17,7 @@ private const val TAG = "WordViewModel"
 
 class WordViewModel(
     private val flashAnimeRepository: FlashAnimeRepository,
-    private val wordInfo: JLPTWordInfo
+    private val wordInfo: WordsCollection
 ) : ViewModel() {
 
     val db = Firebase.firestore
@@ -24,12 +25,12 @@ class WordViewModel(
 
 
     // arguments from detail word
-    val wordInfoArg = MutableLiveData<JLPTWordInfo>().apply {
+    val wordInfoArg = MutableLiveData<WordsCollection>().apply {
         value = wordInfo
     }
 
 
-    val wordInfoArgForUi = MutableLiveData<JLPTWordInfo>()
+    val wordInfoArgForUi = MutableLiveData<WordsCollection>()
 
 
     // handle leave dialog
@@ -69,9 +70,14 @@ class WordViewModel(
 
 
         val collectedWords = mapOf(
+            "videoId" to wordInfoArg.value!!.videoId,
+            "wordsTime" to wordInfoArg.value!!.wordsTime,
+            "videoTitle" to wordInfoArg.value!!.videoTitle,
+            "image" to wordInfoArg.value!!.image,
+            "episodeNum" to wordInfoArg.value!!.episodeNum,
             "word" to wordInfoArg.value!!.word,
-            "level" to "N${wordInfoArg.value!!.level}",
-            "isCollected" to true
+            "isCollected" to true,
+            "episodeId" to wordInfoArg.value!!.episodeId
         )
 
         userCollectedWordsList.set(collectedWords)

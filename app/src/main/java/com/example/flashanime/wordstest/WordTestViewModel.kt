@@ -9,24 +9,27 @@ import com.example.flashanime.R
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.JLPTWordInfo
 import com.example.flashanime.data.PlayWordEpisode
+import com.example.flashanime.data.PlayWordEpisodePlusAnimeInfo
 import com.example.flashanime.data.PlayWords
+import com.example.flashanime.data.WordsCollection
 import com.example.flashanime.data.source.FlashAnimeRepository
 import com.example.flashanime.util.Util
 import kotlinx.coroutines.launch
 
 class WordTestViewModel(
     private val flashAnimeRepository: FlashAnimeRepository,
-    private val animeInfoArg: PlayWordEpisode
+    private val playWordEpisodePlusAnimeInfo: PlayWordEpisodePlusAnimeInfo,
+//    private val animeInfoArg: PlayWordEpisode
 ): ViewModel() {
 
     // review list
-    val reviewList = MutableLiveData<List<PlayWords>>()
+    val reviewList = MutableLiveData<List<WordsCollection>>()
 
     // Detail has product data from arguments
-    private val _platWordEpisode = MutableLiveData<PlayWordEpisode>().apply {
-        value = animeInfoArg
+    private val _platWordEpisode = MutableLiveData<PlayWordEpisodePlusAnimeInfo>().apply {
+        value = playWordEpisodePlusAnimeInfo
     }
-    val platWordEpisode: LiveData<PlayWordEpisode>
+    val platWordEpisode: LiveData<PlayWordEpisodePlusAnimeInfo>
         get() = _platWordEpisode
 
     // isTesting

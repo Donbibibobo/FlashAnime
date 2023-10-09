@@ -6,7 +6,7 @@
     <data>
         <variable
             name="playWords"
-            type="com.example.flashanime.data.PlayWords" />
+            type="com.example.flashanime.data.WordsCollection" />
         <import type="android.view.View"/>
     </data>
 
@@ -52,9 +52,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -67,9 +67,9 @@
 
                 <ImageView
                     android:id="@+id/collectdSave"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_margin="12dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="20dp"
                     android:src="@drawable/collected_save"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -77,14 +77,28 @@
 
                 <ImageView
                     android:id="@+id/collectdUnSave"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_margin="12dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="20dp"
                     android:src="@drawable/collected_usave"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:visibility="@{playWords.collected ? View.GONE : View.VISIBLE}"/>
 
+
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/svg_flashanime_2"
+                    android:visibility="visible"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:alpha="0.05"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
