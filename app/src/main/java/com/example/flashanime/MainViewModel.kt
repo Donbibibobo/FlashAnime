@@ -127,8 +127,9 @@ class MainViewModel(private val flashAnimeRepository: FlashAnimeRepository): Vie
         val combined = animeListToCombine.map { animeInfo ->
             animeInfo.copy(isCollected = favoriteListToCombine.contains(animeInfo.animeId))
         }
-        TemporaryFile.TempoAnimeInfo = combined // Temporary
+//        TemporaryFile.TempoAnimeInfo = combined // Temporary
 
+//        combined.sortedBy { it.animeId }
         viewModelScope.launch {
 
             combined.forEach {

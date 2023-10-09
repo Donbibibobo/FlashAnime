@@ -33,17 +33,20 @@ class SeasonFragment: Fragment() {
 
 
 
-        viewModel.combinedList.observe(viewLifecycleOwner) {
-            Log.i("animeListToCombine", "combinedList: $it")
-            adapter.submitList(it)
+        viewModel.combinedList.observe(viewLifecycleOwner) {animeInfo ->
+            val sortedList = animeInfo.sortedBy { it.animeId }
+            Log.i("animeListToCombine99", "combinedList: $animeInfo")
+            adapter.submitList(sortedList)
         }
 
 
 //        viewModel.removeId(requireContext())
 
-
+        Log.i("testtest","gogo")
 
         return binding.root
     }
+
+
 
 }

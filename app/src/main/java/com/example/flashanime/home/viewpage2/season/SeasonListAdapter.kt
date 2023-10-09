@@ -69,7 +69,6 @@ class SeasonListAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<Ani
                     "animeId" to animeInfo.animeId,
                 )
                 userInfoCollection.document(animeInfo.animeId).set(userData)
-
             }
 
             binding.heatFill.setOnClickListener {
@@ -92,6 +91,6 @@ private class SeasonProductDiffCallback() : DiffUtil.ItemCallback<AnimeInfo>() {
     }
 
     override fun areContentsTheSame(oldItem: AnimeInfo, newItem: AnimeInfo): Boolean {
-        return oldItem == newItem
+        return newItem == oldItem
     }
 }
