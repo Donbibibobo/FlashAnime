@@ -34,4 +34,18 @@ class WordsCollectionDialogViewModel (
     fun onLeaveCompleted() {
         _leave.value = null
     }
+
+
+    fun timeToSeconds(time: String): Float {
+        val timeParts = time.split(":", ".")
+
+        val hours = timeParts[0].toInt()
+        val minutes = timeParts[1].toInt()
+        val seconds = timeParts[2].toInt()
+        val milliseconds = timeParts[3].toInt()
+
+        return (hours * 3600 + minutes * 60 + seconds + milliseconds / 100.0).toFloat()
+    }
+
+
 }

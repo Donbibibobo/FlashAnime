@@ -35,16 +35,28 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent">
 
+            <ImageView
+                android:id="@+id/dismiss"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/close"
+                android:layout_margin="25dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
             <TextView
                 android:id="@+id/episode_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_sans"
+                android:fontFamily="@font/noto_sans_bold"
                 android:letterSpacing="0.1"
                 android:text="@{viewModel.wordsCollection.videoTitle}"
                 android:textColor="@color/new_text"
                 android:textSize="25sp"
-                android:layout_margin="20dp"
+                android:gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginEnd="60dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +66,7 @@
                 android:id="@+id/episode_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_sans"
+                android:fontFamily="@font/noto_sans_bold"
                 android:letterSpacing="0.1"
                 android:text="@{@string/episodeCountInt(viewModel.wordsCollection.episodeNum)}"
                 android:textColor="@color/new_text"
@@ -64,6 +76,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="第2集"/>
 
+                <View
+                    android:id="@+id/transparent_overlay"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:elevation="2dp"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintTop_toTopOf="@+id/video"
+                    app:layout_constraintStart_toStartOf="@+id/video"
+                    app:layout_constraintEnd_toEndOf="@+id/video"
+                    app:layout_constraintBottom_toBottomOf="@+id/video"
+                    android:clickable="true"
+                    android:focusable="true" />
 
 
             <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
@@ -90,7 +114,7 @@
                     android:textColor="@color/new_text"
                     android:textSize="25sp"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="120dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/video"
@@ -156,27 +180,7 @@
                     app:layout_constraintVertical_bias="0.0"
                     tools:text="to rear; to maintain; to cultivate" />
 
-                <ImageView
-                    android:id="@+id/collectdSave"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginTop="25dp"
-                    android:src="@drawable/collected_save"
-                    app:layout_constraintBottom_toBottomOf="@+id/episode_words"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/episode_words" />
 
-                <ImageView
-                    android:id="@+id/collectdUnSave"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/collected_usave"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginTop="25dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/episode_words"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/episode_words" />
 
                 <ImageView
                     android:id="@+id/video_background"

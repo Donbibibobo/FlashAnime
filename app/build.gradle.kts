@@ -139,6 +139,8 @@ dependencies {
 
     // youtube player
     implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.28")
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.0.0")
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:custom-ui:12.0.0")
 
     // swipe card
     implementation("com.yuyakaido.android:card-stack-view:2.3.4")
