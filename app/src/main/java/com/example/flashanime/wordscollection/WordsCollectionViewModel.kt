@@ -24,8 +24,8 @@ class WordsCollectionViewModel(private val flashAnimeRepository: FlashAnimeRepos
 
 
     // JLPt API
-    private val _wordInfoSelected = MutableLiveData<JLPTWordInfo>()
-    val wordInfoSelected: LiveData<JLPTWordInfo>
+    private val _wordInfoSelected = MutableLiveData<WordsCollection>()
+    val wordInfoSelected: LiveData<WordsCollection>
         get() = _wordInfoSelected
 
     init {
@@ -52,12 +52,19 @@ class WordsCollectionViewModel(private val flashAnimeRepository: FlashAnimeRepos
             }
     }
 
-    fun getWordInfoWordsCollection(word: String) {
+    fun getWordInfoWordsCollection(wordsCollection: WordsCollection) {
         viewModelScope.launch {
             try {
-                val wordInfo = flashAnimeRepository.getWordInfo(word)
-                Log.i("getWordInfo", wordInfo.words[0].romaji)
-                _wordInfoSelected.value = wordInfo.words[0]
+                val wordInfo = flashAnimeRepository.getWordInfo(wordsCollection.word)
+
+                val updateWordsCollection = wordsCollection.copy(
+                    word = wordInfo.words[0].word,
+                    meaning = wordInfo.words[0].meaning,
+                    furigana = wordInfo.words[0].furigana,
+                    romaji = wordInfo.words[0].romaji,
+                )
+
+                _wordInfoSelected.value = updateWordsCollection
             } catch (e: Exception) {
                 Log.i("DetailViewModel", "getWordInfo failed with exception: $e")
 //                throw IllegalArgumentException("DetailViewModel getWordInfo fail!")

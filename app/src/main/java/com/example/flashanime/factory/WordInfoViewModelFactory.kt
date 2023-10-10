@@ -9,6 +9,7 @@ import com.example.flashanime.data.source.FlashAnimeRepository
 import com.example.flashanime.detail.DetailViewModel
 import com.example.flashanime.word.WordDialog
 import com.example.flashanime.word.WordViewModel
+import com.example.flashanime.wordscollection.wordscollectiondialog.WordsCollectionDialogViewModel
 
 @Suppress("UNCHECKED_CAST")
 class WordInfoViewModelFactory(
@@ -21,6 +22,9 @@ class WordInfoViewModelFactory(
             when {
                 isAssignableFrom(WordViewModel::class.java) ->
                     WordViewModel(flashAnimeRepository, wordsCollection)
+
+                isAssignableFrom(WordsCollectionDialogViewModel::class.java) ->
+                    WordsCollectionDialogViewModel(flashAnimeRepository, wordsCollection)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

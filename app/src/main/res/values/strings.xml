@@ -58,6 +58,7 @@
     <string name="words_all">全部單字</string>
     <string name="words_collected">收藏單字</string>
     <string name="episodeCount">第%d集</string>
+    <string name="episodeCountInt">第%s集</string>
 
     <!-- word dialog -->
     <string name="word_dialog_meaning">語意：</string>
