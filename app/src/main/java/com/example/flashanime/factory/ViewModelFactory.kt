@@ -12,6 +12,7 @@ import com.example.flashanime.history.WatchHistoryViewModel
 import com.example.flashanime.home.HomeViewModel
 import com.example.flashanime.home.viewpage2.season.SeasonViewModel
 import com.example.flashanime.home.viewpage2.week.WeekViewModel
+import com.example.flashanime.hot.HotViewModel
 import com.example.flashanime.login.LoginViewModel
 import com.example.flashanime.profile.ProfileViewModel
 import com.example.flashanime.vocabulary.VocabularyViewModel
@@ -61,6 +62,9 @@ class ViewModelFactory constructor(
 
                 isAssignableFrom(WordsCollectionViewModel::class.java) ->
                     WordsCollectionViewModel(flashAnimeRepository)
+
+                isAssignableFrom(HotViewModel::class.java) ->
+                    HotViewModel(flashAnimeRepository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
