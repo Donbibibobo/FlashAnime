@@ -179,6 +179,7 @@ class VocabularyDetailFragment: Fragment() {
                             .filter { it.isCollected }
                     if (collectedList.isEmpty()){
                         binding.radioGroup.check(R.id.mode_all)
+                        binding.dialogBackground.visibility = View.VISIBLE
                         viewModel.showNoCollectedWordsAlert(requireContext())
                     }else{
                         Log.i("findList","4: $collectedList")
@@ -191,6 +192,13 @@ class VocabularyDetailFragment: Fragment() {
                         testList = updatedEpisode
                     }
                 }
+            }
+        }
+
+        viewModel.leaveDialog.observe(viewLifecycleOwner){
+            it?.let {
+                binding.dialogBackground.visibility = View.GONE
+                viewModel.leaveDialogComplete()
             }
         }
 

@@ -3,6 +3,7 @@ package com.example.flashanime.vocabularydetail
 import android.app.AlertDialog
 import android.content.Context
 import android.util.Log
+import android.view.LayoutInflater
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +14,10 @@ import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.JLPTWordInfo
 import com.example.flashanime.data.PlayWords
 import com.example.flashanime.data.source.FlashAnimeRepository
+import com.example.flashanime.databinding.CustomDialogLayoutBinding
+import com.example.flashanime.databinding.CustomDialogNocollectionBinding
 import com.example.flashanime.util.Util.getString
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -24,6 +28,14 @@ class VocabularyDetailViewModel(
     private val flashAnimeRepository: FlashAnimeRepository,
     private val arguments: AnimeInfo
 ): ViewModel() {
+
+    private val _leaveDialog = MutableLiveData<Boolean?>()
+    val leaveDialog: LiveData<Boolean?>
+        get() = _leaveDialog
+
+    fun leaveDialogComplete() {
+        _leaveDialog.value = null
+    }
 
 
     val db = Firebase.firestore
@@ -180,11 +192,18 @@ class VocabularyDetailViewModel(
 
     }
 
-    fun showNoCollectedWordsAlert(context: Context){
-        AlertDialog.Builder(context)
-            .setTitle(getString(R.string.collectedWordsAlert_title))
-            .setMessage(getString(R.string.collectedWordsAlert_message))
-            .setPositiveButton(getString(R.string.collectedWordsAlert_positiveButton), null).show()
+    fun showNoCollectedWordsAlert(context: Context) {
+        val binding = CustomDialogNocollectionBinding.inflate(LayoutInflater.from(context))
+        val dialog = MaterialAlertDialogBuilder(context)
+            .setView(binding.root)
+            .create()
+        binding.confirmButton.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.setOnDismissListener {
+            _leaveDialog.value = true
+        }
+        dialog.show()
     }
 
 }

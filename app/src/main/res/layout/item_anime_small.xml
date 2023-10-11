@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:clickable="false"
         android:focusable="false"
-        tools:background="@color/new_red">
+        tools:background="@color/new_bg">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -25,6 +25,7 @@
             android:layout_marginBottom="8dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="5dp"
+            android:backgroundTint="@color/new_secondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

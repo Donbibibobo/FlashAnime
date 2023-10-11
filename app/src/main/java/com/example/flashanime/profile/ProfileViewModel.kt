@@ -37,8 +37,6 @@ class ProfileViewModel(private val flashAnimeRepository: FlashAnimeRepository): 
         }
 
         dialog.show()
-
-
     }
 
     fun leaveDialogComplete() {
