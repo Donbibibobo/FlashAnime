@@ -22,7 +22,7 @@ fun bindImageMain(imageView: ImageView, mainImage: String?) {
         val imgUri = it.toUri().buildUpon().scheme("https").build()
         Glide.with(imageView.context)
             .load(imgUri)
-            .placeholder(R.drawable.sample)
+            .placeholder(R.drawable.svg_flashanime_2)
             .into(imageView)
     }
 }
@@ -40,7 +40,7 @@ fun bindImageWithGradient(imageView: ImageView, mainImage: String?) {
 
         Glide.with(imageView.context)
             .load(imgUri)
-            .placeholder(R.drawable.sample)
+            .placeholder(R.drawable.svg_flashanime_2)
             .into(object : CustomTarget<Drawable>() {
                 override fun onLoadCleared(placeholder: Drawable?) {}
                 override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
