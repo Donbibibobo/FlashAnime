@@ -43,7 +43,8 @@
     <string name="noInstruction">不再顯示教學</string>
 
     <!-- collected -->
-    <string name="no_result">沒有搜尋報結果</string>
+    <string name="no_result">沒有搜尋到結果</string>
+    <string name="no_collection">沒有收藏內容</string>
 
 
     <!-- word list -->

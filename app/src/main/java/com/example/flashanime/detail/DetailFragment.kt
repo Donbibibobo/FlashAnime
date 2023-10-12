@@ -23,6 +23,7 @@ import com.example.flashanime.R
 import com.example.flashanime.data.WordsCollection
 import com.example.flashanime.databinding.FragmentDetailBinding
 import com.example.flashanime.ext.getVmFactory
+import com.example.flashanime.vocabularydetail.VocabularyDetailListAdapter
 import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
@@ -42,6 +43,11 @@ class DetailFragment: Fragment() {
     private val updateHandler = Handler(Looper.getMainLooper())
 
     private var currentYouTubeSecond: Float = 0f
+
+    private lateinit var dataObserver: RecyclerView.AdapterDataObserver
+
+    private lateinit var adapterWordList: DetailWordListAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -107,7 +113,7 @@ class DetailFragment: Fragment() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 super.onReady(youTubePlayer)
                 youTubePlayerDetailFragment = youTubePlayer
-                youTubePlayer.loadVideo(viewModel.animeInfoArg.value!!.videosId.first(), 0f)
+                youTubePlayer.cueVideo(viewModel.animeInfoArg.value!!.videosId.first(), 0f)
             }
             override fun onStateChange(youTubePlayer: YouTubePlayer, state: PlayerConstants.PlayerState) {
                 when (state) {
@@ -140,7 +146,7 @@ class DetailFragment: Fragment() {
 
 
         // wordList recyclerview - all section
-        val adapterWordList = DetailWordListAdapter(
+        adapterWordList = DetailWordListAdapter(
             {
             // click sound icon to jump to specific time
                 // if doesn't have words List
@@ -161,6 +167,15 @@ class DetailFragment: Fragment() {
             },
             requireContext())
         binding.wordList.adapter = adapterWordList
+
+
+        // let recyclerview scroll to top
+        dataObserver = object : RecyclerView.AdapterDataObserver() {
+            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                binding.wordList.scrollToPosition(0)
+            }
+        }
+        adapterWordList.registerAdapterDataObserver(dataObserver)
 
 
         // add dividerItemDecoration for wordList recyclerview
@@ -184,7 +199,7 @@ class DetailFragment: Fragment() {
             adapterEpisode.submitList(it)
 
             // change to selected video
-            youTubePlayerDetailFragment?.loadVideo(viewModel.animeInfoArg.value!!.videosId[viewModel.episodeExo], 0f)
+            youTubePlayerDetailFragment?.cueVideo(viewModel.animeInfoArg.value!!.videosId[viewModel.episodeExo], 0f)
 
             // change to selected wordList
             adapterWordList.submitList(viewModel.animeInfoArg.value!!.wordsList[viewModel.episodeExo].playWords)
@@ -233,7 +248,11 @@ class DetailFragment: Fragment() {
         super.onDestroy()
         val window = requireActivity().window
         window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+
+        adapterWordList.unregisterAdapterDataObserver(dataObserver)
+
     }
+
 }
 
 

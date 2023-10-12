@@ -5,6 +5,7 @@
 
     <data>
         <variable name="viewModel" type="com.example.flashanime.collected.CollectedViewModel" />
+        <import type="android.view.View"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,6 +26,32 @@
             tools:listitem="@layout/item_anime_large"
             app:spanCount="2"
             tools:itemCount="2"/>
+
+        <TextView
+            android:id="@+id/no_result_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/noto_sans"
+            android:letterSpacing="0.1"
+            android:text="@string/no_collection"
+            android:textColor="@color/new_text"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/no_result_image"
+            android:visibility="@{viewModel.collectedAnimeList.isEmpty ? View.VISIBLE : View.GONE}"/>
+        <ImageView
+            android:id="@+id/no_result_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/no_collection"
+            android:layout_marginTop="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="@{viewModel.collectedAnimeList.isEmpty ? View.VISIBLE : View.GONE}"/>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

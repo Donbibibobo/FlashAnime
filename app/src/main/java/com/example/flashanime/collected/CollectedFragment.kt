@@ -45,6 +45,7 @@ class CollectedFragment: Fragment() {
                 animeInfo.isCollected
             }
             adapter.submitList(collectedList)
+            viewModel.collectedAnimeList.value = collectedList
 
         })
 
