@@ -159,7 +159,10 @@ class DetailFragment: Fragment() {
             // click to get word info through JLPt API
                 // if doesn't have words List
                 if (it.level != ""){
-                    viewModel.getWordInfo(it.word)
+                    // avoid multiple clicks
+                    if (viewModel.wordsClick.not()){
+                        viewModel.getWordInfo(it.word)
+                    }
 
                     // this is for words collection
                     viewModel.playWords.value = it
@@ -225,6 +228,9 @@ class DetailFragment: Fragment() {
                 viewModel.animeInfoArg.value!!.videosId[episodeNum.toInt()-1]
                 )
             findNavController().navigate(NavigationDirections.navigateToWordDialog(wordsCollection))
+
+            viewModel.wordsClick = false
+
         })
 
 

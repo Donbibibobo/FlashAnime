@@ -31,7 +31,6 @@ class DetailViewModel(
         get() = _animeInfoArg
 
 
-
     // episode recyclerview list default
     private val _episodeMutableListDefault = MutableLiveData<List<Episode>>()
     val episodeMutableListDefault: LiveData<List<Episode>>
@@ -58,6 +57,8 @@ class DetailViewModel(
     val playWords = MutableLiveData<PlayWords>()
 
 
+    // wordsList adapter click to get Api info
+    var wordsClick: Boolean = false
 
     init {
         createEpisodeList()
@@ -74,14 +75,16 @@ class DetailViewModel(
     }
 
     fun selectedEpisodeList(selectedIndex: Int) {
-        _episodeExo = selectedIndex
-        val mutableEpisodeList = mutableListOf<Episode>()
-        List(arguments.videosId.size) {
-            mutableEpisodeList.add(Episode.EpisodeUnSelected((it + 1).toString()))
+        if (selectedIndex != -1){
+            _episodeExo = selectedIndex
+            val mutableEpisodeList = mutableListOf<Episode>()
+            List(arguments.videosId.size) {
+                mutableEpisodeList.add(Episode.EpisodeUnSelected((it + 1).toString()))
+            }
+            mutableEpisodeList[selectedIndex] = Episode.EpisodeSelected((selectedIndex+1).toString())
+            _episodeMutableListSelected.value = mutableEpisodeList
+            Log.i("test11","viewModel: $_episodeExo")
         }
-        mutableEpisodeList[selectedIndex] = Episode.EpisodeSelected((selectedIndex+1).toString())
-        _episodeMutableListSelected.value = mutableEpisodeList
-        Log.i("test11","viewModel: $_episodeExo")
     }
 
     fun scrollToWord(position: Int, recyclerView: RecyclerView) {
@@ -116,6 +119,7 @@ class DetailViewModel(
     }
 
     fun getWordInfo(word: String) {
+        wordsClick = true
         viewModelScope.launch {
             try {
                 val wordInfo = flashAnimeRepository.getWordInfo(word)
