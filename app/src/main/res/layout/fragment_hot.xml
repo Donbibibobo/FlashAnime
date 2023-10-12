@@ -22,7 +22,9 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:listitem="@layout/item_carousel_layout"/>
+            tools:listitem="@layout/item_carousel_layout"
+            android:orientation="horizontal"
+            app:carousel_alignment="center"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,6 +35,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
+
+
 
 
 

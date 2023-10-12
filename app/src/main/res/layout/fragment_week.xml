@@ -73,7 +73,7 @@
                         android:textSize="50sp"
                         android:textColor="@color/new_text"
                         android:background="@color/new_topic"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
 
 

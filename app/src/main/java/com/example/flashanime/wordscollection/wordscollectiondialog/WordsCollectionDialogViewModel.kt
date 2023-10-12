@@ -21,6 +21,7 @@ class WordsCollectionDialogViewModel (
 
 
 
+
     // handle leave dialog
     private val _leave = MutableLiveData<Boolean>()
     val leave: LiveData<Boolean>

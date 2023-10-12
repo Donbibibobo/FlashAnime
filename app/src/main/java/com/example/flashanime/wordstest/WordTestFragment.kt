@@ -46,7 +46,9 @@ class WordTestFragment: Fragment() {
 
         // review recyclerview
         val wordReviewListAdapter = WordReviewListAdapter{
-            viewModel.getWordInfoWordsTest(it.word)
+            if (viewModel.wordsClick.not()){
+                viewModel.getWordInfoWordsTest(it.word)
+            }
         }
         binding.reviewRecyclerview.adapter = wordReviewListAdapter
         binding.reviewRecyclerview.layoutManager =
@@ -116,6 +118,7 @@ class WordTestFragment: Fragment() {
                 viewModel.platWordEpisode.value!!.animeInfo.videosId[episodeNum.toInt()-1])
 
             findNavController().navigate(NavigationDirections.navigateToWordDialog(wordsCollection))
+            viewModel.wordsClick = false
         }
 
 

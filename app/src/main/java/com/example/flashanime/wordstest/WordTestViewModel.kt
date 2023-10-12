@@ -58,8 +58,12 @@ class WordTestViewModel(
     val wordInfoSelected: LiveData<JLPTWordInfo>
         get() = _wordInfoSelected
 
+    // wordsList adapter click to get Api info
+    var wordsClick: Boolean = false
+
 
     fun getWordInfoWordsTest(word: String) {
+        wordsClick = true
         viewModelScope.launch {
             try {
                 val wordInfo = flashAnimeRepository.getWordInfo(word)

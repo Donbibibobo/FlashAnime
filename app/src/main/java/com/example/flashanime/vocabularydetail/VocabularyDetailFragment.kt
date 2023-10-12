@@ -47,10 +47,13 @@ class VocabularyDetailFragment: Fragment() {
 
         // ListAdapter
         adapter = VocabularyDetailListAdapter{
-            viewModel.getWordInfoVocabulary(it.word)
 
-            // this is for words collection
-            viewModel.playWords.value = it
+            if (viewModel.wordsClick.not()){
+                viewModel.getWordInfoVocabulary(it.word)
+
+                // this is for words collection
+                viewModel.playWords.value = it
+            }
         }
         binding.recyclerView.adapter = adapter
 
@@ -81,6 +84,8 @@ class VocabularyDetailFragment: Fragment() {
                     it.romaji,
                     viewModel.animeInfoArg.value!!.videosId[episodeNum.toInt()-1])
                 findNavController().navigate(NavigationDirections.navigateToWordDialog(wordsCollection))
+
+                viewModel.wordsClick = false
             }
         })
 

@@ -28,6 +28,9 @@ class WordsCollectionViewModel(private val flashAnimeRepository: FlashAnimeRepos
     val wordInfoSelected: LiveData<WordsCollection>
         get() = _wordInfoSelected
 
+    // wordsList adapter click to get Api info
+    var wordsClick: Boolean = false
+
     init {
         getWordsCollectionList()
     }
@@ -53,6 +56,7 @@ class WordsCollectionViewModel(private val flashAnimeRepository: FlashAnimeRepos
     }
 
     fun getWordInfoWordsCollection(wordsCollection: WordsCollection) {
+        wordsClick = true
         viewModelScope.launch {
             try {
                 val wordInfo = flashAnimeRepository.getWordInfo(wordsCollection.word)

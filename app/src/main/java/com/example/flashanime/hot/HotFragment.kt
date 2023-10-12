@@ -7,8 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.flashanime.databinding.FragmentHotBinding
 import com.example.flashanime.ext.getVmFactory
+import com.google.android.material.carousel.CarouselLayoutManager
+import com.google.android.material.carousel.CarouselSnapHelper
+import com.google.android.material.carousel.FullScreenCarouselStrategy
+import com.google.android.material.carousel.HeroCarouselStrategy
 
 class HotFragment: Fragment() {
 
@@ -24,6 +31,7 @@ class HotFragment: Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
+
         val adapter = CarouselAdapter{
             Log.i("CarouselAdapter", "CarouselAdapter tab")
         }
@@ -34,10 +42,13 @@ class HotFragment: Fragment() {
             adapter.submitList(it)
         }
 
+        val layoutManager = CarouselLayoutManager(FullScreenCarouselStrategy(), RecyclerView.HORIZONTAL)
+        binding.carouselRecyclerView.layoutManager = layoutManager
 
+//        layoutManager.setCarouselAlignment(CarouselLayoutManager.CENTER)
+        val snapHelper = CarouselSnapHelper()
+        snapHelper.attachToRecyclerView(binding.carouselRecyclerView)
 
-
-//        layoutManager.setCarouselStrategy()
 
 
 

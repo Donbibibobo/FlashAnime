@@ -37,6 +37,9 @@ class VocabularyDetailViewModel(
         _leaveDialog.value = null
     }
 
+    // wordsList adapter click to get Api info
+    var wordsClick: Boolean = false
+
 
     val db = Firebase.firestore
 
@@ -98,6 +101,7 @@ class VocabularyDetailViewModel(
 
 
     fun getWordInfoVocabulary(word: String) {
+        wordsClick = true
         viewModelScope.launch {
             try {
                 val wordInfo = flashAnimeRepository.getWordInfo(word)
