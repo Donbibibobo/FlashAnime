@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.example.flashanime.MainActivity
 import com.example.flashanime.NavigationDirections
 import com.example.flashanime.R
@@ -31,6 +32,8 @@ class VocabularyDetailFragment: Fragment() {
     private val viewModel by viewModels<VocabularyDetailViewModel> { getVmFactory(VocabularyDetailFragmentArgs.fromBundle(requireArguments()).animeInfoKey) }
 
     private lateinit var binding: FragmentVocavularyDetailBinding
+    private lateinit var adapter: VocabularyDetailListAdapter
+    private lateinit var dataObserver: RecyclerView.AdapterDataObserver
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,13 +46,21 @@ class VocabularyDetailFragment: Fragment() {
 
 
         // ListAdapter
-        val adapter = VocabularyDetailListAdapter{
+        adapter = VocabularyDetailListAdapter{
             viewModel.getWordInfoVocabulary(it.word)
 
             // this is for words collection
             viewModel.playWords.value = it
         }
         binding.recyclerView.adapter = adapter
+
+        // let recyclerview scroll to top
+        dataObserver = object : RecyclerView.AdapterDataObserver() {
+            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                binding.recyclerView.scrollToPosition(0)
+            }
+        }
+        adapter.registerAdapterDataObserver(dataObserver)
 
 
         // show word info from word API
@@ -79,12 +90,18 @@ class VocabularyDetailFragment: Fragment() {
 
         // init default episode 1
         viewModel.animeInfoArg.observe(viewLifecycleOwner, Observer {
+            Log.i("OMGG","cccl")
             if (binding.radioGroup.checkedRadioButtonId == R.id.mode_all){
                 binding.animeInfo = it
 
+                Log.i("OMGG","cccl1")
+
                 Log.i("findList","1: ${it.wordsList[0].playWords}")
-                adapter.submitList(it.wordsList[0].playWords)
+
+                adapter.submitList(it.wordsList[viewModel.autocompletePosition].playWords)
             } else {
+                Log.i("OMGG","cccl2")
+
                 // new list
                 val collectedList =
                     viewModel.animeInfoArg.value!!.wordsList[viewModel.autocompletePosition].playWords
@@ -92,9 +109,14 @@ class VocabularyDetailFragment: Fragment() {
 
                 Log.i("findList","2: $collectedList")
                 if (collectedList.isEmpty()){
+                    Log.i("catchAll","C")
+
                     binding.radioGroup.check(R.id.mode_all)
+                    Log.i("catchAll","1")
                 }else{
                     adapter.submitList(collectedList)
+                    Log.i("catchAll","D")
+
                 }
 
                 // new test list
@@ -103,6 +125,8 @@ class VocabularyDetailFragment: Fragment() {
                 val updatedEpisode = currentEpisode.copy(playWords = updatedPlayWords)
                 testList = updatedEpisode
             }
+
+            Log.i("autocompletePosition","autocompletePosition1: ${viewModel.autocompletePosition}")
 
             val episodeCount = mutableListOf<String>()
             // set episode word
@@ -113,7 +137,10 @@ class VocabularyDetailFragment: Fragment() {
             }
             val adapterTextInputLayout = ArrayAdapter(requireContext(), R.layout.text_dropdown_item, episodeCount)
             binding.autocomplete.setAdapter(adapterTextInputLayout)
-            binding.autocomplete.setText(episodeCount[0], false)
+            binding.autocomplete.setText(episodeCount[viewModel.autocompletePosition], false)
+
+            Log.i("autocompletePosition","autocompletePosition2: ${viewModel.autocompletePosition}")
+
         })
 
 
@@ -121,9 +148,12 @@ class VocabularyDetailFragment: Fragment() {
         binding.autocomplete.setOnItemClickListener { _, _, position, _ ->
             // current episode position
             viewModel.autocompletePosition = position
+            Log.i("autocompletePosition","autocompletePositionNow: ${viewModel.autocompletePosition}")
+
 
             // back to default mode_all
             binding.radioGroup.check(R.id.mode_all)
+            Log.i("catchAll","2")
 
             // close [start test] if it doesn't have content
             binding.testButton.isEnabled =
@@ -161,6 +191,9 @@ class VocabularyDetailFragment: Fragment() {
 
         }
 
+
+
+
         // radioGroup
         binding.radioGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
@@ -179,6 +212,7 @@ class VocabularyDetailFragment: Fragment() {
                             .filter { it.isCollected }
                     if (collectedList.isEmpty()){
                         binding.radioGroup.check(R.id.mode_all)
+                        Log.i("catchAll","3")
                         binding.dialogBackground.visibility = View.VISIBLE
                         viewModel.showNoCollectedWordsAlert(requireContext())
                     }else{
@@ -213,5 +247,11 @@ class VocabularyDetailFragment: Fragment() {
     override fun onStart() {
         super.onStart()
         binding.radioGroup.check(R.id.mode_all)
+        Log.i("catchAll","4")
+    }
+
+    override fun onDestroy() {
+        adapter.unregisterAdapterDataObserver(dataObserver)
+        super.onDestroy()
     }
 }

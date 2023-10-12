@@ -55,6 +55,7 @@ class VocabularyDetailViewModel(
             Log.i("OMGG ","A: $hasCollectedWords")
             value = arguments
         }
+        Log.i("OMGG","cccl3")
     }
     val animeInfoArg: LiveData<AnimeInfo>
         get() = _animeInfoArg
