@@ -13,7 +13,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
         android:foreground="?attr/selectableItemBackground"
-        app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge">
+        app:shapeAppearance="?attr/shapeAppearanceCornerExtraSmall">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint"
@@ -33,17 +33,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <TextView
-                android:id="@+id/carousel_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{animeInfo.title}"
-                android:textSize="50sp"
-                android:textColor="@color/new_text"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="黑暗集會"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

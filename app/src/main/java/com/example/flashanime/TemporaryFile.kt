@@ -16,6 +16,7 @@ object TemporaryFile {
     val db = Firebase.firestore
 
 
+
     fun addFirebaseAnimeInfo() {
 
     // 1 --------

@@ -114,4 +114,8 @@
     <string name="collectedWordsAlert_positiveButton">確認</string>
 
 
+
+    <!-- new Home page -->
+    <string name="hot_weeklyHot">本週熱播</string>
+
 </resources>
