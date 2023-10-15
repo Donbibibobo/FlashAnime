@@ -32,8 +32,10 @@ class SeasonFragment: Fragment() {
         val seasonAdapter = SeasonListAdapter{
             view?.findNavController()?.navigate(NavigationDirections.navigateToDetailFragment(it))
         }
+        val circleAdapter = CircleAdapter()
 
         binding.recyclerView.adapter = seasonAdapter
+        binding.recyclerCircles.adapter = circleAdapter
 
 
 
@@ -66,6 +68,16 @@ class SeasonFragment: Fragment() {
                 if (it.isEmpty().not()){
                     viewModel.hotListReady = true
                     viewModel.callSetBackgroundColor()
+
+                    // circle adapter
+                    val spotList = mutableListOf <CircleIsSelected>()
+                    for(i in hotList.indices){
+                        val spot = CircleIsSelected(i,false)
+                        spotList.add(spot)
+                    }
+                    spotList[viewModel.currentNum.value!!].isSelected = true
+                    Log.i("getListt","$spotList")
+                    circleAdapter.submitList(spotList)
                 }
             }
         }
@@ -100,6 +112,7 @@ class SeasonFragment: Fragment() {
             Log.i("finalNum","$it")
             viewModel.currentNumReady = true
             viewModel.callSetBackgroundColor()
+
         }
 
         viewModel.callColor.observe(viewLifecycleOwner){
@@ -107,7 +120,20 @@ class SeasonFragment: Fragment() {
                 val imageUrl = viewModel.setBackgroundColor()
                 viewModel.bindImageMainWithPalette(binding.constraint,imageUrl)
             }
+
+            // circle adapter
+            val spotList = mutableListOf <CircleIsSelected>()
+            for(i in viewModel.hotList?.indices!!){
+                val spot = CircleIsSelected(i,false)
+                spotList.add(spot)
+            }
+            spotList[viewModel.currentNum.value!!].isSelected = true
+            Log.i("getListt","$spotList")
+            circleAdapter.submitList(spotList)
         }
+
+
+
 
         return binding.root
     }

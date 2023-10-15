@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="isSelected" type="Boolean"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_detail_circle"
+        android:layout_width="26dp"
+        android:layout_height="6dp">
+
+        <ImageView
+            android:id="@+id/image_detail_circle"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:paddingEnd="20dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/spot"
+            android:backgroundTint="@{isSelected ? @color/new_topic : @color/new_text}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
