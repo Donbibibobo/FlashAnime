@@ -79,11 +79,6 @@
         android:label="WordsCollectionFragment"
         tools:layout="@layout/fragment_words_collected"/>
 
-    <fragment
-        android:id="@+id/hotFragment"
-        android:name="com.example.flashanime.hot.HotFragment"
-        android:label="HotFragment"
-        tools:layout="@layout/fragment_hot"/>
 
     <dialog
         android:id="@+id/wordDialog"
@@ -138,7 +133,7 @@
         app:popUpToInclusive="true"/>
 
     <action android:id="@+id/navigate_to_wordTestFragment" app:destination="@id/wordTestFragment"/>
-    <action android:id="@+id/navigate_to_hotFragment" app:destination="@id/hotFragment"/>
+
 
 
     <action android:id="@+id/navigate_to_detail_fragment" app:destination="@id/detailFragment"/>

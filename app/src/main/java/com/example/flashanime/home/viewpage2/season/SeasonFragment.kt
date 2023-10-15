@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.flashanime.NavigationDirections
 import com.example.flashanime.databinding.FragmentSeasonBinding
 import com.example.flashanime.ext.getVmFactory
-import com.example.flashanime.hot.CarouselAdapter
 import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.android.material.carousel.CarouselSnapHelper
 import com.google.android.material.carousel.FullScreenCarouselStrategy
@@ -38,25 +37,37 @@ class SeasonFragment: Fragment() {
 
 
 
-        viewModel.combinedList.observe(viewLifecycleOwner) {animeInfo ->
-            val sortedList = animeInfo.sortedBy { it.animeId }
-            Log.i("animeListToCombine99", "combinedList: $animeInfo")
-            seasonAdapter.submitList(sortedList)
-        }
-
-
-
     // carousel view
         val carouseAdapter = CarouselAdapter{
-            // click
+            val animeInfo = viewModel.currentNum.value?.let { index ->
+                viewModel.hotList?.get(index)
+            }
+            view?.findNavController()?.navigate(NavigationDirections.navigateToDetailFragment(animeInfo!!))
         }
 
         binding.carouselRecyclerView.adapter = carouseAdapter
 
-        viewModel.combinedList.observe(viewLifecycleOwner){
-            carouseAdapter.submitList(it)
-            viewModel.combinedListReady = true
-            viewModel.callSetBackgroundColor()
+        viewModel.combinedList.observe(viewLifecycleOwner){ animeInfo ->
+            val sortedList = animeInfo.sortedBy { it.animeId }
+            Log.i("animeListToCombine99", "combinedList: $animeInfo")
+            seasonAdapter.submitList(sortedList)
+
+            // select 4 top hot to carousel adapter
+            val indices = setOf(5, 4, 6, 8)
+            val hotList = sortedList.filterIndexed { index, _ ->
+                index in indices
+            }
+            viewModel.hotList = hotList
+
+            carouseAdapter.submitList(hotList)
+
+            // original
+            hotList.let {
+                if (it.isEmpty().not()){
+                    viewModel.hotListReady = true
+                    viewModel.callSetBackgroundColor()
+                }
+            }
         }
 
         val layoutManager = CarouselLayoutManager(FullScreenCarouselStrategy(), RecyclerView.HORIZONTAL)

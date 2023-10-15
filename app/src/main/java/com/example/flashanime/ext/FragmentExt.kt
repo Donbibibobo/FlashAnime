@@ -24,10 +24,7 @@ fun Fragment.getVmFactory(animeInfo: AnimeInfo): AnimeInfoViewModelFactory {
     return AnimeInfoViewModelFactory(repository, animeInfo)
 }
 
-//fun Fragment.getVmFactory(platWordEpisode: PlayWordEpisode): PlayWordsListViewModelFactory {
-//    val repository = (requireContext().applicationContext as FlashAnimeApplication).flashAnimeRepository
-//    return PlayWordsListViewModelFactory(repository, platWordEpisode)
-//}
+
 
 fun Fragment.getVmFactory(fromProfile: Boolean): CollectedViewModelFactory {
     val repository = (requireContext().applicationContext as FlashAnimeApplication).flashAnimeRepository

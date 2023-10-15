@@ -1,15 +1,16 @@
-package com.example.flashanime.hot
+package com.example.flashanime.home.viewpage2.season
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.flashanime.TemporaryFile
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.databinding.ItemCarouselLayoutBinding
 
-class CarouselAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<AnimeInfo, RecyclerView.ViewHolder>(HotDiffCallback()) {
+class CarouselAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<AnimeInfo, RecyclerView.ViewHolder>(
+    HotDiffCallback()
+) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -42,7 +43,6 @@ class CarouselAdapter(private val click: (AnimeInfo) -> Unit): ListAdapter<Anime
     }
 
 }
-
 private class HotDiffCallback() : DiffUtil.ItemCallback<AnimeInfo>() {
     override fun areItemsTheSame(oldItem: AnimeInfo, newItem: AnimeInfo): Boolean {
         return oldItem.animeId == newItem.animeId

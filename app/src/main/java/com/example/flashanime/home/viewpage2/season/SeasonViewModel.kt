@@ -2,49 +2,24 @@ package com.example.flashanime.home.viewpage2.season
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
-import android.util.Log
-import android.view.View
-import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import com.example.flashanime.MainActivity
 import com.example.flashanime.R
-import com.example.flashanime.TemporaryFile
 import com.example.flashanime.data.AnimeInfo
-import com.example.flashanime.data.PlayWordEpisode
-import com.example.flashanime.data.PlayWords
 import com.example.flashanime.data.source.FlashAnimeRepository
-import com.example.flashanime.data.source.local.FlashAnimeDatabase
-import com.example.flashanime.data.source.local.FlashAnimeDatabaseDao
-import com.google.firebase.firestore.ListenerRegistration
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.currentCoroutineContext
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.util.regex.Pattern
 import kotlin.math.roundToInt
 
 
@@ -69,6 +44,7 @@ class SeasonViewModel(private val flashAnimeRepository: FlashAnimeRepository): V
     }
 
 
+    var hotList: List<AnimeInfo>? = null
 
     private val _combinedList: LiveData<List<AnimeInfo>> = flashAnimeRepository.getAllAnimeInfo()
     val combinedList: LiveData<List<AnimeInfo>>
@@ -79,7 +55,7 @@ class SeasonViewModel(private val flashAnimeRepository: FlashAnimeRepository): V
 
     val currentNum = MutableLiveData(0)
 
-    var combinedListReady = false
+    var hotListReady = false
     var currentNumReady = false
 
     val callColor = MutableLiveData<Boolean?>()
@@ -125,19 +101,22 @@ class SeasonViewModel(private val flashAnimeRepository: FlashAnimeRepository): V
     }
 
     fun callSetBackgroundColor(){
-        if (combinedListReady && currentNumReady){
+        if (hotListReady && currentNumReady){
             callColor.value = true
         }
     }
 
     fun setBackgroundColor(): String?{
-        return currentNum.value?.let { _combinedList.value?.get(it)!!.pictureURL }
+        return currentNum.value?.let { index ->
+            hotList?.let{
+                hotList?.get(index)!!.pictureURL
+            }
+        }
     }
 
     fun bindImageMainWithPalette(layout: ConstraintLayout, mainImage: String?) {
 
         val bgColor = ContextCompat.getColor(layout.context, R.color.new_bg)
-        var generateColor: Int? = null
 
         mainImage?.let {
             val imgUri = it.toUri().buildUpon().scheme("https").build()
@@ -151,7 +130,6 @@ class SeasonViewModel(private val flashAnimeRepository: FlashAnimeRepository): V
                             dominantColor?.let { colorWithoutAlpha ->
                                 val alpha = (0.4 * 255).toInt()
                                 val newColor = Color.argb(alpha, Color.red(colorWithoutAlpha), Color.green(colorWithoutAlpha), Color.blue(colorWithoutAlpha))
-                                generateColor = newColor
 
                                 val oldColor = (layout.background as? ColorDrawable)?.color ?: bgColor
 
@@ -164,15 +142,6 @@ class SeasonViewModel(private val flashAnimeRepository: FlashAnimeRepository): V
                                 }
 
                                 colorAnimation.start()
-
-
-                                // Here, update the palette ImageView's background
-//                                val gradientDrawable = GradientDrawable(
-//                                    GradientDrawable.Orientation.TOP_BOTTOM,
-//                                    generateColor?.let { intArrayOf(bgColor, generateColor!!, bgColor) } ?: intArrayOf(bgColor, bgColor)
-//                                )
-//
-//                                imageView.background = gradientDrawable
 
                             }
                         }

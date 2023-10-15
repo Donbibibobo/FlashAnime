@@ -103,10 +103,6 @@ class WeekFragment: Fragment() {
 
 
 
-        binding.nav2hot.setOnClickListener {
-            it.findNavController().navigate(NavigationDirections.navigateToHotFragment())
-        }
-
         return binding.root
     }
 

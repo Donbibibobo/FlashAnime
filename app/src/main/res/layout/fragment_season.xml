@@ -46,7 +46,8 @@
                     android:paddingStart="15dp"
                     android:paddingEnd="0dp"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:enabled="false"/>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView"
@@ -106,7 +107,8 @@
                     android:paddingStart="15dp"
                     android:paddingEnd="0dp"
                     app:layout_constraintTop_toBottomOf="@+id/cardView"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:enabled="false"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
