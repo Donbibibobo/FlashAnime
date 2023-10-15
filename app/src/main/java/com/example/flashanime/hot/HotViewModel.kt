@@ -34,128 +34,115 @@ class HotViewModel(private val flashAnimeRepository: FlashAnimeRepository): View
     val combinedList: LiveData<List<AnimeInfo>>
         get() = _combinedList
 
-    val currentNum = MutableLiveData(0)
-
-    var combinedListReady = false
-    var currentNumReady = false
-
-    val callColor = MutableLiveData<Boolean?>()
-
-
-    fun findFirstVisibleItemPosition(layoutManager: RecyclerView.LayoutManager): Int? {
-        val childCount = layoutManager.childCount
-        for (i in 0 until childCount) {
-            val child = layoutManager.getChildAt(i)
-            if (child != null) {
-                if (layoutManager.getDecoratedBottom(child) > 0) {
-                    return layoutManager.getPosition(child)
-                }
-            }
-        }
-        return null
-    }
-
-    fun findLastVisibleItemPosition(layoutManager: RecyclerView.LayoutManager): Int? {
-        val childCount = layoutManager.childCount
-        for (i in childCount - 1 downTo 0) {
-            val child = layoutManager.getChildAt(i)
-            if (child != null) {
-                if (layoutManager.getDecoratedTop(child) < layoutManager.height) {
-                    return layoutManager.getPosition(child)
-                }
-            }
-        }
-        return null
-    }
-
-    fun currentPosition(average: Double): Double {
-
-        var position = 0.0
-
-        if (average < 1) {
-            position = 0.0
-        }else{
-            position = average.roundToInt().toDouble()
-        }
-
-        return position
-    }
-
-    fun callSetBackgroundColor(){
-        if (combinedListReady && currentNumReady){
-            callColor.value = true
-        }
-    }
-
-    fun setBackgroundColor(): String?{
-        return currentNum.value?.let { _combinedList.value?.get(it)!!.pictureURL }
-    }
-
-    fun bindImageMainWithPalette(layout: ConstraintLayout, mainImage: String?, context: Context, imageView: ImageView) {
-
-        val bgColor = ContextCompat.getColor(layout.context, R.color.new_bg)
-        var generateColor: Int? = null
-
-        mainImage?.let {
-            val imgUri = it.toUri().buildUpon().scheme("https").build()
-            Glide.with(layout.context)
-                .asBitmap() // Specify that we want a Bitmap, not a Drawable
-                .load(imgUri)
-                .into(object : CustomTarget<Bitmap>() {
-                    override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                        Palette.from(resource).generate { palette ->
-                            val dominantColor = palette?.getDominantColor(Color.BLACK)
-                            dominantColor?.let { colorWithoutAlpha ->
-                                val alpha = (0.4 * 255).toInt()
-                                val newColor = Color.argb(alpha, Color.red(colorWithoutAlpha), Color.green(colorWithoutAlpha), Color.blue(colorWithoutAlpha))
-                                generateColor = newColor
-
-                                val oldColor = (layout.background as? ColorDrawable)?.color ?: bgColor
-
-                                val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), oldColor, newColor)
-                                colorAnimation.duration = 600
-
-                                colorAnimation.addUpdateListener { animator ->
-                                    val animatedColor = animator.animatedValue as Int
-                                    layout.setBackgroundColor(animatedColor)
-                                }
-
-                                colorAnimation.start()
-
-
-                                // Here, update the palette ImageView's background
-                                val gradientDrawable = GradientDrawable(
-                                    GradientDrawable.Orientation.TOP_BOTTOM,
-                                    generateColor?.let { intArrayOf(generateColor!!, bgColor) } ?: intArrayOf(bgColor, bgColor)
-                                )
-
-                                imageView.background = gradientDrawable
-                            }
-                        }
-                    }
-                    override fun onLoadCleared(placeholder: Drawable?) {}
-                })
-
-
-
-//            // create gradientDrawable
-//            val gradientDrawable = GradientDrawable(
-//                GradientDrawable.Orientation.TOP_BOTTOM, generateColor?.let { generateColor ->
-//                    intArrayOf(generateColor, bgColor)
-//                })
+//    val currentNum = MutableLiveData(0)
 //
-//            object : CustomTarget<Drawable>() {
-//                override fun onLoadCleared(placeholder: Drawable?) {}
-//                override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-//                    // when glide finish, mix with gradientDrawable
-//                    resource.alpha = 110  // 1 * 255
-//                    val layers = arrayOf(resource, gradientDrawable)
-//                    val layerListDrawable = LayerDrawable(layers)
-//                    palette.setImageDrawable(layerListDrawable)
+//    var combinedListReady = false
+//    var currentNumReady = false
+//
+//    val callColor = MutableLiveData<Boolean?>()
+//
+//
+//    fun findFirstVisibleItemPosition(layoutManager: RecyclerView.LayoutManager): Int? {
+//        val childCount = layoutManager.childCount
+//        for (i in 0 until childCount) {
+//            val child = layoutManager.getChildAt(i)
+//            if (child != null) {
+//                if (layoutManager.getDecoratedBottom(child) > 0) {
+//                    return layoutManager.getPosition(child)
 //                }
 //            }
+//        }
+//        return null
+//    }
+//
+//    fun findLastVisibleItemPosition(layoutManager: RecyclerView.LayoutManager): Int? {
+//        val childCount = layoutManager.childCount
+//        for (i in childCount - 1 downTo 0) {
+//            val child = layoutManager.getChildAt(i)
+//            if (child != null) {
+//                if (layoutManager.getDecoratedTop(child) < layoutManager.height) {
+//                    return layoutManager.getPosition(child)
+//                }
+//            }
+//        }
+//        return null
+//    }
+//
+//    fun currentPosition(average: Double): Double {
+//
+//        var position = 0.0
+//
+//        if (average < 1) {
+//            position = 0.0
+//        }else{
+//            position = average.roundToInt().toDouble()
+//        }
+//
+//        return position
+//    }
+//
+//    fun callSetBackgroundColor(){
+//        if (combinedListReady && currentNumReady){
+//            callColor.value = true
+//        }
+//    }
+//
+//    fun setBackgroundColor(): String?{
+//        return currentNum.value?.let { _combinedList.value?.get(it)!!.pictureURL }
+//    }
+//
+//    fun bindImageMainWithPalette(layout: ConstraintLayout, mainImage: String?, context: Context, imageView: ImageView) {
+//
+//        val bgColor = ContextCompat.getColor(layout.context, R.color.new_bg)
+//        var generateColor: Int? = null
+//
+//        mainImage?.let {
+//            val imgUri = it.toUri().buildUpon().scheme("https").build()
+//            Glide.with(layout.context)
+//                .asBitmap() // Specify that we want a Bitmap, not a Drawable
+//                .load(imgUri)
+//                .into(object : CustomTarget<Bitmap>() {
+//                    override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+//                        Palette.from(resource).generate { palette ->
+//                            val dominantColor = palette?.getDominantColor(Color.BLACK)
+//                            dominantColor?.let { colorWithoutAlpha ->
+//                                val alpha = (0.4 * 255).toInt()
+//                                val newColor = Color.argb(alpha, Color.red(colorWithoutAlpha), Color.green(colorWithoutAlpha), Color.blue(colorWithoutAlpha))
+//                                generateColor = newColor
+//
+//                                val oldColor = (layout.background as? ColorDrawable)?.color ?: bgColor
+//
+//                                val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), oldColor, newColor)
+//                                colorAnimation.duration = 600
+//
+//                                colorAnimation.addUpdateListener { animator ->
+//                                    val animatedColor = animator.animatedValue as Int
+//                                    layout.setBackgroundColor(animatedColor)
+//                                }
+//
+//                                colorAnimation.start()
+//
+//
+//                                // Here, update the palette ImageView's background
+//                                val gradientDrawable = GradientDrawable(
+//                                    GradientDrawable.Orientation.TOP_BOTTOM,
+//                                    generateColor?.let { intArrayOf(generateColor!!, bgColor) } ?: intArrayOf(bgColor, bgColor)
+//                                )
+//
+//                                imageView.background = gradientDrawable
+//                            }
+//                        }
+//                    }
+//                    override fun onLoadCleared(placeholder: Drawable?) {}
+//                })
+//
+//
+//
+//
+//        }
+//    }
 
-        }
-    }
+
+
 
 }
