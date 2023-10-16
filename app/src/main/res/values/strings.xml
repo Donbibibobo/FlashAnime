@@ -118,5 +118,7 @@
     <!-- new Home page -->
     <string name="hot_weeklyHot">本週熱播</string>
     <string name="hot_weeklyAnime">最新更新</string>
+    <string name="hot_play">播放</string>
+    <string name="hot_collect">收藏</string>
 
 </resources>

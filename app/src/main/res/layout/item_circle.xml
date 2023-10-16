@@ -8,14 +8,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_detail_circle"
-        android:layout_width="26dp"
+        android:layout_width="20dp"
         android:layout_height="6dp">
 
         <ImageView
             android:id="@+id/image_detail_circle"
             android:layout_width="6dp"
             android:layout_height="6dp"
-            android:paddingEnd="20dp"
+            android:paddingEnd="14dp"
             android:scaleType="centerCrop"
             android:background="@drawable/spot"
             android:backgroundTint="@{isSelected ? @color/new_topic : @color/new_text}"

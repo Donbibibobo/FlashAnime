@@ -60,7 +60,7 @@ class SeasonFragment: Fragment() {
             seasonAdapter.submitList(sortedList)
 
             // select 4 top hot to carousel adapter
-            val indices = setOf(1, 2, 6, 8)
+            val indices = setOf(2, 5, 6, 8)
             val hotList = sortedList.filterIndexed { index, _ ->
                 index in indices
             }
@@ -118,6 +118,11 @@ class SeasonFragment: Fragment() {
             viewModel.currentNumReady = true
             viewModel.callSetBackgroundColor()
 
+            // hot_button
+            binding.hotPlay.setOnClickListener {
+                val animeInfo = viewModel.hotList!![viewModel.currentNum.value!!]
+                view?.findNavController()?.navigate(NavigationDirections.navigateToDetailFragment(animeInfo))
+            }
         }
 
         viewModel.callColor.observe(viewLifecycleOwner){
@@ -136,6 +141,9 @@ class SeasonFragment: Fragment() {
             Log.i("getListt","$spotList")
             circleAdapter.submitList(spotList)
         }
+
+
+
 
 
 
