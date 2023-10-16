@@ -6,6 +6,9 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
+import android.widget.ImageView
+import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
@@ -20,6 +23,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.example.flashanime.R
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.source.FlashAnimeRepository
+import com.google.android.material.tabs.TabLayout
 import kotlin.math.roundToInt
 
 
@@ -114,9 +118,10 @@ class SeasonViewModel(private val flashAnimeRepository: FlashAnimeRepository): V
         }
     }
 
-    fun bindImageMainWithPalette(layout: ConstraintLayout, mainImage: String?) {
+    fun bindImageMainWithPalette(layout: ConstraintLayout, mainImage: String?, imageView: ImageView) {
 
         val bgColor = ContextCompat.getColor(layout.context, R.color.new_bg)
+        var generateColor: Int? = null
 
         mainImage?.let {
             val imgUri = it.toUri().buildUpon().scheme("https").build()
@@ -128,17 +133,31 @@ class SeasonViewModel(private val flashAnimeRepository: FlashAnimeRepository): V
                         Palette.from(resource).generate { palette ->
                             val dominantColor = palette?.getDominantColor(Color.BLACK)
                             dominantColor?.let { colorWithoutAlpha ->
+                                // layout
                                 val alpha = (0.4 * 255).toInt()
                                 val newColor = Color.argb(alpha, Color.red(colorWithoutAlpha), Color.green(colorWithoutAlpha), Color.blue(colorWithoutAlpha))
+                                generateColor = newColor
 
                                 val oldColor = (layout.background as? ColorDrawable)?.color ?: bgColor
 
+                                // animation
                                 val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), oldColor, newColor)
                                 colorAnimation.duration = 600
 
+                                // imageView
+                                val initialColors = generateColor?.let { intArrayOf(generateColor!!, bgColor) } ?: intArrayOf(bgColor, bgColor)
+                                val gradientDrawable = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, initialColors)
+                                imageView.background = gradientDrawable
+
                                 colorAnimation.addUpdateListener { animator ->
                                     val animatedColor = animator.animatedValue as Int
+
+                                    // layout
                                     layout.setBackgroundColor(animatedColor)
+
+                                    // imageView
+                                    gradientDrawable.colors = intArrayOf(bgColor, animatedColor, animatedColor, animatedColor, bgColor)
+
                                 }
 
                                 colorAnimation.start()

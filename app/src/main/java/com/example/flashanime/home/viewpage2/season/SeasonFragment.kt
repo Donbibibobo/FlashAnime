@@ -5,16 +5,21 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flashanime.MainActivity
 import com.example.flashanime.NavigationDirections
 import com.example.flashanime.databinding.FragmentSeasonBinding
 import com.example.flashanime.ext.getVmFactory
+import com.example.flashanime.home.HomeFragment
 import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.android.material.carousel.CarouselSnapHelper
 import com.google.android.material.carousel.FullScreenCarouselStrategy
+import com.google.android.material.tabs.TabLayout
 
 class SeasonFragment: Fragment() {
 
@@ -55,7 +60,7 @@ class SeasonFragment: Fragment() {
             seasonAdapter.submitList(sortedList)
 
             // select 4 top hot to carousel adapter
-            val indices = setOf(5, 4, 6, 8)
+            val indices = setOf(1, 2, 6, 8)
             val hotList = sortedList.filterIndexed { index, _ ->
                 index in indices
             }
@@ -118,7 +123,7 @@ class SeasonFragment: Fragment() {
         viewModel.callColor.observe(viewLifecycleOwner){
             it?.let {
                 val imageUrl = viewModel.setBackgroundColor()
-                viewModel.bindImageMainWithPalette(binding.constraint,imageUrl)
+                viewModel.bindImageMainWithPalette(binding.constraint,imageUrl, binding.paletteColor)
             }
 
             // circle adapter
