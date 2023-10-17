@@ -60,7 +60,7 @@ class SeasonFragment: Fragment() {
             seasonAdapter.submitList(sortedList)
 
             // select 4 top hot to carousel adapter
-            val indices = setOf(2, 5, 6, 8)
+            val indices = setOf(0, 5, 6, 8)
             val hotList = sortedList.filterIndexed { index, _ ->
                 index in indices
             }
