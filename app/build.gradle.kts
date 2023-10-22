@@ -42,15 +42,7 @@ android {
     }
 
     buildFeatures {
-        // Determines whether to generate a BuildConfig class.
-//        buildConfig = true
-        // Determines whether to support View Binding.
-        // Note that the viewBinding.enabled property is now deprecated.
-//        viewBinding = false
-        // Determines whether to support Data Binding.
-        // Note that the dataBinding.enabled property is now deprecated.
         dataBinding = true
-//        compose = true
     }
 }
 
@@ -73,12 +65,6 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment:2.6.0")
     implementation("androidx.databinding:databinding-runtime:8.1.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-//    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1") {
-//        exclude group : "com.android.support", module: "support-annotations"
-//    }
 
     implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
 
@@ -110,8 +96,6 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
-//    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
-
     implementation("com.facebook.android:facebook-login:latest.release")
 
     implementation(platform("com.google.firebase:firebase-bom:32.2.2"))
@@ -124,10 +108,6 @@ dependencies {
     // exo player
     implementation("com.google.android.exoplayer:exoplayer:2.18.6")
     implementation("com.google.android.exoplayer:exoplayer-ui:2.18.6")
-
-    // File picker
-//    implementation("com.github.TutorialsAndroid:FilePicker:v9.0.1")
-//    implementation("io.github.tutorialsandroid:filepicker:9.2.5")
 
     // jsoup
     implementation("org.jsoup:jsoup:1.14.3")
@@ -146,20 +126,18 @@ dependencies {
     // Circular Progress Bar
     implementation ("com.mikhaellopez:circularprogressbar:3.1.0")
 
-// google sing in with firebase
-    // Import the BoM for the Firebase platform
-//    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
-
-    // Add the dependency for the Firebase Authentication library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-//    implementation("com.google.firebase:firebase-auth-ktx")
-
     // Also add the dependency for the Google Play services library and specify its version
     implementation("com.google.android.gms:play-services-auth:20.7.0")
 
     // take primary color
     implementation ("androidx.palette:palette-ktx:1.0.0")
 
+
+    // test
+    debugImplementation ("androidx.fragment:fragment-testing:1.5.5")
+    testImplementation ("org.mockito:mockito-core:3.3.3")
+    androidTestImplementation ("org.mockito:mockito-android:3.3.3")
+    androidTestImplementation ("androidx.test.espresso:espresso-contrib:3.3.0")
 
 }
 kapt {

@@ -27,7 +27,7 @@ class MainViewModel(private val flashAnimeRepository: FlashAnimeRepository): Vie
 
 // login
     // handle leave dialog
-    private lateinit var auth: FirebaseAuth
+    internal lateinit var auth: FirebaseAuth
     fun getAuthInstance(){
         auth = FirebaseAuth.getInstance()
         UserManager.user = auth

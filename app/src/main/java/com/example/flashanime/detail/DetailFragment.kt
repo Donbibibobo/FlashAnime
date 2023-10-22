@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -23,7 +24,6 @@ import com.example.flashanime.R
 import com.example.flashanime.data.WordsCollection
 import com.example.flashanime.databinding.FragmentDetailBinding
 import com.example.flashanime.ext.getVmFactory
-import com.example.flashanime.vocabularydetail.VocabularyDetailListAdapter
 import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
@@ -48,6 +48,8 @@ class DetailFragment: Fragment() {
 
     private lateinit var adapterWordList: DetailWordListAdapter
 
+    private lateinit var window: Window
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,7 +63,7 @@ class DetailFragment: Fragment() {
 
 
         // keep the screen always on
-        val window = requireActivity().window
+        window = requireActivity().window
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         binding.back.setOnClickListener {
@@ -104,7 +106,6 @@ class DetailFragment: Fragment() {
             }
         }
 
-
         // video player
         binding.youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
@@ -130,6 +131,27 @@ class DetailFragment: Fragment() {
             }
         })
 
+        // wordList recyclerview - all section
+        adapterWordList = DetailWordListAdapter(
+            clickSound = {
+                val desiredTimeInSeconds = viewModel.timeToMillis(it.time)/ 1000f
+                youTubePlayerDetailFragment?.seekTo(desiredTimeInSeconds)
+                Log.i("soundbuttob","$desiredTimeInSeconds")
+            },
+            clickWord = {
+                // avoid multiple clicks
+                if (viewModel.wordsClick.not()){
+                    viewModel.getWordInfo(it.word)
+                }
+
+                // this is for words collection
+                viewModel.playWords.value = it
+            },
+            requireContext())
+        binding.wordList.adapter = adapterWordList
+
+
+
 
         // episode recyclerView
         val adapterEpisode = DetailEpisodeAdapter{
@@ -145,31 +167,6 @@ class DetailFragment: Fragment() {
         binding.episode.layoutManager = layoutManager
 
 
-        // wordList recyclerview - all section
-        adapterWordList = DetailWordListAdapter(
-            {
-            // click sound icon to jump to specific time
-                // if doesn't have words List
-                if (it.level != ""){
-                    val desiredTimeInSeconds = viewModel.timeToMillis(it.time) / 1000f
-                    youTubePlayerDetailFragment?.seekTo(desiredTimeInSeconds)
-                    Log.i("soundbuttob","$desiredTimeInSeconds")
-                }
-            },{
-            // click to get word info through JLPt API
-                // if doesn't have words List
-                if (it.level != ""){
-                    // avoid multiple clicks
-                    if (viewModel.wordsClick.not()){
-                        viewModel.getWordInfo(it.word)
-                    }
-
-                    // this is for words collection
-                    viewModel.playWords.value = it
-                }
-            },
-            requireContext())
-        binding.wordList.adapter = adapterWordList
 
 
         // let recyclerview scroll to top
@@ -192,26 +189,31 @@ class DetailFragment: Fragment() {
         // video default first episode
         viewModel.episodeMutableListDefault.observe(viewLifecycleOwner, Observer {
             adapterEpisode.submitList(it)
-            adapterWordList.submitList(viewModel.animeInfoArg.value!!.wordsList[viewModel.episodeExo].playWords)
+
+            adapterWordList.submitList(viewModel.wordList2Submit)
 
         })
 
 
         // change to selected episode list
-        viewModel.episodeMutableListSelected.observe(viewLifecycleOwner, Observer {
-            adapterEpisode.submitList(it)
+        viewModel.episodeMutableListSelected.observe(viewLifecycleOwner) { episodeList ->
+            adapterEpisode.submitList(episodeList)
 
             // change to selected video
-            youTubePlayerDetailFragment?.cueVideo(viewModel.animeInfoArg.value!!.videosId[viewModel.episodeExo], 0f)
+            youTubePlayerDetailFragment?.cueVideo(
+                viewModel.animeInfoArg.value!!.videosId[viewModel.episodeExo],
+                0f
+            )
 
             // change to selected wordList
             adapterWordList.submitList(viewModel.animeInfoArg.value!!.wordsList[viewModel.episodeExo].playWords)
-        })
+        }
 
 
         // show word info from word API
-        viewModel.wordInfoSelected.observe(viewLifecycleOwner, Observer {
-            val episodeNum = viewModel.animeInfoArg.value!!.wordsList[viewModel.episodeExo].episodeNum
+        viewModel.wordInfoSelected.observe(viewLifecycleOwner) {
+            val episodeNum =
+                viewModel.animeInfoArg.value!!.wordsList[viewModel.episodeExo].episodeNum
             // this is for words collection
             val wordsCollection = WordsCollection(
                 viewModel.animeInfoArg.value!!.animeId,
@@ -225,13 +227,13 @@ class DetailFragment: Fragment() {
                 it.meaning,
                 it.furigana,
                 it.romaji,
-                viewModel.animeInfoArg.value!!.videosId[episodeNum.toInt()-1]
-                )
+                viewModel.animeInfoArg.value!!.videosId[episodeNum.toInt() - 1]
+            )
             findNavController().navigate(NavigationDirections.navigateToWordDialog(wordsCollection))
 
             viewModel.wordsClick = false
 
-        })
+        }
 
 
         // watch history
@@ -252,13 +254,9 @@ class DetailFragment: Fragment() {
     }
     override fun onDestroy() {
         super.onDestroy()
-        val window = requireActivity().window
         window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
         adapterWordList.unregisterAdapterDataObserver(dataObserver)
-
     }
-
 }
 
 

@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
-import com.example.flashanime.TemporaryFile
 import com.example.flashanime.UserManager
 import com.example.flashanime.data.AnimeInfo
 import com.example.flashanime.data.Episode
@@ -22,6 +21,8 @@ class DetailViewModel(
     private val flashAnimeRepository: FlashAnimeRepository,
     private val arguments: AnimeInfo
 ): ViewModel() {
+    val wordList2Submit: List<PlayWords>
+        get() = _animeInfoArg.value!!.wordsList[_episodeExo].playWords
 
     // Detail has product data from arguments
     private val _animeInfoArg = MutableLiveData<AnimeInfo>().apply {
@@ -114,6 +115,8 @@ class DetailViewModel(
         val splitByDot = splitByColon[2].split(".")
         val seconds = splitByDot[0].toLong()
         val millis = if (splitByDot.size > 1) splitByDot[1].toLong() else 0L
+
+
 
         return (hours * 3600000) + (minutes * 60000) + (seconds * 1000) + (millis * 10)
     }
