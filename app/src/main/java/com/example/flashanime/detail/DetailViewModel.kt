@@ -129,7 +129,6 @@ class DetailViewModel(
                 Log.i("getWordInfo", wordInfo.words[0].romaji)
                 _wordInfoSelected.value = wordInfo.words[0]
             } catch (e: Exception) {
-//                throw IllegalArgumentException("DetailViewModel getWordInfo fail!")
                 Log.i("DetailViewModel", "getWordInfo failed with exception: $e")
             }
         }

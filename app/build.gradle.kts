@@ -138,6 +138,19 @@ dependencies {
     testImplementation ("org.mockito:mockito-core:3.3.3")
     androidTestImplementation ("org.mockito:mockito-android:3.3.3")
     androidTestImplementation ("androidx.test.espresso:espresso-contrib:3.3.0")
+        // more readable
+    testImplementation ("com.google.truth:truth:1.0.1")
+    androidTestImplementation ("com.google.truth:truth:1.0.1")
+        // use Robolectric to deal with Android
+    testImplementation ("org.robolectric:robolectric:4.10.3")
+        // for api test
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+
+    androidTestImplementation ("androidx.arch.core:core-testing:2.1.0")
+
+    androidTestImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+
+
 
 }
 kapt {
