@@ -53,7 +53,7 @@
 
 <table>
   <tr>
-    <td><img src="https://github.com/Donbibibobo/FlashAnime/assets/133195279/4e3faa9d-d59d-4c35-a8b0-7988d272943c" alt="Home Page GIF" width="200"></td>
+    <td><img src="https://github.com/Donbibibobo/FlashAnime/assets/133195279/cd6b8838-96bd-4b89-b5af-d99d4b7d6694" alt="Home Page GIF" width="200"></td>
     <td>
       <h3 align="left">Home Page:</h3>
       <p><strong>Description:</strong> Seasonal anime updates presented on the home page.</p>
@@ -61,7 +61,7 @@
     </td>
   </tr>
   <tr>
-    <td><img src="https://github.com/Donbibibobo/FlashAnime/assets/133195279/b404ff52-f433-4ee3-b7d7-d2a07fb7aecb" alt="All Page GIF" width="200"></td>
+    <td><img src="https://github.com/Donbibibobo/FlashAnime/assets/133195279/95ccc2ef-f78d-4ce3-8dc8-ffc09863d98f" alt="All Page GIF" width="200"></td>
     <td>
       <h3 align="left">All Page:</h3>
       <p><strong>Description:</strong> Displays all anime titles with a tag-based filter for user preferences.</p>
@@ -69,7 +69,7 @@
     </td>
   </tr>
   <tr>
-    <td><img src="https://github.com/Donbibibobo/FlashAnime/assets/133195279/0023f7fa-0b8a-4f52-bce2-81bffa4830df" alt="Collected Page GIF" width="200"></td>
+    <td><img src="https://github.com/Donbibibobo/FlashAnime/assets/133195279/3b542653-2e84-4ede-85bc-5a7900934321" alt="Collected Page GIF" width="200"></td>
     <td>
       <h3 align="left">Collected Page:</h3>
       <p><strong>Description:</strong> View saved/favorite anime titles.</p>
@@ -77,7 +77,7 @@
     </td>
   </tr>
   <tr>
-    <td><img src="https://github.com/Donbibibobo/FlashAnime/assets/133195279/6f497e56-5112-42b9-a7d7-5a619196eb47" alt="Detail Page GIF" width="200"></td>
+    <td><img src="https://github.com/Donbibibobo/FlashAnime/assets/133195279/fd379d40-a5ce-41b9-9779-a9cd1b20fed5" alt="Detail Page GIF" width="200"></td>
     <td>
       <h3 align="left">Detail Page:</h3>
       <p><strong>Description:</strong> Watch anime and learn vocabulary simultaneously.</p>
@@ -89,7 +89,7 @@
     </td>
   </tr>
   <tr>
-    <td><img src="https://github.com/Donbibibobo/FlashAnime/assets/133195279/a10f2d9c-6fca-4b2b-8703-e9d4447bd9ab" alt="Vocabulary Page GIF" width="200"></td>
+    <td><img src="https://github.com/Donbibibobo/FlashAnime/assets/133195279/6a2e6168-ac19-4e22-9afd-b8f9811afa5d" alt="Vocabulary Page GIF" width="200"></td>
     <td>
       <h3 align="left">Vocabulary Page:</h3>
       <p><strong>Description:</strong> Showcases vocabulary from each anime episode, facilitating self-review.</p>
@@ -97,7 +97,7 @@
     </td>
   </tr>
   <tr>
-    <td><img src="https://github.com/Donbibibobo/FlashAnime/assets/133195279/88c17ffb-fb20-4f09-8567-68d322dc118b" alt="Profile Page GIF" width="200"></td>
+    <td><img src="https://github.com/Donbibibobo/FlashAnime/assets/133195279/23473e2a-6883-47ea-8d9c-890b46673c10" alt="Profile Page GIF" width="200"></td>
     <td>
       <h3 align="left">Profile Page:</h3>
       <p><strong>Description:</strong> Displays personal viewing history, anime favorites, and word favorites.</p>
