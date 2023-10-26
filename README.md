@@ -2,16 +2,16 @@
 [![MasterHead](https://1.bp.blogspot.com/-7A4WynwLsMw/XbBpCXG8fHI/AAAAAAAAMt4/uOa1bpLskYgrwGbllhSu2SDj_Mig8SXJQCLcBGAsYHQ/s1600/2000_600px.gif)](https://rishavchanda.io)
 
 <h1 align="center">FlashAnime</h1>
-<h3 align="center">An App for learning Japanese vocabulary through watching anime.</h3>
 
 <!-- Start of Introduction -->
 <div style="background-color: #f2f4f7; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
-    <h2 align="center" style="color: #0e75b6;">Unleash the Power of Anime in Language Learning</h2>
-    <p>Anime has always been a passion of mine, leading me to resolutely decide to learn Japanese. This determination inspired me to create this app, aiming to assist many fellow anime enthusiasts like myself to delve deeper into and truly appreciate Japanese culture.</p>
-    <p>Language learning is more than just acquiring knowledge; it's an experience. When you can understand every line of dialogue in an anime, you're not just gaining linguistic proficiency but also forging a profound connection with the story. The uniqueness of FlashAnime lies in blending "learning" with "entertainment," allowing you to grasp practical everyday words while engrossed in the plot.</p>
-    <p>After finishing an episode, don’t forget to utilize our specially crafted quizzes for self-assessment. Those words that catch your attention can be added to the "Vocabulary Collection," to be revisited and reinforced through episodic snippets, turning learning into a daily habit.</p>
-    <p>Let FlashAnime be your guide in learning Japanese. Dive into enthralling anime series and embark on this linguistic adventure with us!</p>
+    <h2 align="center" style="color: #0e75b6;">Unleash the power of anime to learn Japanese vocabulary.</h2>
+    <p>Inspired by my love for anime, I developed FlashAnime to help fellow enthusiasts immerse in Japanese culture while learning the language.</p>
+    <p>Language learning transcends mere knowledge. With FlashAnime, understanding every anime dialogue not only enhances your language skills but deepens your connection with the story. Our unique approach marries "entertainment" with "education," making learning everyday vocabulary an engaging experience.</p>
+    <p>After each episode, assess your grasp with our quizzes. Add intriguing words to the "Vocabulary Collection" and revisit them via episode snippets, integrating learning into your daily routine.</p>
+    <p>Embrace FlashAnime as your Japanese learning companion. Dive into captivating anime and join us on this linguistic journey!</p>
 </div>
+
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=donbibibobo&label=Profile%20views&color=0e75b6&style=flat" alt="donbibibobo" /> </p>
 
@@ -44,6 +44,18 @@ APK link: https://drive.google.com/drive/folders/1x7hM1m2GIN8Dn1GEDtTxY0M3WqRw9O
     </td>
   </tr>
   <tr>
+    <td><img src="https://github.com/Donbibibobo/FlashAnime/assets/133195279/6f497e56-5112-42b9-a7d7-5a619196eb47" alt="Detail Page GIF" width="200"></td>
+    <td>
+      <h3 align="left">Detail Page:</h3>
+      <p><strong>Description:</strong> Watch anime and learn vocabulary simultaneously.</p>
+      <p><strong>Technical Implementation:</strong></p>
+      <ul>
+          <li>Integrated Handler and Runnable for tracking vocabulary in videos, auto-scrolling the word list. Features include manual tracking disablement and clickable icons to navigate to specific word instances in the video.</li>
+          <li>Word clicks launch a detailed dialog. Within this dialog, users can favorite the word, saving both its details and the corresponding video segment.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
     <td><img src="https://github.com/Donbibibobo/FlashAnime/assets/133195279/a10f2d9c-6fca-4b2b-8703-e9d4447bd9ab" alt="Vocabulary Page GIF" width="200"></td>
     <td>
       <h3 align="left">Vocabulary Page:</h3>
@@ -59,19 +71,8 @@ APK link: https://drive.google.com/drive/folders/1x7hM1m2GIN8Dn1GEDtTxY0M3WqRw9O
       <p><strong>Technical Implementation:</strong> Under 'word favorites', clicking a word shows its details and replays the video segment using AppCompatDialogFragment for data presentation.</p>
     </td>
   </tr>
-  <tr>
-    <td><img src="https://github.com/Donbibibobo/FlashAnime/assets/133195279/6f497e56-5112-42b9-a7d7-5a619196eb47" alt="Detail Page GIF" width="200"></td>
-    <td>
-      <h3 align="left">Detail Page:</h3>
-      <p><strong>Description:</strong> Watch anime and learn vocabulary simultaneously.</p>
-      <p><strong>Technical Implementation:</strong></p>
-      <ul>
-          <li>Integrated Handler and Runnable for tracking vocabulary in videos, auto-scrolling the word list. Features include manual tracking disablement and clickable icons to navigate to specific word instances in the video.</li>
-          <li>Word clicks launch a detailed dialog. Within this dialog, users can favorite the word, saving both its details and the corresponding video segment.</li>
-      </ul>
-    </td>
-  </tr>
 </table>
+
 
   </tr>
   <!-- Repeat for other sections... -->
