@@ -34,12 +34,8 @@
     </ul>
     <h4>Components:</h4>
     <ul>
-        <li>RecyclerView</li>
-        <li>TabLayout</li>
-        <li>DataBinding</li>
-        <li>Lifecycle</li>
-        <li>Material Design Components</li>
-        <li>Navigation Component</li>
+        <li>Use Carousel with CarouselStrategy</li>
+        <li>Material buttons</li>
     </ul>
     <h4>Testing:</h4>
     <ul>
