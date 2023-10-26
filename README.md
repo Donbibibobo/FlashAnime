@@ -1,6 +1,3 @@
-# FlashAnime
-[![MasterHead](https://1.bp.blogspot.com/-7A4WynwLsMw/XbBpCXG8fHI/AAAAAAAAMt4/uOa1bpLskYgrwGbllhSu2SDj_Mig8SXJQCLcBGAsYHQ/s1600/2000_600px.gif)](https://rishavchanda.io)
-
 <h1 align="center">FlashAnime</h1>
 
 <!-- Start of Introduction -->
@@ -12,10 +9,50 @@
     <p>Embrace FlashAnime as your Japanese learning companion. Dive into captivating anime and join us on this linguistic journey!</p>
 </div>
 
+<!-- Start of Technical Stack -->
+<div style="background-color: #e9ecef; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+    <h3 align="center" style="color: #0e75b6;">🛠 Technical Stack</h3>
+    <h4>Architecture Pattern:</h4>
+    <ul>
+        <li>MVVM (Model-View-ViewModel)</li>
+    </ul>
+    <h4>Networking:</h4>
+    <ul>
+        <li>RESTful API Integration</li>
+        <li>Retrofit</li>
+        <li>Moshi</li>
+    </ul>
+    <h4>Data Storage:</h4>
+    <ul>
+        <li>Room Database</li>
+        <li>Firebase Cloud Firestore</li>
+    </ul>
+    <h4>Third-Party Libraries:</h4>
+    <ul>
+        <li><strong>Media Playback:</strong> <a href="https://github.com/PierfrancescoSoffritti/android-youtube-player">Youtube Player</a></li>
+        <li><strong>UI Enhancements:</strong> <a href="https://github.com/yuyakaido/CardStackView">Card Stack View</a> for swipeable cards & <a href="https://github.com/lopspower/CircularProgressBar">Circular ProgressBar</a> for circular progressBar</li>
+    </ul>
+    <h4>Components:</h4>
+    <ul>
+        <li>RecyclerView</li>
+        <li>TabLayout</li>
+        <li>DataBinding</li>
+        <li>Lifecycle</li>
+        <li>Material Design Components</li>
+        <li>Navigation Component</li>
+    </ul>
+    <h4>Testing:</h4>
+    <ul>
+        <li>Unit Tests</li>
+        <li>UI Tests</li>
+        <li>Mockito</li>
+        <li>Robolectric</li>
+    </ul>
+</div>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=donbibibobo&label=Profile%20views&color=0e75b6&style=flat" alt="donbibibobo" /> </p>
 
-APK link: https://drive.google.com/drive/folders/1x7hM1m2GIN8Dn1GEDtTxY0M3WqRw9O6Y?usp=sharing
+<p><strong>APK link:</strong> <a href="https://drive.google.com/drive/folders/1x7hM1m2GIN8Dn1GEDtTxY0M3WqRw9O6Y?usp=sharing">Download here</a></p>
 
 
 <table>
